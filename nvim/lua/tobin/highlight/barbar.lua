@@ -1,0 +1,5 @@
+vim.cmd 'hi BufferCurrent guibg=#313047 gui=NONE'
+vim.cmd 'hi BufferAlternateTarget guibg=#313047 gui=NONE'
+vim.cmd 'hi BufferAlternate guibg=#313047 gui=NONE'
+vim.cmd 'hi BufferAlternateMod guibg=#313047 gui=NONE'
+vim.cmd 'hi BufferAlternateTarget guibg=#313047 gui=NONE'

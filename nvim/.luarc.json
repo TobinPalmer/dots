@@ -1,0 +1,10 @@
+{
+    "workspace.checkThirdParty": false,
+    "diagnostics.globals": [
+        "var"
+    ],
+    "diagnostics.disable": [
+        "missing-parameter",
+        "unused-local"
+    ]
+}
