@@ -1,8 +1,7 @@
 require('zone').setup {
-  style = 'treadmill',
-  after = 300, -- Idle timeout
+  style = 'dvd',
+  after = 300,
   exclude_filetypes = { 'TelescopePrompt', 'NvimTree', 'neo-tree', 'dashboard', 'lazy' },
-  -- More options to come later
 
   treadmill = {
     direction = 'left',

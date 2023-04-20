@@ -6,21 +6,15 @@ if vim.fn.has 'mac' == 1 or vim.g.use_nerd_icons then
       Method = 'm',
       Function = '',
       Constructor = '',
-      -- Method = '',
-      -- Function = '',
-      -- Constructor = '',
       Field = '',
-      -- Variable = "",
       Variable = '',
       Class = '',
       Interface = '',
-      -- Module = "",
       Module = '',
       Property = '',
       Unit = '',
       Value = '',
       Enum = '',
-      -- Keyword = "",
       Keyword = '',
       Snippet = '',
       Color = '',
@@ -109,7 +103,6 @@ if vim.fn.has 'mac' == 1 or vim.g.use_nerd_icons then
     },
   }
 else
-  --   פּ ﯟ   蘒練 some other good icons
   return {
     kind = {
       Text = ' ',
