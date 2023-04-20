@@ -80,7 +80,15 @@ return require('lazy').setup {
   { 'tamton-aquib/zone.nvim', event = 'VeryLazy', lazy = true },
   { 'RRethy/vim-illuminate', event = 'VeryLazy', lazy = true },
   { 'weilbith/nvim-code-action-menu', event = 'VeryLazy', lazy = true },
+<<<<<<< HEAD
   { 'andymass/vim-matchup', event = 'VeryLazy', lazy = true },
+=======
+<<<<<<< Updated upstream
+=======
+  { 'andymass/vim-matchup', event = 'VeryLazy', lazy = true },
+  { 'toppair/peek.nvim', event = 'VeryLazy', lazy = true },
+>>>>>>> Stashed changes
+>>>>>>> 52008d7
 
   {
     'glepnir/lspsaga.nvim',
