@@ -156,6 +156,12 @@ keymap('n', 'K', '<Cmd>Lspsaga hover_doc<CR>')
 -- Misc
 keymap('n', '<leader>d0', 'd^', { unpack(noremap_silent), desc = 'Delete Until First Character' })
 keymap('n', '<leader>c0', 'c^', { unpack(noremap_silent), desc = 'Cut Until First Character' })
+keymap(
+  'n',
+  '<leader>mk',
+  '<Cmd>call cursor(0, len(getline("."))/2)<CR>',
+  { unpack(noremap_silent), desc = 'Cut Until First Character' }
+)
 
 keymap('i', '˙', '<C-<Left>>')
 keymap('i', '∆', '<C-<Down>>')
@@ -202,6 +208,6 @@ keymap('n', '<leader>b2', '<Cmd>BufferGoto 2<CR>', { unpack(noremap_silent), des
 keymap('n', '<leader>b3', '<Cmd>BufferGoto 3<CR>', { unpack(noremap_silent), desc = 'Go To Buffer 3' })
 keymap('n', '<leader>b4', '<Cmd>BufferGoto 4<CR>', { unpack(noremap_silent), desc = 'Go To Buffer 4' })
 keymap('n', '<leader>b5', '<Cmd>BufferGoto 5<CR>', { unpack(noremap_silent), desc = 'Go To Buffer 5' })
+keymap('n', '<leader>b8', '<Cmd>BufferGoto 8<CR>', { unpack(noremap_silent), desc = 'Go To Buffer 8' })
 keymap('n', '<leader>b6', '<Cmd>BufferGoto 6<CR>', { unpack(noremap_silent), desc = 'Go To Buffer 6' })
 keymap('n', '<leader>b7', '<Cmd>BufferGoto 7<CR>', { unpack(noremap_silent), desc = 'Go To Buffer 7' })
-keymap('n', '<leader>b8', '<Cmd>BufferGoto 8<CR>', { unpack(noremap_silent), desc = 'Go To Buffer 8' })
