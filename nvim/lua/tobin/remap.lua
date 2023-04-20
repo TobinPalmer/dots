@@ -172,17 +172,6 @@ keymap('n', '<leader>ek', '<Cmd>TrailBlazerPeekMovePreviousUp<CR>', { unpack(nor
 keymap('n', '<leader>ej', '<Cmd>TrailBlazerPeekMoveNextDown<CR>', { unpack(noremap_silent), desc = 'Trailblazer' })
 keymap('n', '<leader>ed', '<Cmd>TrailBlazerDeleteAllTrailMarks<CR>', { unpack(noremap_silent), desc = 'Trailblazer' })
 
--- Multi Cursor
-vim.api.nvim_command 'let g:VM_maps = {}'
-vim.api.nvim_command "let g:VM_leader = {'default': ' ', 'visual': ' ', 'buffer': 'z'}"
-vim.api.nvim_command "let g:VM_maps['Add Cursor Down'] = '<C-j>'"
-vim.api.nvim_command "let g:VM_maps['Add Cursor Up'] = '<C-k>'"
-vim.api.nvim_command "let g:VM_maps['Move Right'] = '<C-l>'"
-vim.api.nvim_command "let g:VM_maps['Numbers Append'] = '<leader>zN'"
-vim.api.nvim_command "let g:VM_maps['Numbers'] = '<leader>zn'"
-vim.api.nvim_command "let g:VM_maps['Move Left'] = '<C-h>'"
-vim.api.nvim_command "let g:VM_maps['Select All'] = ''"
-
 -- LSP
 keymap('n', '<leader>e', vim.diagnostic.open_float)
 keymap('n', '[d', vim.diagnostic.goto_prev)

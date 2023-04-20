@@ -28,11 +28,27 @@ dashboard.section.buttons.val = {
   button('p', icons.git.Repo .. ' Find project', '<CMD>Telescope project<CR>'),
   button('r', icons.ui.History .. ' Recent files', '<CMD>Telescope oldfiles<CR>'),
   button('t', icons.ui.List .. ' Find text', '<CMD>Telescope live_grep<CR>'),
-  button('s', icons.ui.SignIn .. ' Find Profile', '<CMD>Telescope possession list<CR>'),
+  button('s', icons.ui.SignIn .. ' Last Session', '<CMD>lua require("persistence").load({ last = true })<CR>'),
   button('c', icons.ui.Gear .. ' Config', '<CMD>e ~/.config/nvim/init.lua<CR><CMD>cd %:p:h<CR>'),
   button('u', icons.ui.CloudDownload .. ' Update', '<CMD>Lazy update<CR>'),
   button('q', icons.ui.SignOut .. ' Quit', '<CMD>qa<CR>'),
 }
+
+dashboard.section.header.opts.hl = 'Include'
+dashboard.section.buttons.opts.hl = 'Macro'
+dashboard.section.footer.opts.hl = 'Type'
+
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'LazyVimStarted',
+  callback = function()
+    local stats = require('lazy').stats()
+    local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+    dashboard.section.footer.val = '⚡ Neovim loaded ' .. stats.count .. ' plugins in ' .. ms .. 'ms'
+  end,
+})
+
+dashboard.opts.opts.noautocmd = true
+alpha.setup(dashboard.opts)
 
 dashboard.section.header.opts.hl = 'Include'
 dashboard.section.buttons.opts.hl = 'Macro'
