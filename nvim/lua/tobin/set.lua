@@ -8,3 +8,4 @@ vim.o.timeout = true
 vim.o.timeoutlen = 600
 vim.o.nobackup = true
 vim.o.noswapfile = true
+vim.g.did_load_filetypes = 1
