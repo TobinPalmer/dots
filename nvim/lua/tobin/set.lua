@@ -1,11 +1,37 @@
-vim.o.number = true
-vim.o.relativenumber = true
+local set = vim.opt
+local g = vim.g
 
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-vim.o.expandtab = true
-vim.o.timeout = true
-vim.o.timeoutlen = 600
-vim.o.nobackup = true
-vim.o.noswapfile = true
-vim.g.did_load_filetypes = 1
+g.mapleader = ','
+g.maplocalleader = ','
+
+set.nu = true
+set.relativenumber = true
+
+set.tabstop = 2
+set.softtabstop = 2
+set.shiftwidth = 2
+set.expandtab = true
+set.hlsearch = false
+set.incsearch = true
+set.scrolloff = 10
+
+set.splitbelow = true
+set.splitright = true
+set.signcolumn = 'yes'
+set.showmode = false
+
+set.timeout = true
+set.timeoutlen = 200
+
+set.smartindent = true
+set.wrap = false
+set.termguicolors = true
+set.list = false
+
+set.swapfile = false
+set.backup = false
+set.undodir = os.getenv 'HOME' .. '/.vim/undodir'
+set.undofile = true
+set.undolevels = 10000
+
+g.markdown_recommended_style = 0

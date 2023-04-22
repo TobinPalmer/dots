@@ -1,1 +1,0 @@
--- vim.cmd [[au VimEnter * if isdirectory(expand('%')) | exec 'Telescope find_files cwd=' . expand('%') | endif]]
