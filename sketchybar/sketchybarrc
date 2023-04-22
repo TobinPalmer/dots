@@ -24,13 +24,14 @@ bar=(
   color=$BAR_COLOR
   border_width=2
   border_color=$BAR_BORDER_COLOR
-  shadow=off
+  shadow=on
   position=top
   sticky=on
   padding_right=10
   padding_left=10
-  y_offset=-5
-  margin=-2
+  y_offset=9
+  margin=9
+  corner_radius=15
 )
 
 sketchybar --bar "${bar[@]}"
@@ -50,6 +51,7 @@ defaults=(
   padding_left=$PADDINGS
   background.height=26
   background.corner_radius=9
+  background.blur_radius=9
   background.border_width=2
   popup.background.border_width=2
   popup.background.corner_radius=9
@@ -73,6 +75,7 @@ source "$ITEM_DIR/weather.sh"
 source "$ITEM_DIR/brew.sh"
 source "$ITEM_DIR/wifi.sh"
 source "$ITEM_DIR/keyboard.sh"
+source "$ITEM_DIR/focus.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/cpu.sh"

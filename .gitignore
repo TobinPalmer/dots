@@ -20,3 +20,5 @@
 !.gitignore
 !README.md
 
+nvim/.DS_Store
+nvim/lazy-lock.json

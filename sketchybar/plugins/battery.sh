@@ -8,7 +8,6 @@ CHARGING=$(pmset -g batt | grep 'AC Power')
 
 sketchybar --set "${NAME}" icon.color=0xff989898
 
-
 if [[ ${CHARGING} = "" ]]; then
   case ${BATT_PERCENT} in
     100) ICON="􀛨" COLOR="$GREEN" ;;
