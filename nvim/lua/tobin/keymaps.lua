@@ -95,8 +95,8 @@ keymap(
 )
 
 -- Terminal
-keymap('n', '<leader>mt', '<CMD>ToggleTerm<CR>', { table.unpack(noremap_silent), desc = 'Toggle Terminal' })
-keymap('t', '<ESC>h', '<C-\\><C-n><C-w>j<CR>', { table.unpack(noremap_silent), desc = 'Close Terminal' })
+keymap('n', '<leader>mt', '<CMD>Lspsaga term_toggle<CR>', { table.unpack(noremap_silent), desc = 'Toggle Terminal' })
+keymap('t', '<ESC>h', '<CMD>Lspsaga term_toggle<CR>', { table.unpack(noremap_silent), desc = 'Close Terminal' })
 
 -- Line Folding
 keymap('n', '<leader>mf', 'za', { table.unpack(noremap_silent), desc = 'Toggle Fold' })
@@ -155,6 +155,7 @@ keymap('n', '<leader>q', vim.diagnostic.setloclist)
 keymap('n', '<leader>ga', '<Cmd>Lspsaga code_action<CR>', { table.unpack(noremap_silent), desc = 'Lsp Code Action' })
 keymap('n', '<leader>gr', '<Cmd>Lspsaga rename<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
 keymap('n', '<leader>gp', '<Cmd>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
+keymap('n', '<leader>gf', '<Cmd>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
 keymap('n', '<leader>gs', function()
   require('lsp_signature').toggle_float_win()
 end, { silent = true, noremap = true, desc = 'Toggle Signature' })

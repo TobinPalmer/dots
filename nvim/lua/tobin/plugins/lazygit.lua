@@ -1,4 +1,4 @@
 return {
   'kdheepak/lazygit.nvim',
-  event = 'BufReadPost',
+  event = 'VeryLazy',
 }
