@@ -1,52 +1,16 @@
---return {
---  {
---    'nvim-lualine/lualine.nvim',
---    event = 'BufReadPre',
---    options = {
---      icons_enabled = true,
---      theme = 'tokyonight',
---      component_separators = { left = '', right = '' },
---      section_separators = { left = '', right = '' },
---      disabled_filetypes = {
---        statusline = {},
---        winbar = {},
---      },
---      ignore_focus = {},
---      always_divide_middle = true,
---      globalstatus = false,
---      refresh = {
---        statusline = 1000,
---        tabline = 1000,
---        winbar = 1000,
---      },
---    },
---    sections = {
---      lualine_a = { 'mode' },
---      lualine_b = { 'diff', 'diagnostics' },
---      lualine_c = { 'filename' },
---      lualine_x = {},
---      lualine_y = {},
---      lualine_z = { 'filetype', 'progress' },
---    },
---    inactive_sections = {
---      lualine_a = {},
---      lualine_b = {},
---      lualine_c = { 'filename' },
---      lualine_x = { 'location' },
---      lualine_y = {},
---      lualine_z = {},
---    },
---    tabline = {},
---    winbar = {},
---    inactive_winbar = {},
---    extensions = {},
---  },
---}
---
 return {
   'nvim-lualine/lualine.nvim',
   event = 'BufReadPre',
   opts = function()
+    local wpm = require 'wpm'
+    local status = require('nvim-spotify').status
+
+    status:start()
+
+    require('lualine').setup {
+      sections = {},
+    }
+
     local lspStatus = {
       function()
         local msg = 'No LSP detected'
@@ -90,8 +54,8 @@ return {
     return {
       options = {
         icons_enabled = true,
-        component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         disabled_filetypes = { 'alpha', 'dashboard', 'lazy' },
         always_divide_middle = true,
         globalstatus = true,
@@ -99,8 +63,8 @@ return {
       sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch' },
-        lualine_c = {},
-        lualine_x = { diff, diagnostic },
+        lualine_c = { wpm.wpm, wpm.historic_graph },
+        lualine_x = { status.listen, diff },
         lualine_y = { lspStatus, 'filetype' },
         lualine_z = { 'progress' },
       },

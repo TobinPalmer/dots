@@ -13,6 +13,10 @@ return {
       local lib = require 'nvim-tree.lib'
       local view = require 'nvim-tree.view'
 
+      api.events.subscribe(api.events.Event.FileCreated, function(file)
+        vim.cmd('edit ' .. file.fname)
+      end)
+
       local function edit_or_open()
         local action = 'edit'
         local node = lib.get_node_at_cursor()

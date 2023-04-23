@@ -125,5 +125,5 @@ return {
 
     require('tobin.handlers').setup()
   end,
-  require 'tobin.plugins.null-ls',
+  require 'tobin.plugins.null_ls',
 }
