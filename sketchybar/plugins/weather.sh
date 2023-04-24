@@ -75,12 +75,15 @@ weather_icon_map() {
 	"true Partly Sunny")
 		icon_result="􀇕"
 		;;
+	"true Patchy Fog" | "true Areas Of Fog" | "true Widespread Fog")
+		icon_result="􀇊"
+		;;
 	"true Cloudy" | "true Mostly Cloudy")
 		icon_result="􀇂"
 		;;
 	# No Match
 	*)
-		icon_result="N/A"
+		icon_result="$@"
 		;;
 	esac
 	echo $icon_result
