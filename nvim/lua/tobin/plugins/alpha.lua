@@ -25,9 +25,8 @@ return {
       [[                                                                       ]],
     }
     dashboard.section.buttons.val = {
-      button('f', icons.documents.Files .. ' Find file', '<CMD>Telescope smart_open<CR>'),
+      button('f', icons.documents.Files .. ' Find file', '<CMD>Telescope find_files<CR>'),
       button('e', icons.ui.NewFile .. ' New file', '<CMD>ene <BAR> startinsert<CR>'),
-      button('p', icons.git.Repo .. ' Find project', '<CMD>Telescope project<CR>'),
       button('r', icons.ui.History .. ' Recent files', '<CMD>Telescope oldfiles<CR>'),
       button('t', icons.ui.List .. ' Find text', '<CMD>Telescope live_grep<CR>'),
       button('s', icons.ui.SignIn .. ' Last Session', '<CMD>lua require("persistence").load({ last = true })<CR>'),

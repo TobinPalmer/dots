@@ -1,6 +1,6 @@
 return {
   'lewis6991/gitsigns.nvim',
-  event = 'BufReadPre',
+  cmd = { 'Gitsigns' },
   keys = {
     { 'gn', '<cmd>Gitsigns next_hunk<CR>' },
     { 'gN', '<cmd>Gitsigns prev_hunk<CR>' },

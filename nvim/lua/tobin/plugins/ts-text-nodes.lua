@@ -1,6 +1,6 @@
 return {
   'ckolkey/ts-node-action',
-  event = 'BufReadPre',
+  event = 'InsertEnter',
   dependencies = { 'nvim-treesitter' },
   opts = {},
   config = function()

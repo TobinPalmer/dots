@@ -5,5 +5,6 @@ return {
     opts = {},
   },
 
+  { 'windwp/nvim-autopairs', event = 'InsertEnter' },
   { 'nvim-lua/plenary.nvim' },
 }

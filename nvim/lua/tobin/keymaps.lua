@@ -39,7 +39,6 @@ keymap(
   '<CMD>lua require"telescope.builtin".oldfiles()<CR>',
   { table.unpack(normap), desc = 'Telescope Find Old Files' }
 )
-keymap('n', '<leader>fp', '<CMD>Telescope possession list<CR>', { table.unpack(normap), desc = 'List Saved Sessions' })
 
 -- Trouble
 keymap('n', '<leader>tt', '<cmd>TroubleToggle<cr>', { table.unpack(noremap_silent), desc = 'Toggle Trouble' })
@@ -149,14 +148,15 @@ vim.api.nvim_set_keymap('n', '<leader>sh', '<Plug>(SpotifyShuffle)', { silent = 
 
 -- Lsp
 keymap('n', '<leader>e', vim.diagnostic.open_float)
+keymap('n', '<leader>lr', '<CMD>LspRestart<CR>', { silent = true })
 keymap('n', '[d', vim.diagnostic.goto_prev)
 keymap('n', ']d', vim.diagnostic.goto_next)
 keymap('n', '<leader>q', vim.diagnostic.setloclist)
-keymap('n', '<leader>ga', '<Cmd>Lspsaga code_action<CR>', { table.unpack(noremap_silent), desc = 'Lsp Code Action' })
-keymap('n', '<leader>gr', '<Cmd>Lspsaga rename<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
-keymap('n', '<leader>gp', '<Cmd>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
-keymap('n', '<leader>gf', '<Cmd>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
-keymap('n', '<leader>gs', function()
+keymap('n', 'ga', '<Cmd>Lspsaga code_action<CR>', { table.unpack(noremap_silent), desc = 'Lsp Code Action' })
+keymap('n', 'gr', '<Cmd>Lspsaga rename<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
+keymap('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
+keymap('n', 'gf', '<Cmd>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
+keymap('n', 'gs', function()
   require('lsp_signature').toggle_float_win()
 end, { silent = true, noremap = true, desc = 'Toggle Signature' })
 keymap('n', '<leader>gd', vim.lsp.buf.definition, { silent = true, noremap = true, desc = 'Jump To Definition' })

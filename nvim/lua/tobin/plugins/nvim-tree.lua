@@ -95,7 +95,6 @@ return {
       vim.keymap.set('n', 'p', api.fs.paste, opts 'paste')
       vim.keymap.set('n', 'q', api.tree.close, opts 'close')
       vim.keymap.set('n', 'r', api.fs.rename, opts 'rename')
-      vim.keymap.set('n', 'r', api.tree.reload, opts 'refresh')
       vim.keymap.set('n', 's', api.node.run.system, opts 'run system')
       vim.keymap.set('n', 's', api.tree.search_node, opts 'search')
       vim.keymap.set('n', 'u', api.tree.toggle_custom_filter, opts 'toggle hidden')
