@@ -95,7 +95,12 @@ keymap(
 
 -- Terminal
 keymap('n', '<leader>mt', '<CMD>Lspsaga term_toggle<CR>', { table.unpack(noremap_silent), desc = 'Toggle Terminal' })
-keymap('t', '<ESC>h', '<CMD>Lspsaga term_toggle<CR>', { table.unpack(noremap_silent), desc = 'Close Terminal' })
+keymap(
+  { 't', 'n' },
+  '<ESC>h',
+  '<CMD>Lspsaga term_toggle<CR>',
+  { noremap = true, silent = true, desc = 'Close Terminal' }
+)
 
 -- Line Folding
 keymap('n', '<leader>mf', 'za', { table.unpack(noremap_silent), desc = 'Toggle Fold' })
@@ -119,10 +124,13 @@ keymap('n', '<leader>hs', '<CMD>HopChar2<CR>', { table.unpack(noremap_silent), d
 
 -- Misc Settings
 keymap('n', '<leader>mh', '<CMD>noh<CR>', { table.unpack(noremap_silent), desc = 'Clears Highlighting' })
+-- vim.cmd [[cnoremap w w!]]
+vim.cmd [[cnoremap <expr> w (getcmdtype() ==# ':' && getcmdline() ==# 'w') ? 'w!' : 'w']]
+
 keymap(
   'n',
   '<leader>mc',
-  '<CMD>e ~/.config/nvim/init.lua<CR>',
+  '<CMD>e ~/.config/nvim/init.lua<CR><CMD>cd %:p:h<CR>',
   { table.unpack(noremap_silent), desc = 'Edits init.lua' }
 )
 keymap(
@@ -148,6 +156,7 @@ vim.api.nvim_set_keymap('n', '<leader>sh', '<Plug>(SpotifyShuffle)', { silent = 
 
 -- Lsp
 keymap('n', '<leader>e', vim.diagnostic.open_float)
+keymap('n', '<leader>lf', '<CMD>lua vim.lsp.buf.format()<CR>')
 keymap('n', '<leader>lr', '<CMD>LspRestart<CR>', { silent = true })
 keymap('n', '[d', vim.diagnostic.goto_prev)
 keymap('n', ']d', vim.diagnostic.goto_next)

@@ -58,6 +58,17 @@ return {
         ['<ENTER>'] = cmp.mapping.confirm { select = true },
         ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select }, { 'i' }),
         ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select }, { 'i' }),
+        ['<CR>'] = cmp.mapping {
+          i = function(fallback)
+            if cmp.visible() and cmp.get_active_entry() then
+              cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+            else
+              fallback()
+            end
+          end,
+          s = cmp.mapping.confirm { select = true },
+          c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
+        },
       },
       formatting = {
         fields = { 'kind', 'abbr', 'menu' },
@@ -89,10 +100,34 @@ return {
       completion = { completeopt = 'noselect' },
       sources = cmp.config.sources {
         { name = 'copilot', priority = 1000 },
-        { name = 'nvim_lsp', priority = 800 },
-        { name = 'luasnip', priority = 600 },
-        { name = 'buffer', priority = 400 },
-        { name = 'path', priority = 200 },
+        {
+          name = 'nvim_lsp',
+          priority = 800,
+          entry_filter = function(entry)
+            return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
+          end,
+        },
+        {
+          name = 'luasnip',
+          priority = 600,
+          entry_filter = function(entry)
+            return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
+          end,
+        },
+        {
+          name = 'buffer',
+          priority = 400,
+          entry_filter = function(entry)
+            return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
+          end,
+        },
+        {
+          name = 'path',
+          priority = 200,
+          entry_filter = function(entry)
+            return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
+          end,
+        },
       },
       duplicates = {
         copilot = 1,

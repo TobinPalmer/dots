@@ -40,6 +40,8 @@ return {
         local servers = {
           'prismals',
           'dockerls',
+          'jsonls',
+          'pyright',
           'cssls',
         }
 
