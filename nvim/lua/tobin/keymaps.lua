@@ -114,6 +114,15 @@ keymap(
   '<CMD>HopWordCurrentLine<CR>',
   { table.unpack(noremap_silent), desc = 'Hop Word In Current Line' }
 )
+
+-- Moving lines
+keymap({ 'n' }, '<A-j>', ':m .+1<CR>==')
+keymap({ 'n' }, '<A-k>', ':m .-2<CR>==')
+keymap({ 'i' }, '<A-j>', '<Esc>:m .+1<CR>==gi')
+keymap({ 'i' }, '<A-k>', '<Esc>:m .-2<CR>==gi')
+keymap({ 'v', 'x' }, '<A-j>', ':m >+1<CR>gv=gv')
+keymap({ 'v', 'x' }, '<A-k>', ':m <-2<CR>gv=gv')
+
 keymap(
   'n',
   '<leader>ha',
@@ -212,24 +221,30 @@ keymap('n', '∆', '<C-<Down>>')
 keymap('n', '˚', '<C-<Up>>')
 keymap('n', '¬', '<C-<Right>>')
 
-keymap('n', '<leader>em', '<Cmd>TrailBlazerNewTrailMark<CR>', { table.unpack(noremap_silent), desc = 'Trailblazer' })
+-- Trailblazer
+keymap(
+  'n',
+  '<leader>em',
+  '<Cmd>TrailBlazerNewTrailMark<CR>',
+  { table.unpack(noremap_silent), desc = 'Trailblazer make mark' }
+)
 keymap(
   'n',
   '<leader>ek',
   '<Cmd>TrailBlazerPeekMovePreviousUp<CR>',
-  { table.unpack(noremap_silent), desc = 'Trailblazer' }
+  { table.unpack(noremap_silent), desc = 'Trailblazer Previous Mark' }
 )
 keymap(
   'n',
   '<leader>ej',
   '<Cmd>TrailBlazerPeekMoveNextDown<CR>',
-  { table.unpack(noremap_silent), desc = 'Trailblazer' }
+  { table.unpack(noremap_silent), desc = 'Trailblazer Down Mark' }
 )
 keymap(
   'n',
   '<leader>ed',
   '<Cmd>TrailBlazerDeleteAllTrailMarks<CR>',
-  { table.unpack(noremap_silent), desc = 'Trailblazer' }
+  { table.unpack(noremap_silent), desc = 'Trailblazer Delete All Marks' }
 )
 
 -- LSP

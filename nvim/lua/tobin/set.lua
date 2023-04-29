@@ -6,6 +6,7 @@ g.maplocalleader = ','
 
 set.nu = true
 set.relativenumber = true
+set.autochdir = false
 
 set.tabstop = 2
 set.softtabstop = 2
