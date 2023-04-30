@@ -15,12 +15,10 @@ alias spacer="defaults write com.apple.dock persistent-apps -array-add '{"tile-t
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias resetNPM="rm -rf node_modules package-lock.json && npm i"
 alias resetNPM="cp -r"
-alias ofzf="nvim \$(fzf)"
 alias :wq="cowsay You\'re not using vim!"
 alias :q="cowsay You\'re not using vim!"
-alias syncCode="rsync -av --exclude=node_modules Code/ /Volumes/Code/"
+alias syncCode="rsync -av --exclude=node_modules --exclude=target --exclude=\.vscode-test --exclude=venv ~/Documents/Code/ /Volumes/Code/"
 alias notes="python3 /Users/tobin/Documents/Code/Python/school_notes/main.py"
-alias ntmux="tmux new-session \; split-window -h \; split-window -v \; attach"
 alias monkeytype="python3 /Users/tobin/Documents/Code/Python/monkeytype-playwright/main.py"
 alias nitrotype="python3 /Users/tobin/Documents/Code/Python/nitrotype-playwright/main.py"
 
