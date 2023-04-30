@@ -1,3 +1,64 @@
+-- return {
+--   'nvim-tree/nvim-tree.lua',
+--   dependencies = {
+--     'nvim-tree/nvim-web-devicons',
+--   },
+--   cmd = { 'NvimTreeToggle' },
+--   keys = {
+--     { '<leader>pv', '<cmd>NvimTreeToggle<CR>' },
+--   },
+--   opts = function()
+--     local function on_attach(bufnr)
+--       local api = require 'nvim-tree.api'
+--       local lib = require 'nvim-tree.lib'
+--       local view = require 'nvim-tree.view'
+--
+--       local function edit_or_open()
+--         local action = 'edit'
+--         local node = lib.get_node_at_cursor()
+--
+--         if node == nil then
+--           return
+--         end
+--         if node.link_to and not node.nodes then
+--           require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
+--           view.close()
+--         elseif node.nodes ~= nil then
+--           lib.expand_or_collapse(node)
+--         else
+--           require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
+--           view.close()
+--         end
+--       end
+--
+--       local function opts(desc)
+--         return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+--       end
+--
+--       api.config.mappings.default_on_attach(bufnr)
+--
+--       vim.keymap.set('n', 'l', edit_or_open, opts 'edit or open')
+--       vim.keymap.set('n', 'h', api.tree.close, opts 'close')
+--       vim.keymap.set('n', 'h', api.tree.collapse_all, opts 'collapse all')
+--
+--       vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts 'close directory')
+--       vim.keymap.set('n', 'h', api.tree.collapse_all, opts 'collapse')
+--     end
+--
+--     return {
+--       sort_by = 'case_sensitive',
+--       sync_root_with_cwd = true,
+--       reload_on_bufenter = true,
+--       respect_buf_cwd = true,
+--       on_attach = on_attach,
+--       update_focused_file = {
+--         enable = false,
+--         update_root = false,
+--       },
+--     }
+--   end,
+-- }
+--
 return {
   'nvim-tree/nvim-tree.lua',
   dependencies = {
@@ -21,34 +82,37 @@ return {
         local action = 'edit'
         local node = lib.get_node_at_cursor()
 
-        if node.link_to and not node.nodes then
-          require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
-          view.close()
-        elseif node.nodes ~= nil then
-          lib.expand_or_collapse(node)
-        else
-          require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
-          view.close()
-        end
-      end
-
-      local function vsplit_preview()
-        local action = 'vsplit'
-        local node = lib.get_node_at_cursor()
-
         if node == nil then
           return
         end
         if node.link_to and not node.nodes then
           require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
+          -- view.close()
         elseif node.nodes ~= nil then
           lib.expand_or_collapse(node)
         else
           require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
+          -- view.close()
         end
-
-        view.focus()
       end
+
+      -- local function vsplit_preview()
+      --   local action = 'vsplit'
+      --   local node = lib.get_node_at_cursor()
+      --
+      --   if node == nil then
+      --     return
+      --   end
+      --   if node.link_to and not node.nodes then
+      --     require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
+      --   elseif node.nodes ~= nil then
+      --     lib.expand_or_collapse(node)
+      --   else
+      --     require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
+      --   end
+      --
+      --   view.focus()
+      -- end
 
       local function opts(desc)
         return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -112,17 +176,18 @@ return {
       vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts 'close directory')
       vim.keymap.set('n', 'h', api.tree.collapse_all, opts 'collapse')
     end
+
     local HEIGHT_RATIO = 0.8
     local WIDTH_RATIO = 0.5
     return {
       sort_by = 'case_sensitive',
-      sync_root_with_cwd = true,
-      reload_on_bufenter = true,
+      sync_root_with_cwd = false,
+      reload_on_bufenter = false,
+      respect_buf_cwd = false,
       on_attach = on_attach,
-      respect_buf_cwd = true,
       update_focused_file = {
-        enable = true,
-        update_root = true,
+        enable = false,
+        update_root = false,
       },
       view = {
         float = {

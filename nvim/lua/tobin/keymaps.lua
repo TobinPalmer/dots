@@ -41,30 +41,30 @@ keymap(
 )
 
 -- Trouble
-keymap('n', '<leader>tt', '<cmd>TroubleToggle<cr>', { table.unpack(noremap_silent), desc = 'Toggle Trouble' })
+keymap('n', '<leader>tt', '<CMD>TroubleToggle<cr>', { table.unpack(noremap_silent), desc = 'Toggle Trouble' })
 keymap(
   'n',
   '<leader>ta',
-  '<cmd>TroubleToggle workspace_diagnostics<cr>',
+  '<CMD>TroubleToggle workspace_diagnostics<cr>',
   { table.unpack(noremap_silent), desc = 'Toggle Trouble Workspace Diagnostics' }
 )
 keymap(
   'n',
   '<leader>td',
-  '<cmd>TroubleToggle document_diagnostics<cr>',
+  '<CMD>TroubleToggle document_diagnostics<cr>',
   { table.unpack(noremap_silent), desc = 'Toggle Trouble Document Diagnostics' }
 )
 keymap(
   'n',
   '<leader>tq',
-  '<cmd>TroubleToggle quickfix<cr>',
+  '<CMD>TroubleToggle quickfix<cr>',
   { table.unpack(noremap_silent), desc = 'Toggle Trouble Quickfix' }
 )
 
 keymap(
   'n',
   '<leader>tj',
-  "<cmd>require('trouble').next({ skip_groups = true, jump = true });<cr>",
+  "<CMD>require('trouble').next({ skip_groups = true, jump = true });<cr>",
   { table.unpack(noremap_silent), desc = 'Next Entry (Trouble)' }
 )
 keymap(
@@ -170,36 +170,36 @@ keymap('n', '<leader>lr', '<CMD>LspRestart<CR>', { silent = true })
 keymap('n', '[d', vim.diagnostic.goto_prev)
 keymap('n', ']d', vim.diagnostic.goto_next)
 keymap('n', '<leader>q', vim.diagnostic.setloclist)
-keymap('n', 'ga', '<Cmd>Lspsaga code_action<CR>', { table.unpack(noremap_silent), desc = 'Lsp Code Action' })
-keymap('n', 'gr', '<Cmd>Lspsaga rename<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
-keymap('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
-keymap('n', 'gf', '<Cmd>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
+keymap('n', 'ga', '<CMD>Lspsaga code_action<CR>', { table.unpack(noremap_silent), desc = 'Lsp Code Action' })
+keymap('n', 'gr', '<CMD>Lspsaga rename<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
+keymap('n', 'gp', '<CMD>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
+keymap('n', 'gf', '<CMD>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
 keymap('n', 'gs', function()
   require('lsp_signature').toggle_float_win()
 end, { silent = true, noremap = true, desc = 'Toggle Signature' })
 keymap('n', '<leader>gd', vim.lsp.buf.definition, { silent = true, noremap = true, desc = 'Jump To Definition' })
-keymap('n', 'gh', '<Cmd>Lspsaga lsp_finder<CR>')
-keymap({ 'n', 'v' }, '<leader>ca', '<Cmd>Lspsaga code_action<CR>')
-keymap('n', 'gr', '<Cmd>Lspsaga rename<CR>')
-keymap('n', 'gr', '<Cmd>Lspsaga rename ++project<CR>')
-keymap('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>')
-keymap('n', 'gd', '<Cmd>Lspsaga goto_definition<CR>')
-keymap('n', 'gt', '<Cmd>Lspsaga peek_type_definition<CR>')
-keymap('n', 'gt', '<Cmd>Lspsaga goto_type_definition<CR>')
-keymap('n', '<leader>sl', '<Cmd>Lspsaga show_line_diagnostics<CR>')
-keymap('n', '<leader>sb', '<Cmd>Lspsaga show_buf_diagnostics<CR>')
-keymap('n', '<leader>sw', '<Cmd>Lspsaga show_workspace_diagnostics<CR>')
-keymap('n', '<leader>sc', '<Cmd>Lspsaga show_cursor_diagnostics<CR>')
-keymap('n', '[e', '<Cmd>Lspsaga diagnostic_jump_prev<CR>')
-keymap('n', ']e', '<Cmd>Lspsaga diagnostic_jump_next<CR>')
+keymap('n', 'gh', '<CMD>Lspsaga lsp_finder<CR>')
+keymap({ 'n', 'v' }, '<leader>ca', '<CMD>Lspsaga code_action<CR>')
+keymap('n', 'gr', '<CMD>Lspsaga rename<CR>')
+keymap('n', 'gr', '<CMD>Lspsaga rename ++project<CR>')
+keymap('n', 'gp', '<CMD>Lspsaga peek_definition<CR>')
+keymap('n', 'gd', '<CMD>Lspsaga goto_definition<CR>')
+keymap('n', 'gt', '<CMD>Lspsaga peek_type_definition<CR>')
+keymap('n', 'gt', '<CMD>Lspsaga goto_type_definition<CR>')
+keymap('n', '<leader>sl', '<CMD>Lspsaga show_line_diagnostics<CR>')
+keymap('n', '<leader>sb', '<CMD>Lspsaga show_buf_diagnostics<CR>')
+keymap('n', '<leader>sw', '<CMD>Lspsaga show_workspace_diagnostics<CR>')
+keymap('n', '<leader>sc', '<CMD>Lspsaga show_cursor_diagnostics<CR>')
+keymap('n', '[e', '<CMD>Lspsaga diagnostic_jump_prev<CR>')
+keymap('n', ']e', '<CMD>Lspsaga diagnostic_jump_next<CR>')
 keymap('n', '[E', function()
   require('lspsaga.diagnostic'):goto_prev { severity = vim.diagnostic.severity.ERROR }
 end)
 keymap('n', ']E', function()
   require('lspsaga.diagnostic'):goto_next { severity = vim.diagnostic.severity.ERROR }
 end)
-keymap('n', '<leader>go', '<Cmd>Lspsaga outline<CR>')
-keymap('n', 'K', '<Cmd>Lspsaga hover_doc<CR>')
+keymap('n', '<leader>go', '<CMD>Lspsaga outline<CR>')
+keymap('n', 'K', '<CMD>Lspsaga hover_doc<CR>')
 
 -- Misc
 keymap('n', '<leader>d0', 'd^', { table.unpack(noremap_silent), desc = 'Delete Until First Character' })
@@ -207,7 +207,7 @@ keymap('n', '<leader>c0', 'c^', { table.unpack(noremap_silent), desc = 'Cut Unti
 keymap(
   'n',
   '<leader>mk',
-  '<Cmd>call cursor(0, len(getline("."))/2)<CR>',
+  '<CMD>call cursor(0, len(getline("."))/2)<CR>',
   { table.unpack(noremap_silent), desc = 'Cut Until First Character' }
 )
 
@@ -225,25 +225,25 @@ keymap('n', '¬', '<C-<Right>>')
 keymap(
   'n',
   '<leader>em',
-  '<Cmd>TrailBlazerNewTrailMark<CR>',
+  '<CMD>TrailBlazerNewTrailMark<CR>',
   { table.unpack(noremap_silent), desc = 'Trailblazer make mark' }
 )
 keymap(
   'n',
   '<leader>ek',
-  '<Cmd>TrailBlazerPeekMovePreviousUp<CR>',
+  '<CMD>TrailBlazerPeekMovePreviousUp<CR>',
   { table.unpack(noremap_silent), desc = 'Trailblazer Previous Mark' }
 )
 keymap(
   'n',
   '<leader>ej',
-  '<Cmd>TrailBlazerPeekMoveNextDown<CR>',
+  '<CMD>TrailBlazerPeekMoveNextDown<CR>',
   { table.unpack(noremap_silent), desc = 'Trailblazer Down Mark' }
 )
 keymap(
   'n',
   '<leader>ed',
-  '<Cmd>TrailBlazerDeleteAllTrailMarks<CR>',
+  '<CMD>TrailBlazerDeleteAllTrailMarks<CR>',
   { table.unpack(noremap_silent), desc = 'Trailblazer Delete All Marks' }
 )
 
@@ -261,22 +261,22 @@ end, { silent = true, noremap = true, desc = 'Toggle Signature' })
 keymap('n', '<leader>gd', vim.lsp.buf.definition, { silent = true, noremap = true, desc = 'Jump To Definition' })
 
 -- Buffers
-keymap('n', '<Leader>bn', '<Cmd>BufferNext<CR>', { table.unpack(noremap_silent), desc = 'Go To Next Buffer' })
-keymap('n', '<Leader>bb', '<Cmd>BufferPrevious<CR>', { table.unpack(noremap_silent), desc = 'Go To Previous Buffer' })
-keymap('n', '<Leader>br', '<Cmd>BufferRestore<CR>', { table.unpack(noremap_silent), desc = 'Restore Last Buffer' })
-keymap('n', '<Leader>bc', '<Cmd>BufferClose<CR>', { table.unpack(noremap_silent), desc = 'Close Current Buffer' })
+keymap('n', '<Leader>bn', '<CMD>BufferNext<CR>', { table.unpack(noremap_silent), desc = 'Go To Next Buffer' })
+keymap('n', '<Leader>bb', '<CMD>BufferPrevious<CR>', { table.unpack(noremap_silent), desc = 'Go To Previous Buffer' })
+keymap('n', '<Leader>br', '<CMD>BufferRestore<CR>', { table.unpack(noremap_silent), desc = 'Restore Last Buffer' })
+keymap('n', '<Leader>bc', '<CMD>BufferClose<CR>', { table.unpack(noremap_silent), desc = 'Close Current Buffer' })
 keymap(
   'n',
   '<Leader>bv',
-  '<Cmd>BufferCloseAllButVisible<CR>',
+  '<CMD>BufferCloseAllButVisible<CR>',
   { table.unpack(noremap_silent), desc = 'Close All Buffers Except Visible' }
 )
 
-keymap('n', '<leader>b1', '<Cmd>BufferGoto 1<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 1' })
-keymap('n', '<leader>b2', '<Cmd>BufferGoto 2<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 2' })
-keymap('n', '<leader>b3', '<Cmd>BufferGoto 3<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 3' })
-keymap('n', '<leader>b4', '<Cmd>BufferGoto 4<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 4' })
-keymap('n', '<leader>b5', '<Cmd>BufferGoto 5<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 5' })
-keymap('n', '<leader>b8', '<Cmd>BufferGoto 8<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 8' })
-keymap('n', '<leader>b6', '<Cmd>BufferGoto 6<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 6' })
-keymap('n', '<leader>b7', '<Cmd>BufferGoto 7<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 7' })
+keymap('n', '<leader>b1', '<CMD>BufferGoto 1<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 1' })
+keymap('n', '<leader>b2', '<CMD>BufferGoto 2<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 2' })
+keymap('n', '<leader>b3', '<CMD>BufferGoto 3<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 3' })
+keymap('n', '<leader>b4', '<CMD>BufferGoto 4<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 4' })
+keymap('n', '<leader>b5', '<CMD>BufferGoto 5<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 5' })
+keymap('n', '<leader>b8', '<CMD>BufferGoto 8<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 8' })
+keymap('n', '<leader>b6', '<CMD>BufferGoto 6<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 6' })
+keymap('n', '<leader>b7', '<CMD>BufferGoto 7<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 7' })
