@@ -46,7 +46,7 @@ weather_icon_map() {
 	"false Rain")
 		icon_result="􀇆"
 		;;
-	"false Slight Chance Rain Showers" | "false Chance Rain Showers")
+	"false Slight Chance Rain Showers" | "false Chance Rain Showers" | "false Patchy Drizzle")
 		icon_result="􀇄"
 		;;
 	"false Slight Chance Light Snow" | "false Chance Light Snow" | "false Snow Likely")
@@ -75,7 +75,7 @@ weather_icon_map() {
 	"true Partly Sunny" | "true Mostly Sunny then Patchy Fog" | "true Partly Sunny then Patchy Fog" | "true Patchy Fog then Mostly Sunny" | "true Patchy Fog then Partly Sunny")
 		icon_result="􀇕"
 		;;
-	"true Patchy Fog" | "true Areas Of Fog" | "true Widespread Fog")
+	"true Patchy Fog" | "true Areas Of Fog" | "true Widespread Fog" | "true Mostly Cloudy then Patchy Fog")
 		icon_result="􀇊"
 		;;
 	"true Cloudy" | "true Mostly Cloudy")
