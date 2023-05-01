@@ -8,6 +8,7 @@ export ZSHPATH=$HOME/.config/.zsh
 # Aliases
 alias trim="ex +'bufdo!%s/\s\+$//e' -scxa"
 alias zshrc="nvim ~/.config/.zsh/.zshrc"
+alias sketchyweather="nvim ~/.config/sketchybar/plugins/weather.sh"
 alias c="pbcopy"
 alias v="pbpaste"
 alias code="code --profile WebDev"
