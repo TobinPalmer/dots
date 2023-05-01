@@ -186,7 +186,7 @@ return {
       respect_buf_cwd = false,
       on_attach = on_attach,
       update_focused_file = {
-        enable = false,
+        enable = true,
         update_root = false,
       },
       view = {

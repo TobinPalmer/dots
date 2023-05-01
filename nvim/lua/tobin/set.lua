@@ -16,8 +16,6 @@ set.hlsearch = false
 set.incsearch = true
 set.scrolloff = 10
 
-vim.cmd [[set shellcmdflag=-ic]]
-
 set.splitbelow = true
 set.splitright = true
 set.signcolumn = 'yes'
