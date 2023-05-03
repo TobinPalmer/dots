@@ -14,14 +14,6 @@ M.format = function()
   end
 
   if is_special() then
-    --    vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-    --      callback = function()
-    --        local ext = vim.fn.expand '%:e'
-    --        if ext == 'ts' or ext == 'js' then
-    --          vim.cmd [[EslintFixAll]]
-    --        end
-    --      end,
-    --    })
     vim.cmd [[autocmd BufWritePre *.{ts,js} silent! EslintFixAll]]
   else
     vim.cmd [[autocmd BufWritePre * silent! lua vim.lsp.buf.format()]]
