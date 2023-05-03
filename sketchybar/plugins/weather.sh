@@ -35,52 +35,45 @@ function get_temp_color() {
 # False = night
 # True = daytime
 weather_icon_map() {
-	case $@ in
-	# Night
-	"false Clear" | "false Mostly Clear")
-		icon_result="􀆺"
-		;;
-	"false Mostly Cloudy" | "false Cloudy" | "false Partly Cloudy")
-		icon_result="􀇃"
-		;;
-	"false Rain")
-		icon_result="􀇆"
-		;;
-	"false Slight Chance Rain Showers" | "false Chance Rain Showers")
-		icon_result="􀇄"
-		;;
-	"false Slight Chance Light Snow" | "false Chance Light Snow" | "false Snow Likely")
-		icon_result="􀇌"
-		;;
-	"false Snow Showers" | "false Snow Showers Likely" | "false Chance Snow Showers" | "false Heavy Snow" | "false Snow and Patchy Blowing Snow")
-		icon_result="􀇄"
-		;;
-	"false Patchy Fog" | "false Areas Of Fog" | "false Widespread Fog")
-		icon_result="􀇊"
-		;;
+  case $@ in
+    *"Clear"* | *"Mostly Clear"*)
+      icon_result="􀆺"
+      ;;
+    *"Mostly Cloudy"* | *"Cloudy"* | *"Partly Cloudy"*)
+      icon_result="􀇃"
+      ;;
+    *"Rain"*)
+      icon_result="􀇆"
+      ;;
+    *"Slight Chance Rain Showers"* | *"Chance Rain Showers"*)
+      icon_result="􀇄"
+      ;;
+    *"Slight Chance Light Snow"* | *"Chance Light Snow"* | *"Snow Likely"*)
+      icon_result="􀇌"
+      ;;
+    *"Snow Showers"* | *"Snow Showers Likely"* | *"Chance Snow Showers"* | *"Heavy Snow"* | *"Snow and Patchy Blowing Snow"*)
+      icon_result="􀇄"
+      ;;
+    *"Patchy Fog"* | *"Areas Of Fog"* | *"Widespread Fog"*)
+      icon_result="􀇊"
+      ;;
+    # Daytime
+    *"Snow"* | *"Heavy Snow"* | *"Snow Showers"*)
+      icon_result="􀇎"
+      ;;
+    *"Slight Chance Light Rain"* | *"Chance Light Rain"*)
+      icon_result="􀇆"
+      ;;
+    *"Rain Showers Likely"* | *"Rain Showers"* | *"Chance Rain Showers"* | *"Change Showers And Thunderstroms then Mostly Sunny"* | *"Chance Showers And Thunderstorms then Mostly Sunny"*)
+      icon_result="􀇆"
+      ;;
+    *"Mostly Sunny"* | *"Sunny"*)
+        icon_result="􀆭"
+      ;;
+    *"Partly Sunny"* | *"Mostly Sunny"*)
+      icon_result="􀇕"
+      ;;
 
-	# Daytime
-	"true Snow" | "true Heavy Snow" | "true Snow Showers")
-		icon_result="􀇎"
-		;;
-	"true Slight Chance Light Rain" | "true Chance Light Rain")
-		icon_result="􀇆"
-		;;
-	"true Rain Showers Likely" | "true Rain Showers" | "true Chance Rain Showers" | "true Change Showers And Thunderstroms then Mostly Sunny" | "true Chance Showers And Thunderstorms then Mostly Sunny")
-		icon_result="􀇆"
-		;;
-	"true Mostly Sunny" | "true Sunny")
-		icon_result="􀆭"
-		;;
-	"true Partly Sunny" | "true Mostly Sunny then Patchy Fog" | "true Partly Sunny then Patchy Fog" | "true Patchy Fog then Mostly Sunny" | "true Patchy Fog then Partly Sunny" | "true Partly Sunny then Slight Chance Light Rain")
-		icon_result="􀇕"
-		;;
-	"true Patchy Fog" | "true Areas Of Fog" | "true Widespread Fog")
-		icon_result="􀇊"
-		;;
-	"true Cloudy" | "true Mostly Cloudy")
-		icon_result="􀇂"
-		;;
 	# No Match
 	*)
 		icon_result="$@"
