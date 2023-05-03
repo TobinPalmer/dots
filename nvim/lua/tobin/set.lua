@@ -35,6 +35,9 @@ set.undodir = os.getenv 'HOME' .. '/.vim/undodir'
 set.undofile = true
 set.undolevels = 10000
 
+vim.g.neovide_scroll_animation_length = 0.3
+vim.g.neovide_input_macos_alt_is_meta = true
+
 g.markdown_recommended_style = 0
 set.laststatus = 0 -- Diable status on startup
 vim.cmd [[set autoread | au CursorHold * checktime]]
