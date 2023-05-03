@@ -23,6 +23,8 @@ alias notes="python3 /Users/tobin/Documents/Code/Python/school_notes/main.py"
 alias ntmux="tmux new-session \; split-window -h \; split-window -v \; attach"
 alias monkeytype="python3 /Users/tobin/Documents/Code/Python/monkeytype-playwright/main.py"
 alias nitrotype="python3 /Users/tobin/Documents/Code/Python/nitrotype-playwright/main.py"
+alias fd='cd $(find . -type d \( -name "node_modules" -o -name "venv" -o -name "__pycache__" -o -name ".git" \) -prune -false -o -print | fzf)'
+alias neovide='neovide --multigrid --frame=none'
 
 unset TMUX
 
