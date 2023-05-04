@@ -1,6 +1,6 @@
 return {
   'nvim-telescope/telescope-frecency.nvim',
-  event = 'UIEnter',
+  cmd = { 'Telescope find_files' },
   config = function()
     require('telescope').load_extension 'frecency'
   end,

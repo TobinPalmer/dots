@@ -26,7 +26,12 @@ keymap(
   '<CMD>lua require"telescope.builtin".find_files()<CR>',
   { table.unpack(normap), desc = 'Telescope Find All Files' }
 )
-keymap('n', '<leader>ff', '<CMD>Telescope smart_open<CR>', { table.unpack(normap), desc = 'Telescope Smart Telescope' })
+keymap(
+  'n',
+  '<leader>ff',
+  '<CMD>lua require"telescope.builtin".find_files{ cwd = pwd } <CR>',
+  { table.unpack(normap), desc = 'Telescope Smart Telescope' }
+)
 keymap(
   'n',
   '<leader>fg',

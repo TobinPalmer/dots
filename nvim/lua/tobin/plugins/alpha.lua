@@ -25,10 +25,22 @@ return {
       [[                                                                       ]],
     }
     dashboard.section.buttons.val = {
-      button('f', icons.documents.Files .. ' Find file', '<CMD>Telescope find_files<CR>'),
+      button(
+        'f',
+        icons.documents.Files .. ' Find file',
+        '<CMD>lua require"telescope.builtin".find_files{ cwd = pwd } <CR>'
+      ),
       button('e', icons.ui.NewFile .. ' New file', '<CMD>ene <BAR> startinsert<CR>'),
-      button('r', icons.ui.History .. ' Recent files', '<CMD>Telescope oldfiles<CR>'),
-      button('t', icons.ui.List .. ' Find text', '<CMD>Telescope live_grep<CR>'),
+      button(
+        't',
+        icons.documents.Files .. ' Find file',
+        '<CMD>lua require"telescope.builtin".live_grep{ cwd = pwd } <CR>'
+      ),
+      button(
+        'r',
+        icons.documents.Files .. ' Find file',
+        '<CMD>lua require"telescope.builtin".oldfiles{ cwd = pwd } <CR>'
+      ),
       button('s', icons.ui.SignIn .. ' Last Session', '<CMD>lua require("persistence").load({ last = true })<CR>'),
       button('c', icons.ui.Gear .. ' Config', '<CMD>e ~/.config/nvim/init.lua<CR><CMD>cd %:p:h<CR>'),
       button('u', icons.ui.CloudDownload .. ' Update', '<CMD>Lazy update<CR>'),
