@@ -28,12 +28,35 @@ return {
     end,
   },
   {
-    'folke/tokyonight.nvim',
+    'marko-cerovac/material.nvim',
     priority = 1000,
     lazy = false,
     -- event = 'BufReadPre',
     config = function()
-      vim.cmd [[ colorscheme tokyonight-night ]]
+      require('material').setup {
+        plugins = {
+          'indent-blankline',
+          'lspsaga',
+          'nvim-cmp',
+          'nvim-tree',
+          'nvim-web-devicons',
+          'telescope',
+          'trouble',
+          'which-key',
+        },
+      }
+      -- vim.g.material_style = 'deep ocean'
+      vim.g.material_style = 'palenight'
+      vim.cmd 'colorscheme material'
+    end,
+  },
+  {
+    'folke/tokyonight.nvim',
+    -- priority = 1000,
+    -- lazy = false,
+    event = 'BufReadPre',
+    config = function()
+      -- vim.cmd [[ colorscheme tokyonight-night ]]
     end,
   },
 }
