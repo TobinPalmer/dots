@@ -26,8 +26,8 @@ alias nitrotype="python3 /Users/tobin/Documents/Code/Python/nitrotype-playwright
 alias fd='cd $(find . -type d \( -name "node_modules" -o -name "venv" -o -name "__pycache__" -o -name ".git" \) -prune -false -o -print | fzf)'
 alias neovide='neovide --multigrid --frame=buttonless --maximized'
 alias exa='exa --icons'
+alias ls='exa --icons'
 alias clear='clear && printf "\e[3J"'
-
 
 unset TMUX
 
