@@ -1,3 +1,7 @@
+local winblend = 0
+if vim.g.neovide then
+  winblend = 50
+end
 return {
   'nvim-telescope/telescope.nvim',
   event = 'UIEnter',
@@ -24,6 +28,7 @@ return {
   },
   opts = {
     defaults = {
+      winblend = winblend,
       file_ignore_patterns = {
         '.git/',
         'node_modules',

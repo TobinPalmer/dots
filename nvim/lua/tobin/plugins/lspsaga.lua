@@ -1,17 +1,24 @@
+local winbar_config = nil
+if vim.g.neovide then
+  winbar_config = {
+    enable = true,
+    separator = ' ',
+    ignore_patterns = {},
+    hide_keyword = true,
+    show_file = true,
+    folder_level = 2,
+    respect_root = false,
+    color_mode = true,
+  }
+end
+
 return {
   'glepnir/lspsaga.nvim',
   event = 'LspAttach',
   config = function()
     require('lspsaga').setup {
       symbol_in_winbar = {
-        enable = true,
-        separator = ' ',
-        ignore_patterns = {},
-        hide_keyword = true,
-        show_file = true,
-        folder_level = 2,
-        respect_root = false,
-        color_mode = true,
+        winbar_config,
       },
       lightbulb = {
         enable = false,

@@ -119,10 +119,10 @@ return {
       sync_root_with_cwd = true,
       reload_on_bufenter = true,
       on_attach = on_attach,
-      respect_buf_cwd = false,
+      respect_buf_cwd = true,
       update_focused_file = {
-        enable = false,
-        update_root = false,
+        enable = true,
+        update_root = true,
       },
       view = {
         float = {
