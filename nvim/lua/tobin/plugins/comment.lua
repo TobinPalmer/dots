@@ -1,6 +1,6 @@
 return {
   'numToStr/Comment.nvim',
-  event = 'InsertEnter',
+  event = 'BufReadPost',
   config = function()
     require('Comment').setup()
     local map = vim.api.nvim_set_keymap
