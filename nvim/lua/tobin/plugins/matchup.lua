@@ -1,6 +1,6 @@
 return {
   'andymass/vim-matchup',
-  event = 'InsertEnter',
+  event = 'BufReadPost',
   config = function()
     vim.g.matchup_matchparen_offscreen = { method = 'popup' }
   end,
