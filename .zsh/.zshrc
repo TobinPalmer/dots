@@ -4,6 +4,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export ZSHPATH=$HOME/.config/.zsh
+export PUPPETEER_PRODUCT=firefox npm i puppeteer
 
 # Aliases
 alias trim="ex +'bufdo!%s/\s\+$//e' -scxa"
@@ -14,7 +15,6 @@ alias code="code --profile WebDev"
 alias spacer="defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="small-spacer-tile";}'; killall Dock"
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias resetNPM="rm -rf node_modules package-lock.json && npm i"
-alias resetNPM="cp -r"
 alias ofzf="nvim \$(fzf)"
 alias :wq="cowsay You\'re not using vim!"
 alias :q="cowsay You\'re not using vim!"
@@ -25,6 +25,9 @@ alias monkeytype="python3 /Users/tobin/Documents/Code/Python/monkeytype-playwrig
 alias nitrotype="python3 /Users/tobin/Documents/Code/Python/nitrotype-playwright/main.py"
 alias fd='cd $(find . -type d \( -name "node_modules" -o -name "venv" -o -name "__pycache__" -o -name ".git" \) -prune -false -o -print | fzf)'
 alias neovide='neovide --multigrid --frame=buttonless --maximized'
+alias exa='exa --icons'
+alias clear='clear && printf "\e[3J"'
+
 
 unset TMUX
 
