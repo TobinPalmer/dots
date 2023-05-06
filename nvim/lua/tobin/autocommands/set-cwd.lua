@@ -7,7 +7,7 @@
 
 local path = vim.loop.cwd()
 
-vim.api.nvim_create_autocmd({ 'bufenter', 'bufwinenter' }, {
+vim.api.nvim_create_autocmd({ --[[ 'BufEnter', ]] 'BufWinEnter' }, {
   callback = function()
     -- path = vim.fn.execute 'pwd'
     if path ~= nil then
