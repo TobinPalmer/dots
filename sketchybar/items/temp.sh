@@ -29,5 +29,5 @@ sketchybar --add item time right                       \
     --add bracket time_temp                            \
     weather                                            \
     time                                               \
-    date                                               
+    date
 #...

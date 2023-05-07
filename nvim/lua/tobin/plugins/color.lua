@@ -28,6 +28,15 @@ return {
     end,
   },
   {
+    'Mofiqul/dracula.nvim',
+    lazy = false,
+    priority = 1000,
+    -- event = 'BufReadPre',
+    config = function()
+      vim.cmd [[ colorscheme dracula ]]
+    end,
+  },
+  {
     'marko-cerovac/material.nvim',
     priority = 1000,
     lazy = false,
@@ -45,8 +54,8 @@ return {
           'which-key',
         },
       }
-      -- vim.g.material_style = 'deep ocean'
-      vim.g.material_style = 'palenight'
+      vim.g.material_style = 'deep ocean'
+      -- vim.g.material_style = 'palenight'
       vim.cmd 'colorscheme material'
     end,
   },

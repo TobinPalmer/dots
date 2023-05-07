@@ -1,33 +1,34 @@
 ## Powerline10k configuration
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 export ZSHPATH=$HOME/.config/.zsh
 export PUPPETEER_PRODUCT=firefox npm i puppeteer
 
 # Aliases
-alias trim="ex +'bufdo!%s/\s\+$//e' -scxa"
-alias zshrc="nvim ~/.config/.zsh/.zshrc"
-alias c="pbcopy"
-alias v="pbpaste"
-alias code="code --profile WebDev"
-alias spacer="defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="small-spacer-tile";}'; killall Dock"
-alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias resetNPM="rm -rf node_modules package-lock.json && npm i"
-alias ofzf="nvim \$(fzf)"
-alias :wq="cowsay You\'re not using vim!"
 alias :q="cowsay You\'re not using vim!"
-alias syncCode="rsync -av --exclude=node_modules Code/ /Volumes/Code/"
-alias notes="python3 /Users/tobin/Documents/Code/Python/school_notes/main.py"
-alias ntmux="tmux new-session \; split-window -h \; split-window -v \; attach"
-alias monkeytype="python3 /Users/tobin/Documents/Code/Python/monkeytype-playwright/main.py"
-alias nitrotype="python3 /Users/tobin/Documents/Code/Python/nitrotype-playwright/main.py"
-alias fd='cd $(find . -type d \( -name "node_modules" -o -name "venv" -o -name "__pycache__" -o -name ".git" \) -prune -false -o -print | fzf)'
-alias neovide='neovide --multigrid --frame=buttonless --maximized'
-alias exa='exa --icons'
-alias ls='exa --icons'
+alias :wq="cowsay You\'re not using vim!"
+alias bg='batgrep -A=0 -B=0'
+alias c="pbcopy"
 alias clear='clear && printf "\e[3J"'
+alias code="code --profile WebDev"
+alias exa='exa --icons --all'
+alias fd='cd $(find . -type d \( -name "node_modules" -o -name "venv" -o -name "__pycache__" -o -name ".git" \) -prune -false -o -print | fzf)'
+alias monkeytype="python3 /Users/tobin/Documents/Code/Python/monkeytype-playwright/main.py"
+alias neovide='neovide --multigrid --frame=buttonless --maximized'
+alias nitrotype="python3 /Users/tobin/Documents/Code/Python/nitrotype-playwright/main.py"
+alias notes="python3 /Users/tobin/Documents/Code/Python/school_notes/main.py"
+alias ofzf="nvim \$(fzf)"
+alias project="node /Users/tobin/Documents/Code/Web/TS/templates/dist/main.js"
+alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+alias reload="source ~/.config/.zsh/.zshrc"
+alias resetNPM="rm -rf node_modules package-lock.json && npm i"
+alias spacer="defaults write com.apple.dock persistent-apps -array-add '{\"tile-type\"=\"small-spacer-tile\";}'; killall Dock"
+alias syncCode="rsync -av --exclude=node_modules --exclude=target ~/Documents/Code/ /Volumes/Code/"
+alias trim="ex +'bufdo!%s/\s\+$//e' -scxa"
+alias v="pbpaste"
+alias zshrc="nvim ~/.config/.zsh/.zshrc"
 
 unset TMUX
 

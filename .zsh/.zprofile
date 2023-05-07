@@ -8,6 +8,7 @@ export VISUAL="$EDITOR"
 export PATH=/usr/local/bin:$PATH
 export ZSHRC_PATH="~/.config/.zsh/.zshrc"
 export CODE=~/Documents/Code/$1
+export BAT_THEME="Dracula"
 
 # Jetbrains Toolbox
 export PATH="$PATH:/Users/tobin/Library/Application Support/JetBrains/Toolbox/scripts"

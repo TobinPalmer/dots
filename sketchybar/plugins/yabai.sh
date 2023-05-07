@@ -12,7 +12,7 @@ window_state() {
     LAST=$(yabai -m query --windows --window stack.last | jq '.["stack-index"]')
     args+=(--set $NAME icon=$YABAI_STACK icon.color=$RED label.drawing=on drawing=on label=$(printf "[%s/%s]" "$CURRENT" "$LAST")
           --bar border_color=$RED)
-  else 
+  else
     args+=(--set $NAME label.drawing=off drawing=off)
     COLOR=$BAR_BORDER_COLOR
     ICON=$YABAI_GRID
@@ -69,7 +69,7 @@ case "$SENDER" in
   ;;
   "forced") exit 0
   ;;
-  "window_focus") window_state 
+  "window_focus") window_state
   ;;
   "windows_on_spaces") windows_on_spaces
   ;;

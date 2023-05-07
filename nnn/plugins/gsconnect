@@ -5,7 +5,7 @@
 #              GSConnect must be configured on the Android device and the PC.
 #
 # Shell: POSIX compliant
-# Author: Darukutsu 
+# Author: Darukutsu
 selection=${NNN_SEL:-${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.selection}
 gsconnect=$HOME/.local/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/service/daemon.js
 ids=$($gsconnect -l)

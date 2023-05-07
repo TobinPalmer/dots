@@ -27,7 +27,7 @@ class Rougarou(ColorScheme):
                 attr = normal
             if context.empty or context.error:
                 bg = 1
-                fg = 0 
+                fg = 0
             if context.border:
                 fg = default
             if context.document:
