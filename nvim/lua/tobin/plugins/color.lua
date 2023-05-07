@@ -38,9 +38,9 @@ return {
   },
   {
     'marko-cerovac/material.nvim',
-    priority = 1000,
-    lazy = false,
-    -- event = 'BufReadPre',
+    -- priority = 1000,
+    -- lazy = false,
+    event = 'BufReadPre',
     config = function()
       require('material').setup {
         plugins = {
@@ -54,9 +54,9 @@ return {
           'which-key',
         },
       }
-      vim.g.material_style = 'deep ocean'
+      -- vim.g.material_style = 'deep ocean'
       -- vim.g.material_style = 'palenight'
-      vim.cmd 'colorscheme material'
+      -- vim.cmd 'colorscheme material'
     end,
   },
   {
