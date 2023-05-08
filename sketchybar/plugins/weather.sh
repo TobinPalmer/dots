@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "$HOME/.config/sketchybar/colors.sh"
+source "$HOME/.config/color/colors.sh"
 
 function get_temp_color() {
   if [[ $1 =~ ^[0-9]$ ]]; then

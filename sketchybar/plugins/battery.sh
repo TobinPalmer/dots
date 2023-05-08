@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$HOME/.config/sketchybar/colors.sh"
+source "$HOME/.config/color/colors.sh"
 source "$HOME/.config/sketchybar/icons.sh"
 
 BATT_PERCENT=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)

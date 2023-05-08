@@ -1,7 +1,7 @@
 #!/bin/bash
 
 update() {
-  source "$HOME/.config/sketchybar/colors.sh"
+  source "$HOME/.config/color/colors.sh"
   source "$HOME/.config/sketchybar/icons.sh"
 
   NOTIFICATIONS="$(gh api notifications)"

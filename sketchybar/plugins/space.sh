@@ -1,7 +1,7 @@
 #!/bin/bash
 
 update() {
-  source "$HOME/.config/sketchybar/colors.sh"
+  source "$HOME/.config/color/colors.sh"
   COLOR=$BACKGROUND_2
   if [ "$SELECTED" = "true" ]; then
     COLOR=$GREY

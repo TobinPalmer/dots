@@ -1,7 +1,7 @@
 #!/bin/bash
 
 window_state() {
-  source "$HOME/.config/sketchybar/colors.sh"
+  source "$HOME/.config/color/colors.sh"
   source "$HOME/.config/sketchybar/icons.sh"
 
   WINDOW=$(yabai -m query --windows --window)
