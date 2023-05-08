@@ -2,13 +2,14 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export ZSHPATH=$HOME/.config/.zsh
 
-export PATH=$PATH:/Users/tobin/Library/Python/3.9/lib/python/site-packages
-export EDITOR="nvim"
-export VISUAL="$EDITOR"
-export PATH=/usr/local/bin:$PATH
-export ZSHRC_PATH="~/.config/.zsh/.zshrc"
-export CODE=~/Documents/Code/$1
 export BAT_THEME="Dracula"
+export CODE=~/Documents/Code/$1
+export EDITOR="nvim"
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+export PATH=$PATH:/Users/tobin/Library/Python/3.9/lib/python/site-packages
+export PATH=/usr/local/bin:$PATH
+export VISUAL="$EDITOR"
+export ZSHRC_PATH="~/.config/.zsh/.zshrc"
 
 # Jetbrains Toolbox
 export PATH="$PATH:/Users/tobin/Library/Application Support/JetBrains/Toolbox/scripts"

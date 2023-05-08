@@ -35,6 +35,8 @@ unset TMUX
 # Environment variables
 export GPG_TTY=$(tty)
 
+eval "$(tmuxifier init -)"
+
 export GPGc_TTY=$(tty)
 export NVM_DIR="$HOME/.nvm"
 
