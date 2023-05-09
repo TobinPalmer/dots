@@ -1,10 +1,11 @@
 ## Powerline10k configuration
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 export ZSHPATH=$HOME/.config/.zsh
 export PUPPETEER_PRODUCT=firefox npm i puppeteer
+ex;
 
 # Aliases
 alias :q="cowsay You\'re not using vim!"
@@ -29,6 +30,7 @@ alias syncCode="rsync -av --exclude=node_modules --exclude=target ~/Documents/Co
 alias trim="ex +'bufdo!%s/\s\+$//e' -scxa"
 alias v="pbpaste"
 alias zshrc="nvim ~/.config/.zsh/.zshrc"
+alias init="skhd --stop-service;skhd --start-service;"
 
 unset TMUX
 
@@ -37,7 +39,6 @@ export GPG_TTY=$(tty)
 
 eval "$(tmuxifier init -)"
 
-export GPGc_TTY=$(tty)
 export NVM_DIR="$HOME/.nvm"
 
 # Oh-My-Zsh configuration
@@ -47,6 +48,7 @@ plugins=(git)
 source "$ZSH/oh-my-zsh.sh"
 
 # Plugins
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $(brew --prefix)/opt/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
@@ -56,7 +58,7 @@ source $(brew --prefix)/opt/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 # To customize prompt, run `p10k configure` or edit ~/.config/.zsh/.p10k.zsh.
 [[ ! -f ~/.config/.zsh/.p10k.zsh ]] || source ~/.config/.zsh/.p10k.zsh
 
-# Powerline10k configuration
+# # Powerline10k configuration
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -77,3 +79,6 @@ for file in "$ZSHPATH"/configs/*; do
         source "$file"
     fi
 done
+
+skhd --stop-service 2> /dev/null
+skhd --start-service 2> /dev/null
