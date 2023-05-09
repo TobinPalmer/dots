@@ -12,6 +12,8 @@ fn - 0x18 : yabai -m space --balance
 fn - s : sh ~/.config/skhd/scripts/yabai/swap_clockwise.sh
 fn - n : yabai -m space --create && yabai -m space --focus last
 fn - q : sh ~/.config/skhd/scripts/yabai/move_window_new_space.sh
+fn - l : sh ~/.config/skhd/scripts/yabai/move_space_right.sh
+fn - h : sh ~/.config/skhd/scripts/yabai/move_space_left.sh
 fn + shift - q : sh ~/.config/skhd/scripts/yabai/move_window_new_space_no_switch.sh
 
 # Modes
