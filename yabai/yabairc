@@ -26,7 +26,8 @@ yabai -m config external_bar               all:49:0     \
                 window_shadow              float        \
                 window_opacity             on           \
                 window_opacity_duration    0.15         \
-                active_window_opacity      1.0          \
+                window_border_blur         off          \
+                active_window_opacity      1            \
                 normal_window_opacity      0.9          \
                 window_border_width        2            \
                 window_border_hidpi        off          \
@@ -54,9 +55,12 @@ yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
-yabai -m rule --add app="Fusion 360" manage=off
+yabai -m rule --add app="Fusion 360" border=off
 
 yabai -m config layout bsp
+
+yabai -m signal --add event=space_changed \
+    action="sh create_spaces.sh"
 
 echo "yabai configuration loaded..."
 
