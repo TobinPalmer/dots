@@ -73,6 +73,9 @@ weather_icon_map() {
     *"Partly Sunny"* | *"Mostly Sunny"*)
       icon_result="􀇕"
       ;;
+    *"Drizzle"* | *"Mostly Sunny"*)
+      icon_result="􀇄"
+      ;;
 
 	# No Match
 	*)
