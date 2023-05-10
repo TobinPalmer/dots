@@ -193,6 +193,8 @@ vim.api.nvim_set_keymap('n', '<leader>sh', '<Plug>(SpotifyShuffle)', { silent = 
 
 -- Lsp
 keymap('n', '<leader>e', vim.diagnostic.open_float)
+keymap('n', '<leader>gl', vim.diagnostic.open_float)
+keymap('n', '<leader>gy', '<CMD>AerialOpen float<CR>')
 keymap('n', '<leader>lf', '<CMD>lua vim.lsp.buf.format()<CR>')
 keymap('n', '<leader>lr', '<CMD>LspRestart<CR>', { silent = true })
 keymap('n', '[d', vim.diagnostic.goto_prev)
