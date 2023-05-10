@@ -7,6 +7,7 @@ export CODE=~/Documents/Code/$1
 export EDITOR="nvim"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 export PATH=$PATH:/Users/tobin/Library/Python/3.9/lib/python/site-packages
+export PATH=$PATH:/Users/tobin/Library/Python/3.9/bin
 export PATH=/usr/local/bin:$PATH
 export VISUAL="$EDITOR"
 export ZSHRC_PATH="~/.config/.zsh/.zshrc"
