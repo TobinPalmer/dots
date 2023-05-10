@@ -44,6 +44,7 @@ return {
           'jsonls',
           'pyright',
           'cssls',
+          'bashls',
         }
 
         for _, lsp in pairs(servers) do
@@ -196,7 +197,7 @@ return {
       },
       keys = {
         {
-          '<leader>lt',
+          '<leader>gb',
           function()
             require('nvim-navbuddy').open()
           end,
