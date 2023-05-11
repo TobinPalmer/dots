@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source "/Users/tobin/.config/skhd/scripts/yabai/util.sh"
 
 if [[ $CURRENT_SPACE_INDEX -eq $DISPLAY_LAST_NUMBER ]]; then
@@ -9,5 +11,4 @@ fi
 yabai -m space --move "$RIGHT_SPACE_INDEX"
 
 sh ~/.config/yabai/create_spaces.sh
-
 

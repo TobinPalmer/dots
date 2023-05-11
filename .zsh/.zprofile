@@ -11,6 +11,7 @@ export PATH=$PATH:/Users/tobin/Library/Python/3.9/bin
 export PATH=/usr/local/bin:$PATH
 export VISUAL="$EDITOR"
 export ZSHRC_PATH="~/.config/.zsh/.zshrc"
+export HOMEBREW_AUTO_UPDATE_SECS="3600"
 
 # Jetbrains Toolbox
 export PATH="$PATH:/Users/tobin/Library/Application Support/JetBrains/Toolbox/scripts"

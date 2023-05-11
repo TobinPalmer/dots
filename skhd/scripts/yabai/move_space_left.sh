@@ -1,3 +1,5 @@
+#!/bin/bash
+
 source "/Users/tobin/.config/skhd/scripts/yabai/util.sh"
 
 if [[ $CURRENT_SPACE_INDEX -eq $DISPLAY_FIRST_NUMBER ]]; then
