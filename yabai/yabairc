@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source "$HOME/.config/Colors/colors.sh"
+source "$HOME/.config/color/colors.sh"
 
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
