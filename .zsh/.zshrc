@@ -11,7 +11,7 @@ alias :wq="cowsay You\'re not using vim!"
 alias bg='batgrep -A=0 -B=0'
 alias c="pbcopy"
 alias clear='clear && printf "\e[3J"'
-alias code="code --profile WebDev"
+alias code="code"
 alias exa='exa --icons --all'
 alias fd='cd $(find . -type d \( -name "node_modules" -o -name "venv" -o -name "__pycache__" -o -name ".git" \) -prune -false -o -print | fzf)'
 alias monkeytype="python3 /Users/tobin/Documents/Code/Python/monkeytype-playwright/main.py"
