@@ -75,11 +75,11 @@ return {
         format = function(entry, vim_item)
           vim_item.menu = ({
             -- Todo: icons
-            copilot = '[Copilot]',
-            nvim_lsp = '[LSP]',
-            luasnip = '[Snip]',
-            buffer = '[Buff]',
-            path = '[Path]',
+            copilot = icons.lspType.Copilot,
+            nvim_lsp = icons.lspType.LSP,
+            luasnip = icons.lspType.luasnip,
+            buffer = icons.lspType.buffer,
+            path = icons.lspType.path,
           })[entry.source.name]
 
           -- for tailwind colors
