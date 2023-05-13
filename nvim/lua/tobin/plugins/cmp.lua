@@ -13,6 +13,7 @@ return {
     local icons = require 'tobin.icons'
 
     local kind_icons = {
+      Copilot = icons.lspType.Copilot,
       Text = icons.kind.Text,
       Method = icons.kind.Method,
       Function = icons.kind.Function,
@@ -74,7 +75,6 @@ return {
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
           vim_item.menu = ({
-            -- Todo: icons
             copilot = icons.lspType.Copilot,
             nvim_lsp = icons.lspType.LSP,
             luasnip = icons.lspType.luasnip,
