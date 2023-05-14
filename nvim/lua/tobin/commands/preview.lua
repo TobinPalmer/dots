@@ -9,5 +9,4 @@ local function toggle_preview()
   end
 end
 
--- Define a Neovim command that calls the toggle_preview function
 vim.api.nvim_create_user_command('TogglePreview', toggle_preview, {})
