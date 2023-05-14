@@ -112,10 +112,6 @@ M.on_attach = function(client, bufnr)
   require('illuminate').on_attach(client)
 
   require('lsp_signature').on_attach(signature_cfg, bufnr)
-
-  if client.server_capabilities.documentSymbolProvider then
-    require('nvim-navbuddy').attach(client, bufnr)
-  end
 end
 
 return M
