@@ -57,5 +57,5 @@ firefox < s : /Applications/Firefox.app/Contents/MacOS/firefox -no-remote -P "Sc
 drive < f : firefox -p "School" --new-tab 'https://drive.google.com/drive/folders/1pW_61F9HABteLYXywnwhVvX3cCvMAaHF' ; skhd --key "0x35"
 drive < d : firefox -p "School" --new-tab 'https://drive.google.com/drive/folders/1pW_61F9HABteLYXywnwhVvX3cCvMAaHF' ; skhd --key "0x35"
 
-kill < f : pkill fusion ; skhd --key "0x35"
+kill < f : pkill Autodesk\ Fusion\ 360 ; skhd --key "0x35"
 
