@@ -24,7 +24,7 @@ return {
     -- priority = 1000,
     event = 'BufReadPre',
     config = function()
-      -- vim.cmd [[ colorscheme catppuccin ]]
+      -- vim.cmd [[ colorscheme catppuccin-frappe ]]
     end,
   },
   {
@@ -63,7 +63,7 @@ return {
     'folke/tokyonight.nvim',
     -- priority = 1000,
     -- lazy = false,
-    event = 'BufReadPre',
+    -- event = 'BufReadPre',
     config = function()
       -- vim.cmd [[ colorscheme tokyonight-night ]]
     end,
