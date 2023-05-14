@@ -59,3 +59,4 @@ end
 g.markdown_recommended_style = 0
 set.laststatus = 0 -- Diable status on startup
 vim.cmd [[set autoread | au CursorHold * checktime]]
+set.nuw = 4

@@ -236,9 +236,9 @@ keymap('n', '<leader>d0', 'd^', { table.unpack(noremap_silent), desc = 'Delete U
 keymap('n', '<leader>c0', 'c^', { table.unpack(noremap_silent), desc = 'Cut Until First Character' })
 keymap(
   'n',
-  '<leader>mk',
-  '<Cmd>call cursor(0, len(getline("."))/2)<CR>',
-  { table.unpack(noremap_silent), desc = 'Cut Until First Character' }
+  '<leader>mp',
+  '<Cmd>TogglePreview<CR>',
+  { table.unpack(noremap_silent), desc = 'Starts a live preview of markdown or tex' }
 )
 
 keymap('i', '˙', '<C-<Left>>')
