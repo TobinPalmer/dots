@@ -34,6 +34,7 @@ set.backup = false
 set.undodir = os.getenv 'HOME' .. '/.vim/undodir'
 set.undofile = true
 set.undolevels = 10000
+set.mousemoveevent = true
 
 if vim.g.neovide then
   g.neovide_scroll_animation_length = 0.2

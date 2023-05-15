@@ -4,7 +4,7 @@ M.format = function()
   local special = { 'js', 'ts' }
 
   local function is_special()
-    local ext = vim.fn.expand '%:e'
+    local ext = vim.fn.expand [[%:e]]
     for _, v in ipairs(special) do
       if v == ext then
         return true

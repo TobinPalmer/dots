@@ -291,22 +291,38 @@ end, { silent = true, noremap = true, desc = 'Toggle Signature' })
 keymap('n', '<leader>gd', vim.lsp.buf.definition, { silent = true, noremap = true, desc = 'Jump To Definition' })
 
 -- Buffers
-keymap('n', '<Leader>bn', '<Cmd>BufferNext<CR>', { table.unpack(noremap_silent), desc = 'Go To Next Buffer' })
-keymap('n', '<Leader>bb', '<Cmd>BufferPrevious<CR>', { table.unpack(noremap_silent), desc = 'Go To Previous Buffer' })
-keymap('n', '<Leader>br', '<Cmd>BufferRestore<CR>', { table.unpack(noremap_silent), desc = 'Restore Last Buffer' })
-keymap('n', '<Leader>bc', '<Cmd>BufferClose<CR>', { table.unpack(noremap_silent), desc = 'Close Current Buffer' })
+keymap('n', '<Leader>bn', '<Cmd>BufferLineCycleNext<CR>', { table.unpack(noremap_silent), desc = 'Go To Next Buffer' })
+keymap(
+  'n',
+  '<Leader>bb',
+  '<Cmd>BufferLineCyclePrev<CR>',
+  { table.unpack(noremap_silent), desc = 'Go To Previous Buffer' }
+)
+keymap('n', '<Leader>bc', '<Cmd>bd<CR>', { table.unpack(noremap_silent), desc = 'Close Current Buffer' })
+keymap(
+  'n',
+  '<Leader>bh',
+  '<Cmd>BufferLineMovePrev<CR>',
+  { table.unpack(noremap_silent), desc = 'Close Current Buffer' }
+)
+keymap(
+  'n',
+  '<Leader>bl',
+  '<Cmd>BufferLineMoveNext<CR>',
+  { table.unpack(noremap_silent), desc = 'Close Current Buffer' }
+)
 keymap(
   'n',
   '<Leader>bv',
-  '<Cmd>BufferCloseAllButVisible<CR>',
+  '<Cmd>call Wipeout()<CR>',
   { table.unpack(noremap_silent), desc = 'Close All Buffers Except Visible' }
 )
 
-keymap('n', '<leader>b1', '<Cmd>BufferGoto 1<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 1' })
-keymap('n', '<leader>b2', '<Cmd>BufferGoto 2<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 2' })
-keymap('n', '<leader>b3', '<Cmd>BufferGoto 3<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 3' })
-keymap('n', '<leader>b4', '<Cmd>BufferGoto 4<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 4' })
-keymap('n', '<leader>b5', '<Cmd>BufferGoto 5<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 5' })
-keymap('n', '<leader>b8', '<Cmd>BufferGoto 8<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 8' })
-keymap('n', '<leader>b6', '<Cmd>BufferGoto 6<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 6' })
-keymap('n', '<leader>b7', '<Cmd>BufferGoto 7<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 7' })
+keymap('n', '<leader>b1', '<Cmd>BufferLineGoToBuffer 1<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 1' })
+keymap('n', '<leader>b2', '<Cmd>BufferLineGoToBuffer 2<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 2' })
+keymap('n', '<leader>b3', '<Cmd>BufferLineGoToBuffer 3<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 3' })
+keymap('n', '<leader>b4', '<Cmd>BufferLineGoToBuffer 4<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 4' })
+keymap('n', '<leader>b5', '<Cmd>BufferLineGoToBuffer 5<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 5' })
+keymap('n', '<leader>b8', '<Cmd>BufferLineGoToBuffer 8<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 8' })
+keymap('n', '<leader>b6', '<Cmd>BufferLineGoToBuffer 6<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 6' })
+keymap('n', '<leader>b7', '<Cmd>BufferLineGoToBuffer 7<CR>', { table.unpack(noremap_silent), desc = 'Go To Buffer 7' })

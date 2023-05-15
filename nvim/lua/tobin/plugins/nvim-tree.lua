@@ -1,5 +1,6 @@
 return {
   'nvim-tree/nvim-tree.lua',
+  commit = '498e8793bbe73ab5235b3ee8f0aee32f5d01649f',
   dependencies = {
     'nvim-tree/nvim-web-devicons',
   },
@@ -30,24 +31,6 @@ return {
           require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
           view.close()
         end
-      end
-
-      local function vsplit_preview()
-        local action = 'vsplit'
-        local node = lib.get_node_at_cursor()
-
-        if node == nil then
-          return
-        end
-        if node.link_to and not node.nodes then
-          require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
-        elseif node.nodes ~= nil then
-          lib.expand_or_collapse(node)
-        else
-          require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
-        end
-
-        view.focus()
       end
 
       local function opts(desc)

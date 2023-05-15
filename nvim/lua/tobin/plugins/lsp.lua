@@ -20,6 +20,9 @@ return {
       build = ':MasonUpdate',
       opts = {
         ensure_installed = {
+          'lua-language-server',
+          'bash-language-server',
+          'tsserver',
           'prettierd',
           'stylua',
         },

@@ -19,7 +19,7 @@ local plugins = {
 local opts = {
   change_detection = {
     enabled = true,
-    notify = false,
+    notify = true,
   },
   performance = {
     rtp = {

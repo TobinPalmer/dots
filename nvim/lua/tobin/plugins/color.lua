@@ -29,11 +29,11 @@ return {
   },
   {
     'Mofiqul/dracula.nvim',
-    lazy = false,
-    priority = 1000,
-    -- event = 'BufReadPre',
+    -- lazy = false,
+    -- priority = 1000,
+    event = 'BufReadPre',
     config = function()
-      vim.cmd [[ colorscheme dracula ]]
+      -- vim.cmd [[ colorscheme dracula ]]
     end,
   },
   {
@@ -61,11 +61,11 @@ return {
   },
   {
     'folke/tokyonight.nvim',
-    -- priority = 1000,
-    -- lazy = false,
+    priority = 1000,
+    lazy = false,
     -- event = 'BufReadPre',
     config = function()
-      -- vim.cmd [[ colorscheme tokyonight-night ]]
+      vim.cmd [[ colorscheme tokyonight-moon ]]
     end,
   },
 }

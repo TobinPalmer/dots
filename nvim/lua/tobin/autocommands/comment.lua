@@ -1,7 +1,7 @@
 -- Disables comment continuation
 vim.cmd [[
-  augroup disable_comment_continuation
     autocmd!
+    augroup disable_comment_continuation
     autocmd FileType * setlocal formatoptions-=cro
     autocmd FileType * setlocal comments-=:#
   augroup END
