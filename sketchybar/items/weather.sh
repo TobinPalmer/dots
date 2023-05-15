@@ -17,7 +17,7 @@ weather_temp=(
 	popup.align=right
 	popup.height=20
 	y_offset=-10
-	script="$PLUGIN_DIR/weather.sh"
+	script="$PLUGIN_DIR/weather/scripts/weather.sh"
 	click_script="$POPUP_CLICK_SCRIPT"
 	label.padding_left==0
 	label.padding_right==0
