@@ -1,6 +1,6 @@
 return {
   'jose-elias-alvarez/typescript.nvim',
-  ft = { 'ts', 'tsx' },
+  event = "BufReadPre",
   config = function()
     require('typescript').setup {
       disable_commands = false, -- prevent the plugin from creating Vim commands
