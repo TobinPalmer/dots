@@ -17,7 +17,7 @@ keymap('n', '-', '<CMD>FocusSplitDown<CR>', { table.unpack(normap), desc = 'Spli
 -- Copilot
 vim.g.copilot_no_tab_map = true
 
-keymap('n', '<leader>lg', '<CMD>LazyGit<CR>', { table.unpack(normap), desc = 'Telescope Smart Telescope' })
+keymap('n', '<leader>lg', '<CMD>LazyGit<CR>', { table.unpack(normap), desc = 'Lazy Git' })
 
 -- Telescope
 keymap(
@@ -30,7 +30,7 @@ keymap(
   'n',
   '<leader>ff',
   '<CMD>lua require"telescope.builtin".find_files{ cwd = pwd } <CR>',
-  { table.unpack(normap), desc = 'Telescope Smart Telescope' }
+  { table.unpack(normap), desc = 'Telescope Smart File Finder' }
 )
 keymap(
   'n',
@@ -112,7 +112,9 @@ keymap('n', '<leader>mf', 'za', { table.unpack(noremap_silent), desc = 'Toggle F
 
 -- Hop
 keymap('n', '<leader>hh', '<CMD>HopWord<CR>', { table.unpack(noremap_silent), desc = 'Hop Word' })
+keymap('n', '<C-h><C-w>', '<CMD>HopWord<CR>', { table.unpack(noremap_silent), desc = 'Hop Word' })
 keymap('n', '<S-CR>', '<CMD>HopWord<CR>', { table.unpack(noremap_silent), desc = 'Hop Word' })
+keymap('n', '<S-Enter>', '<CMD>HopWord<CR>', { table.unpack(noremap_silent), desc = 'Hop Word' })
 keymap(
   'n',
   '<leader>hl',
@@ -194,24 +196,24 @@ vim.api.nvim_set_keymap('n', '<leader>sh', '<Plug>(SpotifyShuffle)', { silent = 
 -- Lsp
 keymap('n', '<leader>e', vim.diagnostic.open_float)
 keymap('n', '<leader>gl', vim.diagnostic.open_float)
-keymap('n', '<leader>gy', '<CMD>AerialOpen float<CR>')
-keymap('n', '<leader>lf', '<CMD>lua vim.lsp.buf.format()<CR>')
+keymap('n', '<leader>gy', '<CMD>AerialNavOpen<CR>')
 keymap('n', '<leader>lr', '<CMD>LspRestart<CR>', { silent = true })
 keymap('n', '[d', vim.diagnostic.goto_prev)
 keymap('n', ']d', vim.diagnostic.goto_next)
 keymap('n', '<leader>q', vim.diagnostic.setloclist)
-keymap('n', 'ga', '<Cmd>Lspsaga code_action<CR>', { table.unpack(noremap_silent), desc = 'Lsp Code Action' })
-keymap('n', 'gr', '<Cmd>Lspsaga rename<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
-keymap('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
-keymap('n', 'gf', '<Cmd>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
-keymap('n', 'gs', function()
+keymap('n', '<leader>ga', '<Cmd>Lspsaga code_action<CR>', { table.unpack(noremap_silent), desc = 'Lsp Code Action' })
+vim.keymap.set('n', '<leader>gr', function()
+  return ':IncRename ' .. vim.fn.expand '<cword>'
+end, { expr = true })
+
+keymap('n', '<leader>gp', '<Cmd>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
+keymap('n', '<leader>gf', '<Cmd>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
+keymap('n', '<leader>gs', function()
   require('lsp_signature').toggle_float_win()
 end, { silent = true, noremap = true, desc = 'Toggle Signature' })
 keymap('n', '<leader>gd', vim.lsp.buf.definition, { silent = true, noremap = true, desc = 'Jump To Definition' })
 keymap('n', 'gh', '<Cmd>Lspsaga lsp_finder<CR>')
 keymap({ 'n', 'v' }, '<leader>ca', '<Cmd>Lspsaga code_action<CR>')
-keymap('n', 'gr', '<Cmd>Lspsaga rename<CR>')
-keymap('n', 'gr', '<Cmd>Lspsaga rename ++project<CR>')
 keymap('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>')
 keymap('n', 'gd', '<Cmd>Lspsaga goto_definition<CR>')
 keymap('n', 'gt', '<Cmd>Lspsaga peek_type_definition<CR>')
@@ -251,6 +253,28 @@ keymap('n', '∆', '<C-<Down>>')
 keymap('n', '˚', '<C-<Up>>')
 keymap('n', '¬', '<C-<Right>>')
 
+-- Lsp Symbols Outline
+keymap(
+  'n',
+  '<leader>lf',
+  "<CMD>lua require'telescope.builtin'.lsp_document_symbols{prompt_prefix=' ', default_text='function'}<CR>"
+)
+keymap(
+  'n',
+  '<leader>lm',
+  "<CMD>lua require'telescope.builtin'.lsp_document_symbols{prompt_prefix=' ', default_text='method'}<CR>"
+)
+keymap(
+  'n',
+  '<learer>lp',
+  "<CMD>lua require'telescope.builtin'.lsp_document_symbols{prompt_prefix=' ', default_text='property'}<CR>"
+)
+keymap(
+  'n',
+  '<learer>lc',
+  "<CMD>lua require'telescope.builtin'.lsp_document_symbols{prompt_prefix=' ', default_text='constant'}<CR>"
+)
+
 -- Trailblazer
 keymap(
   'n',
@@ -272,6 +296,12 @@ keymap(
 )
 keymap(
   'n',
+  '<leader>eb',
+  '<Cmd>TrailBlazerTrackBack<CR>',
+  { table.unpack(noremap_silent), desc = 'Trailblazer Down Mark' }
+)
+keymap(
+  'n',
   '<leader>ed',
   '<Cmd>TrailBlazerDeleteAllTrailMarks<CR>',
   { table.unpack(noremap_silent), desc = 'Trailblazer Delete All Marks' }
@@ -283,7 +313,7 @@ keymap('n', '[d', vim.diagnostic.goto_prev)
 keymap('n', ']d', vim.diagnostic.goto_next)
 keymap('n', '<leader>q', vim.diagnostic.setloclist)
 keymap('n', '<leader>ga', '<CMD>Lspsaga code_action<CR>', { table.unpack(noremap_silent), desc = 'Lsp Code Action' })
-keymap('n', '<leader>gr', '<CMD>Lspsaga rename<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
+-- keymap('n', '<leader>gr', '<CMD>Lspsaga rename<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
 keymap('n', '<leader>gp', '<CMD>Lspsaga peek_definition<CR>', { table.unpack(noremap_silent), desc = 'Lsp Rename' })
 keymap('n', '<leader>gs', function()
   require('lsp_signature').toggle_float_win()
