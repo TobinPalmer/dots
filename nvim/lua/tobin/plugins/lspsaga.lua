@@ -31,6 +31,26 @@ return {
   end,
   dependencies = {
     { 'nvim-tree/nvim-web-devicons' },
-    { 'nvim-treesitter/nvim-treesitter', event = 'LspAttach' },
+    {
+      'nvim-treesitter/nvim-treesitter',
+      event = 'LspAttach',
+      opts = {
+        ensure_installed = {
+          'bash',
+          'html',
+          'javascript',
+          'json',
+          'lua',
+          'markdown',
+          'markdown_inline',
+          'python',
+          'query',
+          'regex',
+          'typescript',
+          'vim',
+          'yaml',
+        },
+      },
+    },
   },
 }

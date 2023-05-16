@@ -7,6 +7,64 @@ return {
     event = 'UiEnter',
   },
   {
+    'stevearc/aerial.nvim',
+    event = 'LspAttach',
+    opts = {
+      nav = {
+        border = 'rounded',
+        max_height = 0.9,
+        min_height = { 10, 0.1 },
+        max_width = 0.5,
+        min_width = { 0.2, 20 },
+        win_opts = {
+          cursorline = true,
+          winblend = 10,
+        },
+        autojump = true,
+        preview = true,
+        keymaps = {
+          ['q'] = 'actions.close',
+          ['<CR>'] = 'actions.jump',
+          ['<2-LeftMouse>'] = 'actions.jump',
+          ['<C-v>'] = 'actions.jump_vsplit',
+          ['<C-s>'] = 'actions.jump_split',
+          ['h'] = 'actions.left',
+          ['l'] = 'actions.right',
+        },
+      },
+
+      lsp = {
+        diagnostics_trigger_update = true,
+        update_when_errors = true,
+        update_delay = 300,
+        priority = {
+          copilot = -1,
+        },
+      },
+      layout = { min_width = 28 },
+      show_guides = false,
+      filter_kind = false,
+      guides = {
+        mid_item = '├ ',
+        last_item = '└ ',
+        nested_top = '│ ',
+        whitespace = '  ',
+      },
+      keymaps = {
+        ['q'] = 'actions.close',
+        ['[y'] = 'actions.prev',
+        [']y'] = 'actions.next',
+        ['[Y'] = 'actions.prev_up',
+        [']Y'] = 'actions.next_up',
+        ['{'] = false,
+        ['}'] = false,
+        ['[['] = false,
+        [']]'] = false,
+      },
+    },
+  },
+
+  {
     {
       'ray-x/lsp_signature.nvim',
       event = 'BufReadPre',
@@ -187,126 +245,18 @@ return {
     },
   },
   {
-    'stevearc/aerial.nvim',
-    opts = {},
+    'neovim/nvim-lspconfig',
     dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'nvim-tree/nvim-web-devicons',
+      {
+        'SmiteshP/nvim-navbuddy',
+        dependencies = {
+          'SmiteshP/nvim-navic',
+          'MunifTanjim/nui.nvim',
+        },
+        opts = {},
+        lsp = { auto_attach = true },
+      },
     },
-    event = 'LspAttach',
-    config = function()
-      require('aerial').setup {
-        backends = { 'treesitter', 'lsp', 'markdown', 'man' },
-
-        layout = {
-          width = 0.5,
-          win_opts = {},
-          default_direction = 'prefer_right',
-          placement = 'window',
-          preserve_equality = false,
-        },
-        attach_mode = 'window',
-        close_automatic_events = {},
-        lazy_load = true,
-        disable_max_lines = 10000,
-        filter_kind = {
-          'Class',
-          'Constructor',
-          'Enum',
-          'Function',
-          'Interface',
-          'Module',
-          'Method',
-          'Struct',
-        },
-
-        highlight_mode = 'split_width',
-
-        highlight_closest = true,
-
-        highlight_on_hover = false,
-
-        highlight_on_jump = 300,
-
-        autojump = false,
-
-        icons = {},
-        manage_folds = false,
-
-        link_folds_to_tree = false,
-
-        link_tree_to_folds = true,
-
-        nerd_font = 'auto',
-
-        close_on_select = true,
-
-        update_events = 'textchanged,insertleave',
-
-        show_guides = false,
-
-        guides = {
-          mid_item = '├─',
-          last_item = '└─',
-          nested_top = '│ ',
-          whitespace = '  ',
-        },
-
-        get_highlight = function(symbol, is_icon) end,
-
-        float = {
-          border = 'rounded',
-          relative = 'win',
-
-          height = 0.5,
-
-          override = function(conf, source_winid)
-            return conf
-          end,
-        },
-
-        nav = {
-          border = 'rounded',
-          width = 0.5,
-          win_opts = {
-            cursorline = true,
-            winblend = 10,
-          },
-          autojump = false,
-          preview = false,
-          keymaps = {
-            ['<cr>'] = 'actions.jump',
-            ['<2-leftmouse>'] = 'actions.jump',
-            ['<c-v>'] = 'actions.jump_vsplit',
-            ['<c-s>'] = 'actions.jump_split',
-            ['h'] = 'actions.left',
-            ['l'] = 'actions.right',
-            ['<c-c>'] = 'actions.close',
-          },
-        },
-
-        lsp = {
-          diagnostics_trigger_update = true,
-
-          update_when_errors = true,
-
-          update_delay = 300,
-
-          priority = {},
-        },
-
-        treesitter = {
-          update_delay = 300,
-        },
-
-        markdown = {
-          update_delay = 300,
-        },
-
-        man = {
-          update_delay = 300,
-        },
-      }
-    end,
+    -- your lsp config or other stuff
   },
 }
