@@ -33,13 +33,13 @@ M.setup = function()
     },
   }
 
-  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = 'rounded',
-  })
+  -- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+  --   border = 'rounded',
+  -- })
 
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = 'rounded',
-  })
+  -- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  --   border = 'rounded',
+  -- })
 
   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     signs = true,
@@ -114,6 +114,7 @@ M.on_attach = function(client, bufnr)
   require('illuminate').on_attach(client)
 
   require('lsp_signature').on_attach(signature_cfg, bufnr)
+  require('nvim-navbuddy').attach(client, bufnr)
 end
 
 return M
