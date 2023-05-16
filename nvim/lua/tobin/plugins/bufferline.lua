@@ -5,6 +5,28 @@ return {
   dependencies = 'nvim-tree/nvim-web-devicons',
   config = function()
     require('bufferline').setup {
+      highlights = {
+        fill = {
+          bg = '#24283b',
+        },
+        separator_selected = {
+          fg = '#24283b',
+        },
+        separator_visible = {
+          fg = '#24283b',
+        },
+        separator = {
+          fg = '#24283b',
+        },
+        tab_selected = {
+          fg = '#ff0000',
+          bg = '#ff0000',
+        },
+        indicator_selected = {
+          fg = '#FFA066',
+          bg = '#FFA066',
+        },
+      },
       options = {
         separator_style = 'slant',
         hover = {
