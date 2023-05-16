@@ -1,7 +1,8 @@
 ## Powerline10k configuration
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 fi
-source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+# source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 export ZSHPATH=$HOME/.config/.zsh
 export PUPPETEER_PRODUCT=firefox npm i puppeteer
 
@@ -29,6 +30,7 @@ alias trim="ex +'bufdo!%s/\s\+$//e' -scxa"
 alias v="pbpaste"
 alias zshrc="nvim ~/.config/.zsh/.zshrc"
 alias restart="skhd --stop-service;skhd --start-service;yabai --stop-service;yabai --start-service"
+alias vim="vim -u ~/.config/.vim/init.vim"
 
 unset TMUX
 
@@ -44,7 +46,7 @@ export NVM_DIR="$HOME/.nvm"
 ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git)
-source "$ZSH/oh-my-zsh.sh"
+# source "$ZSH/oh-my-zsh.sh"
 
 # Plugins
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
@@ -77,3 +79,5 @@ for file in "$ZSHPATH"/configs/*; do
         source "$file"
     fi
 done
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
