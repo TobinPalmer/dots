@@ -130,6 +130,13 @@ keymap({ 'i' }, '<A-k>', '<Esc>:m .-2<CR>==gi')
 keymap({ 'v', 'x' }, '<A-j>', ':m >+1<CR>gv=gv')
 keymap({ 'v', 'x' }, '<A-k>', ':m <-2<CR>gv=gv')
 
+keymap({ 'n' }, '<A-j>', ':m .+1<CR>==')
+keymap({ 'n' }, '<A-k>', ':m .-2<CR>==')
+keymap({ 'i' }, '<A-j>', '<Esc>:m .+1<CR>==gi')
+keymap({ 'i' }, '<A-k>', '<Esc>:m .-2<CR>==gi')
+keymap({ 'v', 'x' }, '<A-j>', ':m >+1<CR>gv=gv')
+keymap({ 'v', 'x' }, '<A-k>', ':m <-2<CR>gv=gv')
+
 keymap(
   'n',
   '<leader>ha',

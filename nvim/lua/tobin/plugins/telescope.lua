@@ -4,12 +4,11 @@ if vim.g.neovide then
 end
 return {
   'nvim-telescope/telescope.nvim',
-  event = 'UIEnter',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-symbols.nvim',
   },
-  cmd = { 'Telescope find_files' },
+  cmd = { 'Telescope' },
   keys = {
     {
       '<leader>ff',

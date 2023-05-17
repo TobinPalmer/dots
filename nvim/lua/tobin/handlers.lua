@@ -41,6 +41,8 @@ M.setup = function()
   --   border = 'rounded',
   -- })
 
+  vim.lsp.handlers['textDocument/signatureHelp'] = nil
+
   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     signs = true,
     underline = true,
@@ -108,13 +110,11 @@ M.on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 
   vim.api.nvim_buf_create_user_command(bufnr, 'Fmt', function(_)
-    vim.lsp.buf.format()
+    vim.cmd [[ silent! lua vim.lsp.buf.format() ]]
   end, {})
 
   require('illuminate').on_attach(client)
 
   require('lsp_signature').on_attach(signature_cfg, bufnr)
-  require('nvim-navbuddy').attach(client, bufnr)
 end
-
 return M

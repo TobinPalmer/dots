@@ -14,15 +14,15 @@ M.format = function()
   end
 
   if is_special() then
-    vim.cmd [[autocmd BufWritePre *.{ts,js} silent! EslintFixAll]]
+    vim.cmd [[ silent! EslintFixAll ]]
   else
-    vim.cmd [[autocmd BufWritePre * silent! lua vim.lsp.buf.format()]]
+    vim.lsp.buf.format()
   end
 end
 
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  pattern = { '*.lua' },
-  callback = M.format,
-})
+-- vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+--   pattern = { '*.lua' },
+--   callback = M.format,
+-- })
 
 return M
