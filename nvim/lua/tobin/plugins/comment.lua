@@ -1,6 +1,10 @@
 return {
   'numToStr/Comment.nvim',
-  event = 'BufReadPost',
+  keys = {
+    { 'gc', mode = { 'n', 'v' }, desc = 'Comment toggle linewise' },
+    { 'gb', mode = { 'n', 'v' }, desc = 'Comment toggle blockwise' },
+  },
+
   config = function()
     require('Comment').setup()
     local map = vim.api.nvim_set_keymap
