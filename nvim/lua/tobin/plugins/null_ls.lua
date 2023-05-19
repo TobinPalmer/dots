@@ -13,6 +13,7 @@ return {
         nls.builtins.formatting.beautysh,
         nls.builtins.formatting.bibclean,
         nls.builtins.diagnostics.eslint,
+        nls.builtins.diagnostics.vint,
         nls.builtins.diagnostics.gitlint,
         nls.builtins.code_actions.eslint_d,
         nls.builtins.code_actions.gitsigns,
