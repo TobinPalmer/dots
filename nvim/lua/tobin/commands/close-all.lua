@@ -16,7 +16,7 @@ local function close_non_visible_buffers()
   end
 
   if #deleted_buffers > 0 then
-    local deleted_buffer_names = table.concat(deleted_buffers, '\n')
+    local deleted_buffer_names = table.concat(deleted_buffers:gsub('%s+', ''), '\n')
     vim.notify('Deleted:\n' .. deleted_buffer_names)
   end
 end
