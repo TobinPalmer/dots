@@ -15,10 +15,13 @@ local function close_non_visible_buffers()
     end
   end
 
-  -- if #deleted_buffers > 0 then
-  --   local deleted_buffer_names = table.concat(deleted_buffers)
-  --   vim.notify('Deleted:\n' .. deleted_buffer_names)
-  -- end
+  if #deleted_buffers > 0 then
+    vim.notify('Deleted Non-Visible Buffers', vim.log.levels.INFO, {
+      title = 'Deleted Buffers',
+      timeout = 2000,
+      message = table.concat(deleted_buffers, ', '),
+    })
+  end
 end
 
 vim.api.nvim_create_user_command('Wipeout', close_non_visible_buffers, {})
