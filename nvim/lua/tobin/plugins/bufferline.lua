@@ -6,8 +6,12 @@ return {
   config = function()
     require('bufferline').setup {
       highlights = {
+        background = {
+          fg = '#70747f',
+        },
         fill = {
           bg = '#24283b',
+          fg = '#ff0000',
         },
         separator_selected = {
           fg = '#24283b',
@@ -17,10 +21,6 @@ return {
         },
         separator = {
           fg = '#24283b',
-        },
-        tab_selected = {
-          fg = '#ff0000',
-          bg = '#ff0000',
         },
         indicator_selected = {
           fg = '#FFA066',
