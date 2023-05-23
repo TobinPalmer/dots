@@ -5,7 +5,7 @@ local function toggle_preview()
   elseif ft == 'tex' then
     require('knap').toggle_autopreviewing()
   else
-    print('Preview not available for filetype ' .. ft)
+    vim.notify('Preview not available', vim.log.levels.WARN)
   end
 end
 
