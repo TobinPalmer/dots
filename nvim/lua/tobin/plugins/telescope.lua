@@ -26,6 +26,9 @@ return {
     { '<leader>gt', '<cmd>Telescope git_branches<CR>', desc = 'Git branches' },
   },
   opts = {
+    extensions = {
+      undo = {},
+    },
     defaults = {
       winblend = winblend,
       file_ignore_patterns = {
