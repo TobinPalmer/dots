@@ -6,9 +6,8 @@ syn region embedvim matchgroup=luaEmbedError start="vim\.api\.nvim_command \[\["
 syn region embedvim matchgroup=luaEmbedError start="vim\.api\.nvim_exec(\[\[" end="\]\])" keepend contains=@Vim
 syn region embedvim matchgroup=luaEmbedError start="vim\.api\.nvim_exec \[\[" end="\]\]" keepend contains=@Vim
 syn region embedvim matchgroup=luaEmbedError start="vim\.cmd \[\[" end="\]\]" keepend contains=@Vim
+syn region embedvim matchgroup=luaEmbedError start="vim\.cmd\[\[" end="]]" keepend contains=@Vim
 syn region embedvim matchgroup=luaEmbedError start="vim\.cmd(\[\[" end="\]\])" keepend contains=@Vim
-syn region embedvim matchgroup=luaEmbedError start="vim\.cmd\[\[" end="\]\]" keepend contains=@Vim
-syn region embedvim matchgroup=luaEmbedError start="vim\.cmd \[\[" end="\]\]" keepend contains=@Vim
 syn region embedvim matchgroup=luaEmbedError start="vim\.cmd \"" end="\"" keepend contains=@Vim
 syn region embedvim matchgroup=luaEmbedError start="vim\.cmd(\"" end="\")" keepend contains=@Vim
 syn region embedvim matchgroup=luaEmbedError start="vim\.cmd '" end="'" keepend contains=@Vim
