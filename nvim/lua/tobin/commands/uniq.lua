@@ -1,11 +1,14 @@
 local function remove_non_unique_lines()
-  -- Get the current line number
   local current_line = vim.fn.line '.'
 
-  -- Execute the Vim command
-  vim.cmd [[%s/\v^(.*)(\n\1)+$/\1/]]
+  local success, _ = pcall(function()
+    vim.cmd [[%s/\v^(.*)(\n\1)+$/\1/]]
+  end)
 
-  -- Move the cursor to the original line
+  if not success then
+    vim.notify('No matching lines found.', vim.log.levels.WARN)
+  end
+
   vim.fn.cursor { current_line, 0 }
 end
 
