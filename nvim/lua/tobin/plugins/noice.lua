@@ -78,7 +78,7 @@ return {
     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
     'MunifTanjim/nui.nvim',
     {
-      'mrded/nvim-lsp-notify',
+      'TobinPalmer/nvim-lsp-notify',
       config = function()
         require('lsp-notify').setup {}
       end,
