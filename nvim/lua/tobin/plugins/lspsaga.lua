@@ -35,6 +35,7 @@ return {
       'nvim-treesitter/nvim-treesitter',
       event = 'LspAttach',
       opts = {
+        highlight = { enable = true },
         ensure_installed = {
           'bash',
           'html',
