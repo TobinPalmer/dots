@@ -4,4 +4,4 @@ vim.cmd [[
     autocmd FileType * setlocal formatoptions-=cro
     autocmd FileType * setlocal comments-=:#
   augroup END
-  ]]
+]]
