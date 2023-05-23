@@ -36,6 +36,13 @@ set.undofile = true
 set.undolevels = 10000
 set.mousemoveevent = true
 
+-- UFO folding
+set.foldcolumn = '1' -- '0' is not bad
+set.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+set.foldlevelstart = 99
+set.foldenable = true
+set.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
 if vim.g.neovide then
   g.neovide_scroll_animation_length = 0.2
   g.neovide_input_macos_alt_is_meta = true
@@ -60,4 +67,4 @@ end
 g.markdown_recommended_style = 0
 set.laststatus = 0 -- Diable status on startup
 vim.cmd [[set autoread | au CursorHold * checktime]]
-set.nuw = 4
+set.nuw = 2
