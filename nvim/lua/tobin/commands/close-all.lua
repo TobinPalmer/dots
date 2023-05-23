@@ -16,7 +16,8 @@ local function close_non_visible_buffers()
   end
 
   if #deleted_buffers > 0 then
-    vim.notify('Deleted Non-Visible Buffers', vim.log.levels.INFO, {
+    local message = string.format('Deleted %d Non-Visible Buffers', #deleted_buffers)
+    vim.notify(message, vim.log.levels.INFO, {
       title = 'Deleted Buffers',
       timeout = 2000,
       message = table.concat(deleted_buffers, ', '),
