@@ -14,8 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
   { import = 'tobin.plugins' },
-  { import = 'tobin.plugins.ui' },
-  { import = 'tobin.plugins.lsp' },
 }
 
 local opts = {
