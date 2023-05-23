@@ -11,7 +11,7 @@ return {
         },
         fill = {
           bg = '#24283b',
-          fg = '#ff0000',
+          fg = '#24283b',
         },
         separator_selected = {
           fg = '#24283b',
