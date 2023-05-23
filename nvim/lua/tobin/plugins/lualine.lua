@@ -31,17 +31,6 @@ return {
       color = { fg = '#d3d3d3' },
     }
 
-    -- local diagnostic = {
-    --   'diagnostics',
-    --   symbols = {
-    --     error = ' ',
-    --     warn = ' ',
-    --     info = ' ',
-    --     hint = ' ',
-    --   },
-    --   icon = '|',
-    -- }
-
     local diff = {
       'diff',
       symbols = {
@@ -85,6 +74,7 @@ return {
             end,
             color = { fg = '#8AA9F9' },
           },
+          'filesize',
         },
         lualine_x = { status.listen, diff },
         lualine_y = { lspStatus, 'filetype' },
