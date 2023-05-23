@@ -8,7 +8,8 @@ return {
   },
   {
     'stevearc/aerial.nvim',
-    event = 'LspAttach',
+    -- event = 'LspAttach',
+    cmd = { 'AerialNavOpen' },
     opts = {
       nav = {
         border = 'rounded',
@@ -20,6 +21,7 @@ return {
           cursorline = true,
           winblend = 10,
         },
+        filter_kind = false,
         autojump = true,
         preview = true,
         keymaps = {
@@ -107,6 +109,7 @@ return {
           'pyright',
           'cssls',
           'bashls',
+          'vimls',
           'texlab',
         }
 
