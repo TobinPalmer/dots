@@ -39,7 +39,7 @@ if vim.fn.has 'mac' == 1 or vim.g.use_nerd_icons then
       Array = '',
       Number = '',
       String = '',
-      Boolean = '蘒',
+      Boolean = '⊨',
       Object = '',
     },
     documents = {
