@@ -28,6 +28,21 @@ keymap(
 )
 keymap(
   'n',
+  '<leader>fi',
+  '<CMD>Telescope lsp_incoming_calls<CR>',
+  { table.unpack(normap), desc = 'Telescope Find All Files' }
+)
+keymap(
+  'n',
+  '<leader>fu',
+  '<CMD>lua require("telescope").extensions.undo.undo()<CR>',
+  { table.unpack(normap), desc = 'Telescope Find All Files' }
+)
+
+-- keymap("n", "zR", require("ufo").openAllFolds)
+-- keymap("n", "zM", require("ufo").closeAllFolds)
+keymap(
+  'n',
   '<leader>ff',
   '<CMD>lua require"telescope.builtin".find_files{ cwd = pwd } <CR>',
   { table.unpack(normap), desc = 'Telescope Smart File Finder' }
@@ -130,12 +145,12 @@ keymap({ 'i' }, '<A-k>', '<Esc>:m .-2<CR>==gi')
 keymap({ 'v', 'x' }, '<A-j>', ':m >+1<CR>gv=gv')
 keymap({ 'v', 'x' }, '<A-k>', ':m <-2<CR>gv=gv')
 
-keymap({ 'n' }, '<A-j>', ':m .+1<CR>==')
-keymap({ 'n' }, '<A-k>', ':m .-2<CR>==')
-keymap({ 'i' }, '<A-j>', '<Esc>:m .+1<CR>==gi')
-keymap({ 'i' }, '<A-k>', '<Esc>:m .-2<CR>==gi')
-keymap({ 'v', 'x' }, '<A-j>', ':m >+1<CR>gv=gv')
-keymap({ 'v', 'x' }, '<A-k>', ':m <-2<CR>gv=gv')
+keymap({ 'n' }, '<C-M><C-j>', ':m .+1<CR>==')
+keymap({ 'n' }, '<C-M><C-k>', ':m .-2<CR>==')
+keymap({ 'i' }, '<C-M><C-j>', '<Esc>:m .+1<CR>==gi')
+keymap({ 'i' }, '<C-M><C-k>', '<Esc>:m .-2<CR>==gi')
+keymap({ 'v', 'x' }, '<C-M><C-j>', ':m >+1<CR>gv=gv')
+keymap({ 'v', 'x' }, '<C-M><C-k>', ':m <-2<CR>gv=gv')
 
 keymap(
   'n',
@@ -146,8 +161,18 @@ keymap(
 keymap('n', '<leader>hs', '<CMD>HopChar2<CR>', { table.unpack(noremap_silent), desc = 'Hop Word (2 Characters)' })
 
 -- Misc Settings
-keymap('n', '<leader>mh', '<CMD>noh<CR>', { table.unpack(noremap_silent), desc = 'Clears Highlighting' })
--- vim.cmd [[cnoremap w w!]]
+keymap(
+  'n',
+  '<leader>mh',
+  '<CMD>noh<CR>ColorizerReloadAllBuffers<CR>',
+  { table.unpack(noremap_silent), desc = 'Clears Highlighting' }
+)
+keymap(
+  'n',
+  '<leader>fml',
+  '<CMD>CellularAutomaton make_it_rain<CR>',
+  { table.unpack(noremap_silent), desc = 'Makes It Rain' }
+)
 vim.cmd [[cnoremap <expr> w (getcmdtype() ==# ':' && getcmdline() ==# 'w') ? 'w!' : 'w']]
 
 keymap(
@@ -218,7 +243,7 @@ keymap('n', '<leader>gf', '<Cmd>Lspsaga peek_definition<CR>', { table.unpack(nor
 keymap('n', '<leader>gs', function()
   require('lsp_signature').toggle_float_win()
 end, { silent = true, noremap = true, desc = 'Toggle Signature' })
-keymap('n', '<leader>gd', vim.lsp.buf.definition, { silent = true, noremap = true, desc = 'Jump To Definition' })
+keymap('n', '<leader>gd', vim.lsp.buf.definition, { table.unpack(noremap_silent), desc = 'Jump to definition' })
 keymap('n', 'gh', '<Cmd>Lspsaga lsp_finder<CR>')
 keymap({ 'n', 'v' }, '<leader>ca', '<Cmd>Lspsaga code_action<CR>')
 keymap('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>')
@@ -259,28 +284,6 @@ keymap('n', '˙', '<C-<Left>>')
 keymap('n', '∆', '<C-<Down>>')
 keymap('n', '˚', '<C-<Up>>')
 keymap('n', '¬', '<C-<Right>>')
-
--- Lsp Symbols Outline
-keymap(
-  'n',
-  '<leader>lf',
-  "<CMD>lua require'telescope.builtin'.lsp_document_symbols{prompt_prefix=' ', default_text='function'}<CR>"
-)
-keymap(
-  'n',
-  '<leader>lm',
-  "<CMD>lua require'telescope.builtin'.lsp_document_symbols{prompt_prefix=' ', default_text='method'}<CR>"
-)
-keymap(
-  'n',
-  '<learer>lp',
-  "<CMD>lua require'telescope.builtin'.lsp_document_symbols{prompt_prefix=' ', default_text='property'}<CR>"
-)
-keymap(
-  'n',
-  '<learer>lc',
-  "<CMD>lua require'telescope.builtin'.lsp_document_symbols{prompt_prefix=' ', default_text='constant'}<CR>"
-)
 
 -- Trailblazer
 keymap(
@@ -351,7 +354,7 @@ keymap(
 keymap(
   'n',
   '<Leader>bv',
-  '<Cmd>call Wipeout()<CR>',
+  '<CMD>wa!<CR><CMD>Wipeout<CR>',
   { table.unpack(noremap_silent), desc = 'Close All Buffers Except Visible' }
 )
 
