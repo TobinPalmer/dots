@@ -1,8 +1,8 @@
 vim.cmd [[
-highlight Keyword gui=italic cterm=italic 
-highlight Special gui=italic cterm=italic 
-highlight typescriptCase gui=italic cterm=italic 
-highlight StorageClass gui=italic cterm=italic 
-highlight Structure gui=italic cterm=italic 
-highlight Statement gui=italic cterm=italic 
+highlight Keyword gui=italic,bold cterm=italic,bold
+highlight Special gui=italic,bold cterm=italic,bold
+highlight typescriptCase gui=italic,bold cterm=italic,bold
+highlight StorageClass gui=italic,bold cterm=italic,bold
+highlight Structure gui=italic,bold cterm=italic,bold
+highlight Statement gui=italic,bold cterm=italic,bold
 ]]
