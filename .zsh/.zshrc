@@ -50,7 +50,7 @@ plugins=(git)
 
 # Plugins
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-# source $(brew --prefix)/opt/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source $(brew --prefix)/opt/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # Powerline10k prompt configuration
 [[ ! -f ~/.zsh/.p10k.zsh ]] || source ~/.zsh/.p10k.zsh
