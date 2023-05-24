@@ -8,7 +8,6 @@ return {
   },
   {
     'stevearc/aerial.nvim',
-    -- event = 'LspAttach',
     cmd = { 'AerialNavOpen' },
     opts = {
       nav = {
