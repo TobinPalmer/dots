@@ -74,13 +74,13 @@ return {
       formatting = {
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
-          vim_item.menu = ({
-            copilot = icons.lspType.Copilot,
-            nvim_lsp = icons.lspType.LSP,
-            luasnip = icons.lspType.luasnip,
-            buffer = icons.lspType.buffer,
-            path = icons.lspType.path,
-          })[entry.source.name]
+          -- vim_item.menu = ({
+          --   copilot = icons.lspType.Copilot,
+          --   nvim_lsp = icons.lspType.LSP,
+          --   luasnip = icons.lspType.luasnip,
+          --   buffer = icons.lspType.buffer,
+          --   path = icons.lspType.path,
+          -- })[entry.source.name]
 
           -- for tailwind colors
           if vim_item.kind == 'Color' then
