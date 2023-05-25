@@ -174,7 +174,8 @@ return {
         }
 
         lspconfig['eslint'].setup {
-          on_attach = function(client, bufnr)
+          --- @param bufnr number
+          on_attach = function(_, bufnr)
             vim.api.nvim_create_autocmd('BufWritePre', {
               buffer = bufnr,
               command = 'EslintFixAll',

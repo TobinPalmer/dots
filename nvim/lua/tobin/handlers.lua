@@ -93,6 +93,8 @@ local semantic_token_support = {
 
 M.capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+--- @param client table
+--- @param bufnr integer
 M.on_attach = function(client, bufnr)
   if client.name == 'tsserver' then
     client.server_capabilities.documentFormattingProvider = false

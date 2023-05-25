@@ -1,6 +1,8 @@
 local set = vim.opt
 local g = vim.g
 
+vim.g.notify_delay = 1500
+
 g.mapleader = ','
 g.maplocalleader = ','
 
@@ -53,6 +55,7 @@ if vim.g.neovide then
   g.neovide_hide_mouse_when_typing = true
   vim.g.neovide_scale_factor = 1.0
 
+  --- @param delta integer
   local change_scale_factor = function(delta)
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
   end

@@ -14,6 +14,8 @@ return {
       local lib = require 'nvim-tree.lib'
       local view = require 'nvim-tree.view'
 
+      --- Nvim tree opts
+      --- @param desc string
       local opts = function(desc)
         return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
       end
@@ -82,6 +84,7 @@ return {
         api.tree.reload()
       end
 
+      --- @param file table
       api.events.subscribe(api.events.Event.FileCreated, function(file)
         vim.cmd('edit ' .. file.fname)
       end)

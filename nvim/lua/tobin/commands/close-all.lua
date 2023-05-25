@@ -1,3 +1,5 @@
+--- Trims a file path to just the filename.org
+--- @param path string
 local function trim_filename(path)
   local filename = path:match '.+/(.+)$'
   return filename or path
@@ -19,7 +21,7 @@ local function close_non_visible_buffers()
     local message = string.format('Deleted %d Non-Visible Buffers', #deleted_buffers)
     vim.notify(message, vim.log.levels.INFO, {
       title = 'Deleted Buffers',
-      timeout = 2000,
+      timeout = vim.g.notify_delay,
       message = table.concat(deleted_buffers, ', '),
     })
   end

@@ -48,6 +48,7 @@ return {
 
     cmp.setup {
       snippet = {
+        --- @param args cmp.SnippetExpansionParams
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
@@ -60,6 +61,7 @@ return {
         ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select }, { 'i' }),
         ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select }, { 'i' }),
         ['<CR>'] = cmp.mapping {
+          --- @param fallback function
           i = function(fallback)
             if cmp.visible() and cmp.get_active_entry() then
               cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
@@ -73,6 +75,8 @@ return {
       },
       formatting = {
         fields = { 'kind', 'abbr', 'menu' },
+        --- @param entry cmp.Entry
+        --- @param vim_item vim.CompletedItem
         format = function(entry, vim_item)
           -- vim_item.menu = ({
           --   copilot = icons.lspType.Copilot,
