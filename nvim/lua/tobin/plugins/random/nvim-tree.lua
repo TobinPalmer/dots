@@ -4,6 +4,12 @@ return {
   dependencies = {
     'nvim-tree/nvim-web-devicons',
   },
+  ui = {
+    confirm = {
+      remove = true,
+      trash = false,
+    },
+  },
   cmd = { 'NvimTreeToggle' },
   keys = {
     { '<leader>pv', '<cmd>NvimTreeToggle<CR>' },
@@ -14,6 +20,74 @@ return {
       local lib = require 'nvim-tree.lib'
       local view = require 'nvim-tree.view'
 
+      local opts = function(desc)
+        return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+      end
+
+      local mark_move_j = function()
+        api.marks.toggle()
+        vim.cmd 'norm j'
+      end
+      local mark_move_k = function()
+        api.marks.toggle()
+        vim.cmd 'norm k'
+      end
+
+      -- marked files operation
+      local mark_trash = function()
+        local marks = api.marks.list()
+        if #marks == 0 then
+          table.insert(marks, api.tree.get_node_under_cursor())
+        end
+        vim.ui.input({ prompt = string.format('Trash %s files? [y/n] ', #marks) }, function(input)
+          if input == 'y' then
+            for _, node in ipairs(marks) do
+              api.fs.trash(node)
+            end
+            api.marks.clear()
+            api.tree.reload()
+          end
+        end)
+      end
+      local mark_remove = function()
+        local marks = api.marks.list()
+        if #marks == 0 then
+          table.insert(marks, api.tree.get_node_under_cursor())
+        end
+        vim.ui.input({ prompt = string.format('Remove/Delete %s files? [y/n] ', #marks) }, function(input)
+          if input == 'y' then
+            for _, node in ipairs(marks) do
+              api.fs.remove(node)
+            end
+            api.marks.clear()
+            api.tree.reload()
+          end
+        end)
+      end
+
+      local mark_copy = function()
+        local marks = api.marks.list()
+        if #marks == 0 then
+          table.insert(marks, api.tree.get_node_under_cursor())
+        end
+        for _, node in pairs(marks) do
+          api.fs.copy.node(node)
+        end
+        api.marks.clear()
+        api.tree.reload()
+      end
+      local mark_cut = function()
+        local marks = api.marks.list()
+        if #marks == 0 then
+          table.insert(marks, api.tree.get_node_under_cursor())
+        end
+        for _, node in pairs(marks) do
+          api.fs.cut(node)
+        end
+        api.marks.clear()
+        api.tree.reload()
+      end
+
       api.events.subscribe(api.events.Event.FileCreated, function(file)
         vim.cmd('edit ' .. file.fname)
       end)
@@ -22,6 +96,9 @@ return {
         local action = 'edit'
         local node = lib.get_node_at_cursor()
 
+        if node == nil then
+          return
+        end
         if node.link_to and not node.nodes then
           require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
           view.close()
@@ -39,27 +116,14 @@ return {
 
       api.config.mappings.default_on_attach(bufnr)
 
-      vim.keymap.set('n', '<c-]>', api.tree.change_root_to_node, opts 'cd')
-      vim.keymap.set('n', '<c-e>', api.node.open.replace_tree_buffer, opts 'open: in place')
-      vim.keymap.set('n', '<c-k>', api.node.show_info_popup, opts 'info')
-      vim.keymap.set('n', '<c-r>', api.fs.rename_sub, opts 'rename: omit filename')
-      vim.keymap.set('n', '<c-t>', api.node.open.tab, opts 'open: new tab')
-      vim.keymap.set('n', '<c-v>', api.node.open.vertical, opts 'open: vertical split')
-      vim.keymap.set('n', '<c-x>', api.node.open.horizontal, opts 'open: horizontal split')
       vim.keymap.set('n', '<bs>', api.node.navigate.parent_close, opts 'close directory')
       vim.keymap.set('n', '<cr>', api.node.open.edit, opts 'open')
-      vim.keymap.set('n', '<tab>', api.node.open.preview, opts 'open preview')
-      vim.keymap.set('n', '>', api.node.navigate.sibling.next, opts 'next sibling')
-      vim.keymap.set('n', '<', api.node.navigate.sibling.prev, opts 'previous sibling')
       vim.keymap.set('n', '.', api.node.run.cmd, opts 'run command')
       vim.keymap.set('n', '-', api.tree.change_root_to_parent, opts 'up')
       vim.keymap.set('n', 'a', api.fs.create, opts 'create')
-      vim.keymap.set('n', 'bmv', api.marks.bulk.move, opts 'move bookmarked')
-      vim.keymap.set('n', 'b', api.tree.toggle_no_buffer_filter, opts 'toggle no buffer')
       vim.keymap.set('n', 'c', api.fs.copy.node, opts 'copy')
       vim.keymap.set('n', '[c', api.node.navigate.git.prev, opts 'prev git')
       vim.keymap.set('n', ']c', api.node.navigate.git.next, opts 'next git')
-      vim.keymap.set('n', 'd', api.fs.remove, opts 'delete')
       vim.keymap.set('n', 'd', api.fs.trash, opts 'trash')
       vim.keymap.set('n', 'r', api.tree.expand_all, opts 'expand all')
       vim.keymap.set('n', 'r', api.fs.rename_basename, opts 'rename: basename')
@@ -77,22 +141,27 @@ return {
       vim.keymap.set('n', 'p', api.fs.paste, opts 'paste')
       vim.keymap.set('n', 'q', api.tree.close, opts 'close')
       vim.keymap.set('n', 'r', api.fs.rename, opts 'rename')
-      vim.keymap.set('n', 's', api.node.run.system, opts 'run system')
       vim.keymap.set('n', 's', api.tree.search_node, opts 'search')
       vim.keymap.set('n', 'u', api.tree.toggle_custom_filter, opts 'toggle hidden')
-      vim.keymap.set('n', 'w', api.tree.collapse_all, opts 'collapse')
       vim.keymap.set('n', 'x', api.fs.cut, opts 'cut')
       vim.keymap.set('n', 'y', api.fs.copy.filename, opts 'copy name')
-      vim.keymap.set('n', 'y', api.fs.copy.relative_path, opts 'copy relative path')
-      vim.keymap.set('n', '<2-leftmouse>', api.node.open.edit, opts 'open')
-      vim.keymap.set('n', '<2-rightmouse>', api.tree.change_root_to_node, opts 'cd')
 
       vim.keymap.set('n', 'l', edit_or_open, opts 'edit or open')
       vim.keymap.set('n', 'h', api.tree.close, opts 'close')
-      vim.keymap.set('n', 'h', api.tree.collapse_all, opts 'collapse all')
+      vim.keymap.set('n', 'H', api.tree.collapse_all, opts 'collapse all')
 
       vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts 'close directory')
       vim.keymap.set('n', 'h', api.tree.collapse_all, opts 'collapse')
+
+      vim.keymap.set('n', 'p', api.fs.paste, opts 'Paste')
+      vim.keymap.set('n', 'J', mark_move_j, opts 'Toggle Bookmark Down')
+      vim.keymap.set('n', 'K', mark_move_k, opts 'Toggle Bookmark Up')
+
+      vim.keymap.set('n', 'dd', mark_cut, opts 'Cut File(s)')
+      vim.keymap.set('n', 'df', mark_trash, opts 'Trash File(s)')
+      vim.keymap.set('n', 'dF', mark_remove, opts 'Remove File(s)')
+
+      vim.keymap.set('n', 'mv', api.marks.bulk.move, opts 'Move Bookmarked')
     end
     local HEIGHT_RATIO = 0.8
     local WIDTH_RATIO = 0.5
