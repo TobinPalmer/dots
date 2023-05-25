@@ -4,12 +4,6 @@ return {
   dependencies = {
     'nvim-tree/nvim-web-devicons',
   },
-  ui = {
-    confirm = {
-      remove = true,
-      trash = false,
-    },
-  },
   cmd = { 'NvimTreeToggle' },
   keys = {
     { '<leader>pv', '<cmd>NvimTreeToggle<CR>' },
@@ -200,6 +194,12 @@ return {
         width = function()
           return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
         end,
+      },
+      ui = {
+        confirm = {
+          remove = true,
+          trash = false,
+        },
       },
       diagnostics = {
         enable = true,
