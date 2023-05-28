@@ -1,10 +1,7 @@
 #!/bin/bash
 
-sketchybar --stop-service
-sketchybar --start-service
+sketchybar --restart-service
 
-yabai --stop-service
-yabai --start-service
+yabai --restart-service
 
-skhd --stop-service
-skhd --start-service
+skhd --restart-service
