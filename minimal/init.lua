@@ -1,1 +1,1 @@
-require("tobin")
+require 'tobin'

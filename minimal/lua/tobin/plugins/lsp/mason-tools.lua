@@ -1,6 +1,9 @@
 return {
   'WhoIsSethDaniel/mason-tool-installer.nvim',
-  event = 'BufReadPre',
+  cmd = {
+    'MasonToolsInstall',
+    'MasonToolsUpdate',
+  },
   config = function()
     require('mason-tool-installer').setup {
       ensure_installed = {

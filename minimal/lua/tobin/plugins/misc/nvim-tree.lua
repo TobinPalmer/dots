@@ -1,14 +1,17 @@
+local dependencies = {}
+if vim.g.opts.use_icons then
+  dependencies = { 'nvim-tree/nvim-web-devicons' }
+end
+
 return {
   'nvim-tree/nvim-tree.lua',
-  commit = '498e8793bbe73ab5235b3ee8f0aee32f5d01649f',
-  dependencies = {
-    'nvim-tree/nvim-web-devicons',
-  },
+  dependencies = dependencies,
   cmd = { 'NvimTreeToggle' },
   keys = {
-    { '<leader>pv', '<cmd>NvimTreeToggle<CR>' },
+    { '<leader>pv', '<CMD>NvimTreeToggle<CR>', desc = 'Open Nvim-Tree' },
   },
   opts = function()
+    local icons = require 'tobin.icons'
     local function on_attach(bufnr)
       local api = require 'nvim-tree.api'
       local lib = require 'nvim-tree.lib'
@@ -72,6 +75,7 @@ return {
         api.marks.clear()
         api.tree.reload()
       end
+
       local mark_cut = function()
         local marks = api.marks.list()
         if #marks == 0 then
@@ -98,12 +102,16 @@ return {
         end
         if node.link_to and not node.nodes then
           require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
-          view.close()
+          if vim.g.opts.nvim_tree.close_on_select then
+            view.close()
+          end
         elseif node.nodes ~= nil then
           lib.expand_or_collapse(node)
         else
           require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
-          view.close()
+          if vim.g.opts.nvim_tree.close_on_select then
+            view.close()
+          end
         end
       end
 
@@ -162,7 +170,33 @@ return {
     end
     local HEIGHT_RATIO = 0.8
     local WIDTH_RATIO = 0.5
+    local should_icons_render = vim.g.opts.use_icons
     return {
+      renderer = {
+        icons = {
+          show = {
+            file = should_icons_render,
+            folder = should_icons_render,
+            git = should_icons_render,
+            modified = should_icons_render,
+          },
+          glyphs = {
+            default = icons.documents.File,
+            symlink = icons.documents.Symlink,
+            modified = icons.documents.Files,
+            folder = {
+              arrow_closed = icons.ui.ChevronRight,
+              arrow_open = icons.ui.ChevronDown,
+              default = icons.documents.Folder,
+              open = icons.documents.OpenFolder,
+              empty = icons.documents.EmptyFolder,
+              empty_open = icons.documents.OpenFolder,
+              symlink = icons.documents.Symlink,
+              symlink_open = icons.documents.Symlink,
+            },
+          },
+        },
+      },
       sort_by = 'case_sensitive',
       sync_root_with_cwd = true,
       reload_on_bufenter = true,
@@ -174,7 +208,7 @@ return {
       },
       view = {
         float = {
-          enable = true,
+          enable = vim.g.opts.nvim_tree.float,
           open_win_config = function()
             local screen_w = vim.opt.columns:get()
             local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
@@ -195,7 +229,10 @@ return {
           end,
         },
         width = function()
-          return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
+          if vim.g.opts.nvim_tree.float then
+            return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
+          end
+          return 30
         end,
       },
       ui = {
@@ -209,10 +246,10 @@ return {
         show_on_dirs = false,
         debounce_delay = 450,
         icons = {
-          error = '',
-          warning = '',
-          hint = '',
-          info = '',
+          error = icons.diagnostics.Error,
+          warning = icons.diagnostics.Warning,
+          hint = icons.diagnostics.Hint,
+          info = icons.diagnostics.Question,
         },
       },
     }

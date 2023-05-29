@@ -108,8 +108,8 @@ M.on_attach = function(client, bufnr)
       client.server_capabilities.semanticTokensProvider = nil
     end
   end
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gg=G', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gg=G', '<CMD>lua vim.lsp.buf.format()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<CMD>lua vim.lsp.buf.hover()<CR>', opts)
 
   vim.api.nvim_buf_create_user_command(bufnr, 'Fmt', function(_)
     vim.cmd [[ silent! lua vim.lsp.buf.format() ]]

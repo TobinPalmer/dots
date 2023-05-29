@@ -6,68 +6,9 @@ return {
     event = 'UiEnter',
   },
   {
-    'stevearc/aerial.nvim',
-    cmd = { 'AerialNavOpen' },
-    opts = {
-      nav = {
-        border = 'rounded',
-        max_height = 0.9,
-        min_height = { 10, 0.1 },
-        max_width = 0.5,
-        min_width = { 0.2, 20 },
-        win_opts = {
-          cursorline = true,
-          winblend = 10,
-        },
-        filter_kind = false,
-        autojump = true,
-        preview = true,
-        keymaps = {
-          ['q'] = 'actions.close',
-          ['<CR>'] = 'actions.jump',
-          ['<2-LeftMouse>'] = 'actions.jump',
-          ['<C-v>'] = 'actions.jump_vsplit',
-          ['<C-s>'] = 'actions.jump_split',
-          ['h'] = 'actions.left',
-          ['l'] = 'actions.right',
-        },
-      },
-
-      lsp = {
-        diagnostics_trigger_update = true,
-        update_when_errors = true,
-        update_delay = 300,
-        priority = {
-          copilot = -1,
-        },
-      },
-      layout = { min_width = 28 },
-      show_guides = false,
-      filter_kind = false,
-      guides = {
-        mid_item = '├ ',
-        last_item = '└ ',
-        nested_top = '│ ',
-        whitespace = '  ',
-      },
-      keymaps = {
-        ['q'] = 'actions.close',
-        ['[y'] = 'actions.prev',
-        [']y'] = 'actions.next',
-        ['[Y'] = 'actions.prev_up',
-        [']Y'] = 'actions.next_up',
-        ['{'] = false,
-        ['}'] = false,
-        ['[['] = false,
-        [']]'] = false,
-      },
-    },
-  },
-
-  {
     {
       'ray-x/lsp_signature.nvim',
-      event = 'BufReadPre',
+      event = 'LspAttach',
       config = function()
         require('lsp_signature').setup()
       end,
@@ -91,6 +32,18 @@ return {
       dependencies = {
         'ray-x/lsp_signature.nvim',
         'RRethy/vim-illuminate',
+        'b0o/schemastore.nvim',
+        {
+          'SmiteshP/nvim-navbuddy',
+          keys = {
+            { '<leader>gy', '<CMD>Navbuddy<CR>', desc = 'Toggle NavBuddy' },
+          },
+          dependencies = {
+            'SmiteshP/nvim-navic',
+            'MunifTanjim/nui.nvim',
+          },
+          opts = { lsp = { auto_attach = true } },
+        },
       },
       event = 'BufReadPre',
       config = function()
@@ -103,7 +56,6 @@ return {
         local servers = {
           'prismals',
           'dockerls',
-          'jsonls',
           'pyright',
           'cssls',
           'bashls',
@@ -117,6 +69,17 @@ return {
             capabilities = capabilities,
           }
         end
+
+        lspconfig['jsonls'].setup {
+          on_attach = on_attach,
+          capabilities = capabilities,
+          settings = {
+            json = {
+              schemas = require('schemastore').json.schemas(),
+              validate = { enable = true },
+            },
+          },
+        }
 
         lspconfig['lua_ls'].setup {
           on_attach = on_attach,

@@ -20,9 +20,4 @@ M.format = function()
   end
 end
 
--- vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
---   pattern = { '*.lua' },
---   callback = M.format,
--- })
-
 return M

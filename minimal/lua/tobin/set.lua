@@ -1,14 +1,50 @@
 local set = vim.opt
-local g = vim.g
+
+vim.g.copilot_no_tab_map = true
+---@class opts
+---@field nvim_tree nvim_tree
+---@field bufferline bufferline
+---@field lualine lualine
+---@field use_icons boolean
+---@field minimal boolean
+---@type opts
+
+---@class bufferline
+---@field style "slant" | "thin" | "thick"
+---@type opts
+
+---@class lualine
+---@field style "line" | "jagged"
+---@type opts
+
+---@class nvim_tree
+---@field float boolean
+---@field close_on_select boolean
+---@type opts
+vim.g.opts = {
+  minimal = false,
+  use_icons = true,
+  bufferline = {
+    style = 'slant',
+  },
+  lualine = {
+    style = 'jagged',
+  },
+  nvim_tree = {
+    float = true,
+    close_on_select = true,
+  },
+}
 
 vim.g.notify_delay = 1500
 
-g.mapleader = ','
-g.maplocalleader = ','
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
 
 set.nu = true
 set.relativenumber = true
 set.autochdir = false
+set.tm = 500
 
 set.tabstop = 2
 set.softtabstop = 2
@@ -24,7 +60,7 @@ set.signcolumn = 'yes'
 set.showmode = false
 
 set.timeout = true
-set.timeoutlen = 200
+set.timeoutlen = 500
 
 set.smartindent = true
 set.wrap = false
@@ -39,11 +75,10 @@ set.undolevels = 10000
 set.mousemoveevent = true
 
 -- UFO folding
-set.foldcolumn = '1' -- '0' is not bad
+-- set.foldcolumn = '1' -- '0' is not bad
 set.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 set.foldlevelstart = 99
 set.foldenable = true
-set.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 if vim.g.neovide then
   g.neovide_scroll_animation_length = 0.2
@@ -67,7 +102,7 @@ if vim.g.neovide then
   end)
 end
 
-g.markdown_recommended_style = 0
+vim.g.markdown_recommended_style = 0
 set.laststatus = 0 -- Diable status on startup
 vim.cmd [[set autoread | au CursorHold * checktime]]
 set.nuw = 2
