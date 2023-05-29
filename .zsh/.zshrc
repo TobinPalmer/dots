@@ -14,7 +14,7 @@ alias c="pbcopy"
 alias clear='clear && printf "\e[3J"'
 alias code="code"
 alias exa='exa --icons --all'
-alias fd='cd $(find . -type d \( -name "node_modules" -o -name "venv" -o -name "__pycache__" -o -name ".git" \) -prune -false -o -print | fzf)'
+alias fd='cd $(find . -type d -print | fzf)'
 alias monkeytype="python3 /Users/tobin/Documents/Code/Python/monkeytype-playwright/main.py"
 alias neovide='neovide --multigrid --frame=buttonless --maximized'
 alias nitrotype="python3 /Users/tobin/Documents/Code/Python/nitrotype-playwright/main.py"
