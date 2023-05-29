@@ -201,7 +201,7 @@ return {
       ui = {
         confirm = {
           remove = true,
-          trash = false,
+          trash = true,
         },
       },
       diagnostics = {

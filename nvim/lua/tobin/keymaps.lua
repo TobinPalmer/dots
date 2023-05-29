@@ -1,10 +1,5 @@
 local utils = require 'tobin.utils.keymap'
 
---- @param desc string
--- local desc = function(desc)
---   return { noremap = true, silent = true, desc = desc }
--- end
-
 vim.g.mapleader = ' '
 
 if not table.unpack then

@@ -5,8 +5,12 @@ return {
       ensure_installed = {
         'bash-language-server',
         'lua-language-server',
+        'eslint-lsp',
+        'eslint_d',
         'vim-language-server',
+        'beautysh',
         'gopls',
+        'json-lsp',
         'stylua',
         'shellcheck',
         'editorconfig-checker',

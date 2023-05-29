@@ -76,11 +76,11 @@ return {
   end,
   dependencies = {
     'MunifTanjim/nui.nvim',
-    {
-      'TobinPalmer/nvim-lsp-notify',
-      config = function()
-        require('lsp-notify').setup {}
-      end,
-    },
+    -- {
+    --   'TobinPalmer/nvim-lsp-notify',
+    --   config = function()
+    --     require('lsp-notify').setup {}
+    --   end,
+    -- },
   },
 }

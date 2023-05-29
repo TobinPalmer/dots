@@ -1,7 +1,7 @@
 return {
-  'KadoBOT/nvim-spotify',
+  'kadobot/nvim-spotify',
   dependencies = 'nvim-telescope/telescope.nvim',
-  event = 'BufReadPre',
+  event = 'bufreadpre',
   config = function()
     local spotify = require 'nvim-spotify'
 

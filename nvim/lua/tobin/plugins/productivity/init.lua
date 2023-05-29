@@ -9,7 +9,7 @@ return {
   require 'tobin.plugins.productivity.trouble',
   require 'tobin.plugins.productivity.surround',
   require 'tobin.plugins.productivity.autopairs',
-  require 'tobin.plugins.productivity.refactoring',
   require 'tobin.plugins.productivity.templates',
+  require 'tobin.plugins.productivity.refactoring',
   require 'tobin.plugins.productivity.template-string',
 }

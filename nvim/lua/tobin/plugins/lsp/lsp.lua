@@ -1,4 +1,3 @@
-local icons = require 'tobin.icons'
 return {
   {
     'folke/neodev.nvim',
