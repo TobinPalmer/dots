@@ -115,6 +115,8 @@ M.on_attach = function(client, bufnr)
     vim.cmd [[ silent! lua vim.lsp.buf.format() ]]
   end, {})
 
+  require('tobin.utils.format').start_auto_format(client)
+
   -- require("illuminate").on_attach(client)
 
   require('lsp_signature').on_attach(signature_cfg, bufnr)

@@ -23,7 +23,7 @@ vim.g.copilot_no_tab_map = true
 ---@type opts
 vim.g.opts = {
   minimal = false,
-  use_icons = true,
+  use_icons = false,
   bufferline = {
     style = 'slant',
   },

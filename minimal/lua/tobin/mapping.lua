@@ -58,4 +58,5 @@ vim.keymap.set('n', '<leader>lr', '<CMD>LspRestart<CR>', { desc = 'Restart Lsp S
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', 'd]', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { desc = 'Cool' })
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Cool' })
 vim.keymap.set('n', '<Leader>bc', '<CMD>bd<CR>', { desc = 'Close Current Buffer' })
