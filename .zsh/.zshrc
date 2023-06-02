@@ -31,6 +31,7 @@ alias v="pbpaste"
 alias zshrc="nvim ~/.config/.zsh/.zshrc"
 alias restart="skhd --stop-service;skhd --start-service;yabai --stop-service;yabai --start-service"
 alias vim="vim -u ~/.config/.vim/init.vim"
+alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
 
 unset TMUX
 
