@@ -12,6 +12,7 @@ export MAGENTA=0xffbd93f9
 export GREY=0xff44475a
 export TRANSPARENT=0x00000000
 
+# Yabai colors
 export ACTIVE_WINDOW_BORDER_COLOR=0xff1e1d2c
 export NORMAL_WINDOW_BORDER_COLOR=0xff2a2f38
 export INSERT_FEEDBACK_COLOR=0xff9dd274
@@ -37,4 +38,3 @@ export NICE=0xff0fdb8a
 export WARM=0xffeefa14
 export HOT=0xfff5b00f
 export VERY_HOT=0xfff5130f
-
