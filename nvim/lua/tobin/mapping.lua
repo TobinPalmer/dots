@@ -61,9 +61,12 @@ vim.keymap.set('n', 'd]', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>gd', '<CMD>Lspsaga goto_definition<CR>', { desc = 'Cool' })
 vim.keymap.set('n', 'gd', '<CMD>Lspsaga goto_definition<CR>', { desc = 'Cool' })
 vim.keymap.set('n', '<Leader>bc', '<CMD>bd<CR>', { desc = 'Close Current Buffer' })
-vim.keymap.set('n', 'ci$', 'T$vt$c', { desc = 'Close Current Buffer' })
-vim.keymap.set('n', 'ca$', 'F$vf$c', { desc = 'Close Current Buffer' })
-vim.keymap.set('n', 'di$', 'T$vt$d', { desc = 'Close Current Buffer' })
-vim.keymap.set('n', 'da$', 'F$vf$d', { desc = 'Close Current Buffer' })
+vim.keymap.set('n', 'ci$', 'T$vt$c', { desc = 'Delete inside $' })
+vim.keymap.set('n', 'ca$', 'F$vf$c', { desc = 'Delete inside $' })
+vim.keymap.set('n', 'di$', 'T$vt$d', { desc = 'Delete inside $' })
+vim.keymap.set('n', 'da$', 'F$vf$d', { desc = 'Delete inside $' })
+
+vim.keymap.set('n', 'O', 'O<esc>cc', { desc = 'Fix Lines' })
+vim.keymap.set('n', 'o', 'o<esc>cc', { desc = 'Fix Lines' })
 
 vim.cmd [[cabbrev w' w]]
