@@ -1,6 +1,12 @@
-return {
-  require 'tobin.plugins.preview.knap',
-  require 'tobin.plugins.preview.peek',
-  require 'tobin.plugins.preview.live-tex',
-  require 'tobin.plugins.preview.live-server',
+local plugins = {
+  require 'tobin.plugins.preview.preview',
+  require 'tobin.plugins.preview.vimtex',
 }
+
+if not vim.g.opts.minimal then
+  local nonMinimalPlugins = {}
+
+  table.insert(plugins, nonMinimalPlugins)
+end
+
+return plugins

@@ -3,41 +3,56 @@ return {
   event = 'InsertEnter',
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-cmdline',
+    'FelipeLema/cmp-async-path',
     'L3MON4D3/LuaSnip',
+    {
+      'sirver/ultisnips',
+      config = function()
+        vim.g.UltiSnipsExpandTrigger = '<TAB>'
+        vim.g.UltiSnipsJumpForwardTrigger = '<C-J>'
+        vim.g.UltiSnipsJumpBackwardTrigger = '<C-K>'
+        vim.g.ultisnips_javascript = {
+          semi = 'never',
+        }
+
+        require('cmp_nvim_ultisnips').setup {}
+      end,
+    },
+    'quangnguyen30192/cmp-nvim-ultisnips',
     'saadparwaiz1/cmp_luasnip',
     'js-everts/cmp-tailwind-colors',
   },
   config = function()
-    local luasnip = require 'luasnip'
     local cmp = require 'cmp'
     local icons = require 'tobin.icons'
 
     local kind_icons = {
-      Copilot = icons.lspType.Copilot,
-      Text = icons.kind.Text,
-      Method = icons.kind.Method,
-      Function = icons.kind.Function,
-      Constructor = icons.kind.Constructor,
-      Field = icons.kind.Field,
-      Variable = icons.kind.Variable,
-      Class = icons.kind.Class,
-      Interface = icons.kind.Interface,
-      Module = icons.kind.Module,
-      Property = icons.kind.Property,
-      Unit = icons.kind.Unit,
-      Value = icons.kind.Value,
       Enum = icons.kind.Enum,
+      File = icons.kind.File,
+      Text = icons.kind.Text,
+      Unit = icons.kind.Unit,
+      Class = icons.kind.Class,
+      Color = icons.kind.Color,
+      Event = icons.kind.Event,
+      Field = icons.kind.Field,
+      Value = icons.kind.Value,
+      Folder = icons.kind.Folder,
+      Method = icons.kind.Method,
+      Module = icons.kind.Module,
+      Struct = icons.kind.Struct,
       Keyword = icons.kind.Keyword,
       Snippet = icons.kind.Snippet,
-      Color = icons.kind.Color,
-      File = icons.kind.File,
-      Reference = icons.kind.Reference,
-      Folder = icons.kind.Folder,
-      EnumMember = icons.kind.EnumMember,
       Constant = icons.kind.Constant,
-      Struct = icons.kind.Struct,
-      Event = icons.kind.Event,
+      Function = icons.kind.Function,
       Operator = icons.kind.Operator,
+      Property = icons.kind.Property,
+      Variable = icons.kind.Variable,
+      Copilot = icons.lspType.Copilot,
+      Interface = icons.kind.Interface,
+      Reference = icons.kind.Reference,
+      EnumMember = icons.kind.EnumMember,
+      Constructor = icons.kind.Constructor,
       TypeParameter = icons.kind.TypeParameter,
     }
 
@@ -46,11 +61,35 @@ return {
       winhighlight = 'Normal:CmpPmenu,CursorLine:PmenuSel,Search:None',
     }
 
+    if vim.g.opts.minimal then
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' },
+        }, {
+          {
+            name = 'cmdline',
+            option = {
+              ignore_cmds = { 'Man', '!' },
+            },
+          },
+        }),
+      })
+
+      cmp.setup.cmdline('/', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer' },
+        },
+      })
+    end
+
     cmp.setup {
       snippet = {
         --- @param args cmp.SnippetExpansionParams
         expand = function(args)
-          luasnip.lsp_expand(args.body)
+          -- luasnip.lsp_expand(args.body)
+          vim.fn['UltiSnips#Anon'](args.body)
         end,
       },
       mapping = cmp.mapping.preset.insert {
@@ -78,24 +117,6 @@ return {
         --- @param entry cmp.Entry
         --- @param vim_item vim.CompletedItem
         format = function(entry, vim_item)
-          -- vim_item.menu = ({
-          --   copilot = icons.lspType.Copilot,
-          --   nvim_lsp = icons.lspType.LSP,
-          --   luasnip = icons.lspType.luasnip,
-          --   buffer = icons.lspType.buffer,
-          --   path = icons.lspType.path,
-          -- })[entry.source.name]
-
-          -- for tailwind colors
-          if vim_item.kind == 'Color' then
-            vim_item = require('cmp-tailwind-colors').format(entry, vim_item)
-
-            if vim_item.kind ~= 'Color' then
-              vim_item.menu = 'Color'
-              return vim_item
-            end
-          end
-
           vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
           return vim_item
         end,
@@ -103,6 +124,7 @@ return {
       preselect = cmp.PreselectMode.None,
       completion = { completeopt = 'noselect' },
       sources = cmp.config.sources {
+        { name = 'async_path', priority = 2000 },
         { name = 'copilot', priority = 1000 },
         {
           name = 'nvim_lsp',
@@ -112,22 +134,15 @@ return {
           end,
         },
         {
-          name = 'luasnip',
+          name = 'ultisnips',
           priority = 600,
-          entry_filter = function(entry)
-            return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
-          end,
+          -- entry_filter = function(entry)
+          --   return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
+          -- ultisnip,
         },
         {
           name = 'buffer',
           priority = 400,
-          entry_filter = function(entry)
-            return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
-          end,
-        },
-        {
-          name = 'path',
-          priority = 200,
           entry_filter = function(entry)
             return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
           end,
@@ -137,6 +152,7 @@ return {
         copilot = 1,
         nvim_lsp = 1,
         luasnip = 1,
+        ultisnip = 1,
         buffer = 1,
         path = 1,
       },

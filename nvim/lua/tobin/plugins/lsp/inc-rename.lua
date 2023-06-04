@@ -1,6 +1,6 @@
 return {
   'smjonas/inc-rename.nvim',
-  event = 'LspAttach',
+  cmd = { 'IncRename' },
   config = function()
     require('inc_rename').setup()
   end,

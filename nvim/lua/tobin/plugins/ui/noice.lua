@@ -4,11 +4,10 @@ return {
   config = function()
     require('noice').setup {
       lsp = {
-        signature = {
-          enabled = false,
-        },
+        signature = { enabled = false },
+        hover = { enabled = false },
         progress = {
-          enabled = false,
+          enabed = false,
           format = 'lsp_progress',
           format_done = 'lsp_progress_done',
           throttle = 1000 / 30, -- frequency to update lsp progress message
@@ -24,15 +23,25 @@ return {
       routes = {
         {
           filter = {
+            event = 'notify',
+            min_height = 15,
+          },
+          view = 'split',
+        },
+        {
+          filter = {
+            event = 'msg_show',
+            kind = 'wmsg',
+          },
+          opts = { skip = true },
+        },
+        {
+          filter = {
             event = 'msg_show',
             kind = '',
             find = 'written',
           },
           opts = { skip = true },
-        },
-        {
-          view = 'mini',
-          filter = { event = 'msg_showmode' },
         },
       },
       views = {
@@ -66,6 +75,7 @@ return {
         },
       },
       presets = {
+        long_message_to_split = true,
         bottom_search = true, -- use a classic bottom cmdline for search
         command_palette = true, -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split

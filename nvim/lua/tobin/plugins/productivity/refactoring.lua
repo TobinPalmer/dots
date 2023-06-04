@@ -6,11 +6,11 @@ return {
     { 'nvim-treesitter/nvim-treesitter' },
   },
   config = function()
-    vim.api.nvim_set_keymap(
+    vim.keymap.set(
       'v',
       '<leader>rr',
-      "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-      { noremap = true }
+      ":lua require('refactoring').select_refactor()<CR>",
+      { noremap = true, silent = true, expr = false }
     )
   end,
 }

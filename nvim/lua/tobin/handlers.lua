@@ -33,13 +33,13 @@ M.setup = function()
     },
   }
 
-  -- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-  --   border = 'rounded',
-  -- })
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = 'rounded',
+  })
 
-  -- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  --   border = 'rounded',
-  -- })
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = 'rounded',
+  })
 
   vim.lsp.handlers['textDocument/signatureHelp'] = nil
 
@@ -93,13 +93,11 @@ local semantic_token_support = {
 
 M.capabilities = require('cmp_nvim_lsp').default_capabilities()
 
---- @param client table
+--- @param client lsp.Client
 --- @param bufnr integer
 M.on_attach = function(client, bufnr)
-  if client.name == 'tsserver' then
-    client.server_capabilities.documentFormattingProvider = false
-  end
-  if client.name == 'lua_ls' then
+  local name = client.name
+  if client.name == 'tsserver' or client.name == 'bashls' or client.name == 'lua_ls' then
     client.server_capabilities.documentFormattingProvider = false
   end
 
@@ -108,14 +106,16 @@ M.on_attach = function(client, bufnr)
       client.server_capabilities.semanticTokensProvider = nil
     end
   end
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gg=G', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gg=G', '<CMD>lua vim.lsp.buf.format()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<CMD>lua vim.lsp.buf.hover()<CR>', opts)
 
   vim.api.nvim_buf_create_user_command(bufnr, 'Fmt', function(_)
     vim.cmd [[ silent! lua vim.lsp.buf.format() ]]
   end, {})
 
-  require('illuminate').on_attach(client)
+  require('tobin.utils.format').start_auto_format(client)
+
+  -- require("illuminate").on_attach(client)
 
   require('lsp_signature').on_attach(signature_cfg, bufnr)
 end

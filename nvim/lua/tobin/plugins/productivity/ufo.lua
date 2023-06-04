@@ -4,6 +4,7 @@ return {
     'kevinhwang91/nvim-ufo',
     dependencies = {
       'kevinhwang91/promise-async',
+      'nvim-treesitter/nvim-treesitter',
       {
         'luukvbaal/statuscol.nvim',
         config = function()
@@ -22,7 +23,14 @@ return {
     event = 'BufReadPost',
     opts = {
       provider_selector = function()
+        --        local success, _ = pcall(require, 'nvim-treesitter')
+        -- if success then
+        --   print 'pro'
         return { 'treesitter', 'indent' }
+        -- else
+        --   print 'noob'
+        --   return { 'indent' }
+        -- end
       end,
     },
 

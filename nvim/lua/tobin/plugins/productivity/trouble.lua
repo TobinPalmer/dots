@@ -1,20 +1,23 @@
 return {
   {
     'folke/trouble.nvim',
-    event = 'BufReadPre',
     keys = {
-      { '<leader>tt', '<cmd>TroubleToggle<cr>', desc = 'Toggle Diagnostics' },
-      { '<leader>tw', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'Workspace Diagnostics' },
-      { '<leader>td', '<cmd>TroubleToggle document_diagnostics<cr>', desc = 'Current Buffer Diagnostics' },
-      { '<leader>dr', '<cmd>TroubleToggle lsp_references<cr>', desc = 'References' },
+      { '<leader>tt', '<CMD>TroubleToggle<cr>', desc = 'Toggle Diagnostics' },
+      { '<leader>tw', '<CMD>TroubleToggle workspace_diagnostics<cr>', desc = 'Workspace Diagnostics' },
+      { '<leader>td', '<CMD>TroubleToggle document_diagnostics<cr>', desc = 'Current Buffer Diagnostics' },
+      { '<leader>tq', '<CMD>TroubleToggle quickfix<cr>', desc = 'Toggle quickfix menu' },
+      { '<leader>dr', '<CMD>TroubleToggle lsp_references<cr>', desc = 'References' },
     },
-    opts = {},
+    cmd = { 'TroubleToggle' },
+    opts = {
+      icons = vim.g.opts.use_icons,
+    },
   },
   {
     'edr3x/lsp_lines.nvim',
     keys = {
       {
-        '<leader>l',
+        '<leader>gl',
         function()
           require('lsp_lines').toggle()
         end,

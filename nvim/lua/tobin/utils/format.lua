@@ -1,11 +1,13 @@
 local M = {}
+local autocommand_assigned = {}
+
+M.special = { 'js', 'ts' }
+M.special_client = { 'tsserver', 'eslint', 'texlab' }
 
 M.format = function()
-  local special = { 'js', 'ts' }
-
   local function is_special()
     local ext = vim.fn.expand [[%:e]]
-    for _, v in ipairs(special) do
+    for _, v in ipairs(M.special) do
       if v == ext then
         return true
       end
@@ -20,9 +22,22 @@ M.format = function()
   end
 end
 
--- vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
---   pattern = { '*.lua' },
---   callback = M.format,
--- })
+--- @param client lsp.Client
+M.start_auto_format = function(client)
+  if M.special_client[client.name] then
+    return
+  end
+
+  if not autocommand_assigned[client.name] then
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      callback = function()
+        if client.server_capabilities.documentFormattingProvider == false then
+          M.format()
+        end
+      end,
+    })
+  end
+  autocommand_assigned[client.name] = true
+end
 
 return M

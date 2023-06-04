@@ -25,6 +25,8 @@ local function close_non_visible_buffers()
       message = table.concat(deleted_buffers, ', '),
     })
   end
+  vim.cmd 'redraw!'
 end
-
 vim.api.nvim_create_user_command('Wipeout', close_non_visible_buffers, {})
+
+vim.keymap.set('n', '<Leader>bv', '<CMD>wa!<CR><CMD>Wipeout<CR>', { desc = 'Close All Buffers Except Visible' })

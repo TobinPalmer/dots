@@ -1,7 +1,6 @@
 return {
   'danymat/neogen',
   dependencies = 'nvim-treesitter/nvim-treesitter',
-  event = 'BufReadPost',
+  cmd = { 'Neogen' },
   config = true,
-  -- version = "*"
 }
