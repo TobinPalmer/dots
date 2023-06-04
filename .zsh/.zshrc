@@ -42,6 +42,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 eval "$(tmuxifier init -)"
+eval "$(opam env --switch=default)"
 
 export GPGc_TTY=$(tty)
 export NVM_DIR="$HOME/.nvm"
