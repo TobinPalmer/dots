@@ -79,6 +79,8 @@ return {
         end
 
         lspconfig['ocamllsp'].setup {
+          on_attach = on_attach,
+          capabilities = capabilities,
           cmd = { 'ocamllsp' },
           filetypes = { 'ocaml', 'ocaml.menhir', 'ocaml.interface', 'ocaml.ocamllex', 'reason', 'dune' },
           root_dir = lspconfig.util.root_pattern(
@@ -89,8 +91,6 @@ return {
             'dune-project',
             'dune-workspace'
           ),
-          on_attach = on_attach,
-          capabilities = capabilities,
         }
 
         lspconfig['jsonls'].setup {
