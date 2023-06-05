@@ -21,7 +21,7 @@ return {
   config = function()
     require('lspsaga').setup {
       symbol_in_winbar = {
-        enable = vim.g.opts.minimal,
+        enable = not vim.g.opts.minimal,
         separator = ' ',
         ignore_patterns = {},
         hide_keyword = true,
