@@ -12,10 +12,6 @@ return {
         vim.g.UltiSnipsExpandTrigger = '<TAB>'
         vim.g.UltiSnipsJumpForwardTrigger = '<C-J>'
         vim.g.UltiSnipsJumpBackwardTrigger = '<C-K>'
-        vim.g.ultisnips_javascript = {
-          semi = 'never',
-        }
-
         require('cmp_nvim_ultisnips').setup {}
       end,
     },
