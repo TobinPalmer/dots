@@ -1,6 +1,5 @@
 return {
   'TobinPalmer/rayso.nvim',
-  cmd = { 'Rayso' },
   config = function()
     require('rayso').setup {
       open_cmd = 'chromium',
@@ -11,5 +10,6 @@ return {
         theme = 'midnight',
       },
     }
+    vim.keymap.set('v', '<leader>rs', require('lib.create').create_snippet)
   end,
 }
