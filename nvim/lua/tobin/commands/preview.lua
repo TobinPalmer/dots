@@ -1,6 +1,5 @@
 local function toggle_preview()
   local ft = vim.bo.filetype
-  print('toggling preview', ft)
   if ft == 'markdown' then
     local peek, success = pcall(require, 'markdown-preview.nvim')
     if not success then
