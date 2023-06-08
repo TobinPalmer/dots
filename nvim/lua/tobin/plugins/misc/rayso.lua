@@ -1,5 +1,9 @@
 return {
   'TobinPalmer/rayso.nvim',
+  keys = {
+    'leader>rs',
+  },
+  cmd = { 'Rayso' },
   config = function()
     require('rayso').setup {
       open_cmd = 'chromium',
