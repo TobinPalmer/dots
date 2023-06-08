@@ -34,6 +34,8 @@ return {
         'marksman',
         'ocaml-lsp',
         'write-good',
+        'texlab',
+        'pyright',
       },
       auto_update = false,
       run_on_start = true,

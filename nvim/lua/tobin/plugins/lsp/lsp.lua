@@ -69,6 +69,7 @@ return {
           'html',
           'jsonls',
           'marksman',
+          'pylsp',
         }
 
         for _, lsp in pairs(servers) do
