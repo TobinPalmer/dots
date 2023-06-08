@@ -60,6 +60,7 @@ drive < f : firefox -p "School" --new-tab 'https://drive.google.com/drive/folder
 drive < d : firefox -p "School" --new-tab 'https://drive.google.com/drive/folders/1pW_61F9HABteLYXywnwhVvX3cCvMAaHF' ; skhd --key "0x35"
 
 kill < f : pkill Autodesk\ Fusion\ 360 ; skhd --key "0x35"
+kill < z : pkill zsh ; skhd --key "0x35"
 
 restart < a : sh ~/.config/skhd/scripts/restart/all.sh ; skhd --key "0x35"
 
