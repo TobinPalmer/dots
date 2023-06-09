@@ -7,6 +7,7 @@ return {
   keys = {
     { '<leader>ga', '<CMD>Lspsaga code_action<CR>', desc = 'Lsp Code Action' },
     { '<leader>gd', '<CMD>Lspsaga goto_definition<CR>', desc = 'Goto Definition' },
+    { 'gd', '<CMD>Lspsaga goto_definition<CR>', desc = 'Goto Definition' },
     { '<leader>gf', '<CMD>Lspsaga peek_definition<CR>', desc = 'Lsp Rename' },
     { '<leader>go', '<CMD>Lspsaga outline<CR>', desc = 'Document Outline' },
     { '<leader>gp', '<CMD>Lspsaga peek_definition<CR>', desc = 'Lsp Rename' },
