@@ -32,13 +32,16 @@ M.start_auto_format = function(client)
     vim.api.nvim_create_autocmd('BufWritePre', {
       callback = function()
         local ft = vim.bo.filetype
-        local valid_filetypes = { 'js', 'ts', 'lua', 'py', 'sh' }
+        local valid_filetypes = { 'javascript', 'typescript', 'lua', 'python', 'sh', 'zsh', 'json' }
 
         if not vim.tbl_contains(valid_filetypes, ft) then
+          print('returning', ft)
           return
         end
         if client.server_capabilities.documentFormattingProvider == false then
           M.format()
+        else
+          vim.lsp.buf.format()
         end
       end,
     })

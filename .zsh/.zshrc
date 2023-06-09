@@ -65,7 +65,7 @@ source $(brew --prefix)/opt/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # Powerline10k configuration
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 export ZSHPATH=$HOME/.config/.zsh
@@ -74,15 +74,15 @@ export ZSHPATH=$HOME/.config/.zsh
 [[ ! -f ~/.config/.zsh/.p10k.zsh ]] || source ~/.config/.zsh/.p10k.zsh
 
 for file in "$ZSHPATH"/functions/*; do
-    if [[ -f "$file" ]]; then
-        source "$file"
-    fi
+  if [[ -f "$file" ]]; then
+    source "$file"
+  fi
 done
 
 for file in "$ZSHPATH"/configs/*; do
-    if [[ -f "$file" ]]; then
-        source "$file"
-    fi
+  if [[ -f "$file" ]]; then
+    source "$file"
+  fi
 done
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
