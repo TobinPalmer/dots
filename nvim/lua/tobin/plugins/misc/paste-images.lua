@@ -22,14 +22,12 @@ return {
     local envPath = '/Users/tobin/.config/.env'
     local envVariables = loadEnvFile(envPath)
 
-    -- Access environment variables
     local api_key = envVariables['PASTE_IMG_API_KEY']
 
     require('paste-image').setup {
-      options = {
+      opts = {
         apikey = api_key,
-        online = true,
-        computer = false,
+        save = 'online',
       },
     }
     vim.keymap.set('n', '<leader>pi', '<CMD>PasteAsLink<CR>')
