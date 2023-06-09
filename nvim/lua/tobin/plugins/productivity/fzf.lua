@@ -38,8 +38,6 @@ return {
       global_file_icons = vim.g.opts.use_icons,
       winopts = {
         border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
-        --[[ hl = {
-        }, ]]
         preview = {
           number = true,
           relativenumber = false,
