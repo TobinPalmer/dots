@@ -21,6 +21,7 @@ vim.g.copilot_no_tab_map = true
 ---@field float boolean
 ---@field close_on_select boolean
 ---@type opts
+
 vim.g.opts = {
   minimal = false,
   use_icons = true,
