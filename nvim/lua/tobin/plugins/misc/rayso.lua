@@ -1,7 +1,7 @@
 return {
   'TobinPalmer/rayso.nvim',
   keys = {
-    'leader>rs',
+    '<leader>rs',
   },
   cmd = { 'Rayso' },
   config = function()

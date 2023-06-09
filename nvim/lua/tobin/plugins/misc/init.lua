@@ -5,8 +5,10 @@ local plugins = {
   require 'tobin.plugins.misc.util',
   require 'tobin.plugins.misc.nvim-tree',
   require 'tobin.plugins.misc.which-key',
+  require 'tobin.plugins.misc.rayso',
+  require 'tobin.plugins.misc.FTerm',
   require 'tobin.plugins.misc.persistance',
-  require 'tobin.plugins.misc.paste-images',
+  -- require 'tobin.plugins.misc.paste-images',
   require 'tobin.plugins.misc.wakatime',
 }
 
