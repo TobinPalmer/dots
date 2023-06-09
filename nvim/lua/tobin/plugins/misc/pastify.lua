@@ -1,5 +1,5 @@
 return {
-  'TobinPalmer/paste-image.nvim',
+  'TobinPalmer/pastify.nvim',
   event = 'InsertEnter',
   config = function()
     -- Function to load and parse the .env file
@@ -24,12 +24,13 @@ return {
 
     local api_key = envVariables['PASTE_IMG_API_KEY']
 
-    require('paste-image').setup {
+    require('pastify').setup {
       opts = {
         apikey = api_key,
-        save = 'online',
+        save = 'local',
+        absolute_path = true,
       },
     }
-    vim.keymap.set('n', '<leader>pi', '<CMD>PasteAsLink<CR>')
+    vim.keymap.set('n', '<leader>pi', '<CMD>Pastify<CR>')
   end,
 }
