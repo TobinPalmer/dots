@@ -32,7 +32,7 @@ M.start_auto_format = function(client)
     vim.api.nvim_create_autocmd('BufWritePre', {
       callback = function()
         local ft = vim.bo.filetype
-        local valid_filetypes = { 'javascript', 'typescript', 'lua', 'python', 'sh', 'zsh', 'json' }
+        local valid_filetypes = { 'javascript', 'typescript', 'lua', 'python', 'sh', 'zsh', 'json', 'markdown' }
 
         if not vim.tbl_contains(valid_filetypes, ft) then
           print('returning', ft)
