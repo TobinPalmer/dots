@@ -4,7 +4,7 @@ if vim.g.opts.use_icons then
       FzfLua = ' ',
       Buffer = ' ',
       File = ' ',
-      Git = ' ',
+      Git = ' ',
       Help = ' ',
       Lsp = ' ',
       Spell = '暈 ',
