@@ -8,7 +8,7 @@ local plugins = {
   require 'tobin.plugins.misc.rayso',
   require 'tobin.plugins.misc.FTerm',
   require 'tobin.plugins.misc.persistance',
-  -- require 'tobin.plugins.misc.paste-images',
+  require 'tobin.plugins.misc.paste-images',
   require 'tobin.plugins.misc.wakatime',
 }
 
