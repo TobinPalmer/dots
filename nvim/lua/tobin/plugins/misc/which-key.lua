@@ -2,6 +2,7 @@ local winblend = 0
 if vim.g.neovide then
   winblend = 50
 end
+
 return {
   'folke/which-key.nvim',
   event = 'BufReadPre',
