@@ -7,9 +7,10 @@ local plugins = {
   require 'tobin.plugins.misc.which-key',
   require 'tobin.plugins.misc.rayso',
   require 'tobin.plugins.misc.FTerm',
+  require 'tobin.plugins.misc.pastify',
   require 'tobin.plugins.misc.persistance',
-  require 'tobin.plugins.misc.paste-images',
   require 'tobin.plugins.misc.wakatime',
+  require 'tobin.plugins.misc.computer',
 }
 
 if not vim.g.opts.minimal then
