@@ -27,25 +27,25 @@ return {
     local current_bufnr = api.nvim_get_current_buf()
     local current_buffer_name = api.nvim_buf_get_name(1)
     if vim.g.opts.minimal then
-      -- map(current_bufnr, 'n', 'q', '<CMD>qa!<CR>', { noremap = true, silent = true })
-      -- map(current_bufnr, 'n', 'e', '<CMD>ene <BAR> startinsert<CR>', { noremap = true, silent = true })
-      -- map(current_bufnr, 'n', 't', '<CMD>FzfLua live_grep<CR>', { noremap = true, silent = true })
-      -- map(current_bufnr, 'n', 'r', '<CMD>FzfLua oldfiles<CR>', { noremap = true, silent = true })
-      -- map(current_bufnr, 'n', 'u', '<CMD>Lazy update<CR>', { noremap = true, silent = true })
-      -- map(
-      --   current_bufnr,
-      --   'n',
-      --   'c',
-      --   '<CMD>e ~/.config/nvim/init.lua<CR><CMD>cd %:p:h<CR>',
-      --   { noremap = true, silent = true }
-      -- )
-      -- map(
-      --   current_bufnr,
-      --   'n',
-      --   's',
-      --   '<CMD>lua require("persistence").load({ last = true })<CR>',
-      --   { noremap = true, silent = true }
-      -- )
+      map(current_bufnr, 'n', 'q', '<CMD>qa!<CR>', { noremap = true, silent = true })
+      map(current_bufnr, 'n', 'e', '<CMD>ene <BAR> startinsert<CR>', { noremap = true, silent = true })
+      map(current_bufnr, 'n', 't', '<CMD>FzfLua live_grep<CR>', { noremap = true, silent = true })
+      map(current_bufnr, 'n', 'r', '<CMD>FzfLua oldfiles<CR>', { noremap = true, silent = true })
+      map(current_bufnr, 'n', 'u', '<CMD>Lazy update<CR>', { noremap = true, silent = true })
+      map(
+        current_bufnr,
+        'n',
+        'c',
+        '<CMD>e ~/.config/nvim/init.lua<CR><CMD>cd %:p:h<CR>',
+        { noremap = true, silent = true }
+      )
+      map(
+        current_bufnr,
+        'n',
+        's',
+        '<CMD>lua require("persistence").load({ last = true })<CR>',
+        { noremap = true, silent = true }
+      )
       dashboard.section.buttons.val = {}
     else
       if vim.g.opts.use_icons then
