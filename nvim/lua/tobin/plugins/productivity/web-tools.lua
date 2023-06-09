@@ -12,6 +12,9 @@ return {
     'TagRename',
     'HurlRun',
   },
+  keys = {
+    { '<leader>mls', '<CMD>BrowserOpen<CR>' },
+  },
   config = function()
     require('web-tools').setup {
       keymaps = {
