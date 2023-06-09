@@ -38,9 +38,6 @@ function M.set_mappings(map_table, base)
       end
     end
   end
-  -- if package.loaded['which-key'] then
-  --   M.which_key_register()
-  -- end -- if which-key is loaded already, register
 end
 
 return M
