@@ -5,7 +5,7 @@ local plugins = {
   require 'tobin.plugins.ui.lualine',
 }
 
-if not vim.g.opts.minimal then
+if not vim.g.opts.minimal and not vim.g.neovide then
   local nonMinimalPlugins = {
     require 'tobin.plugins.ui.noice',
     require 'tobin.plugins.ui.notify',
