@@ -58,7 +58,7 @@ weather_icon_map() {
             icon_result="􀇊"
             ;;
             # Daytime
-        *"Snow"* | *"Heavy Snow"* | *"Snow Showers"*)
+        *"Snow"* | *"Snow Showers"*)
             icon_result="􀇎"
             ;;
         *"Slight Chance Light Rain"* | *"Chance Light Rain"*)
@@ -73,7 +73,7 @@ weather_icon_map() {
         *"Partly Sunny"* | *"Mostly Sunny"*)
             icon_result="􀇕"
             ;;
-        *"Drizzle"* | *"Mostly Sunny"*)
+        *"Drizzle"* | *"Mostly Sunny"* | *"Showers"*)
             icon_result="􀇄"
             ;;
 
