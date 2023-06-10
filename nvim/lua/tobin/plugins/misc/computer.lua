@@ -1,5 +1,9 @@
 return {
   'RutaTang/compter.nvim',
+  keys = {
+    { '<C-A>' },
+    { '<C-X>' },
+  },
   config = function()
     require('compter').setup {
       templates = {
