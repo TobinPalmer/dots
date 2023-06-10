@@ -107,6 +107,24 @@ return {
             return switch[content], true
           end,
         },
+        {
+          pattern = [[\<\(public\|private\)\>]],
+          priority = 100,
+          increase = function(content)
+            local switch = {
+              ['public'] = 'private',
+              ['private'] = 'public',
+            }
+            return switch[content], true
+          end,
+          decrease = function(content)
+            local switch = {
+              ['public'] = 'private',
+              ['private'] = 'public',
+            }
+            return switch[content], true
+          end,
+        },
       },
       fallback = false,
     }
