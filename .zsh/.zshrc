@@ -16,7 +16,7 @@ alias code="code"
 alias exa='exa --icons --all'
 alias fd='cd $(find . -type d -print | fzf)'
 alias monkeytype="python3 /Users/tobin/Documents/Code/Python/monkeytype-playwright/main.py"
-alias neovide='neovide --multigrid --frame=buttonless --maximized'
+alias neovide='neovide --multigrid --frame=buttonless'
 alias nitrotype="python3 /Users/tobin/Documents/Code/Python/nitrotype-playwright/main.py"
 alias notes="python3 /Users/tobin/Documents/Code/Python/school_notes/main.py"
 alias ofzf="nvim \$(fzf)"
