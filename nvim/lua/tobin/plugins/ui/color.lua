@@ -1,6 +1,16 @@
 return {
   {
+    'Mofiqul/dracula.nvim',
+    event = 'BufReadPost',
+    -- priority = 1000,
+    config = function()
+      require('tokyonight').setup {}
+      -- vim.cmd.colorscheme 'dracula'
+    end,
+  },
+  {
     'folke/tokyonight.nvim',
+    -- event = 'BufReadPost',
     priority = 1000,
     config = function()
       require('tokyonight').setup {
@@ -27,7 +37,7 @@ return {
         dim_inactive = true, -- dims inactive windows
         lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
       }
-      vim.cmd 'colorscheme tokyonight-moon'
+      vim.cmd.colorscheme 'tokyonight-moon'
     end,
   },
   {
