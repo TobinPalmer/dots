@@ -1,4 +1,6 @@
 return {
   'TobinPalmer/BetterGX.nvim',
-  config = function() end,
+  keys = {
+    { 'gx', '<CMD>lua require("better-gx").BetterGx()<CR>' },
+  },
 }

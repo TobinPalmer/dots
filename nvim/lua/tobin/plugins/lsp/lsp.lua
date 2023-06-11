@@ -6,6 +6,11 @@ return {
     event = 'UiEnter',
   },
   {
+    'akinsho/flutter-tools.nvim',
+    ft = 'dart',
+    event = 'BufReadPost',
+  },
+  {
     {
       'ray-x/lsp_signature.nvim',
       event = 'LspAttach',
@@ -69,7 +74,6 @@ return {
           'html',
           'jsonls',
           'marksman',
-          'pylsp',
         }
 
         for _, lsp in pairs(servers) do
