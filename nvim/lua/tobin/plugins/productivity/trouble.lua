@@ -2,11 +2,11 @@ return {
   {
     'folke/trouble.nvim',
     keys = {
-      { '<leader>tt', '<CMD>TroubleToggle<cr>', desc = 'Toggle Diagnostics' },
-      { '<leader>tw', '<CMD>TroubleToggle workspace_diagnostics<cr>', desc = 'Workspace Diagnostics' },
-      { '<leader>td', '<CMD>TroubleToggle document_diagnostics<cr>', desc = 'Current Buffer Diagnostics' },
-      { '<leader>tq', '<CMD>TroubleToggle quickfix<cr>', desc = 'Toggle quickfix menu' },
-      { '<leader>dr', '<CMD>TroubleToggle lsp_references<cr>', desc = 'References' },
+      { '<leader>tt', '<CMD>TroubleToggle document_diagnostics<CR>', desc = 'Toggle Diagnostics' },
+      { '<leader>tw', '<CMD>TroubleToggle workspace_diagnostics<CR>', desc = 'Workspace Diagnostics' },
+      { '<leader>td', '<CMD>TroubleToggle document_diagnostics<CR>', desc = 'Current Buffer Diagnostics' },
+      { '<leader>tq', '<CMD>TroubleToggle quickfix<CR>', desc = 'Toggle quickfix menu' },
+      { '<leader>dr', '<CMD>TroubleToggle lsp_references<CR>', desc = 'References' },
     },
     cmd = { 'TroubleToggle' },
     opts = {
