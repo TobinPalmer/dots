@@ -14,7 +14,7 @@ export ZSHRC_PATH="~/.config/.zsh/.zshrc"
 export HOMEBREW_AUTO_UPDATE_SECS="3600"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="/Users/tobin/.opam/default/bin:$PATH"
-
+export PATH="/Users/tobin/.flutter/bin:$PATH"
 
 
 # Jetbrains Toolbox

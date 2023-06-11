@@ -32,6 +32,7 @@ alias zshrc="nvim ~/.config/.zsh/.zshrc"
 alias restart="skhd --stop-service;skhd --start-service;yabai --stop-service;yabai --start-service"
 alias vim="vim -u ~/.config/.vim/init.vim"
 alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
+# alias flutter="flutter --disable-telemetry"
 
 unset TMUX
 
@@ -43,6 +44,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 eval "$(tmuxifier init -)"
 eval "$(opam env --switch=default)"
+eval "$(flutter bash-completion)"
 
 export GPGc_TTY=$(tty)
 export NVM_DIR="$HOME/.nvm"
