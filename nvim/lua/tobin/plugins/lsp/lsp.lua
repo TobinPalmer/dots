@@ -9,6 +9,18 @@ return {
     'akinsho/flutter-tools.nvim',
     ft = 'dart',
     event = 'BufReadPost',
+    config = function()
+      require('flutter-tools').setup {
+        widget_guides = {
+          enabled = true,
+        },
+        dev_log = {
+          enabled = false,
+          notify_errors = false, -- if there is an error whilst running then notify the user
+          open_cmd = 'tabedit', -- command to use to open the log buffer
+        },
+      }
+    end,
   },
   {
     {
@@ -70,6 +82,7 @@ return {
           'bashls',
           'vimls',
           'texlab',
+          'dartls',
           'yamlls',
           'html',
           'jsonls',
