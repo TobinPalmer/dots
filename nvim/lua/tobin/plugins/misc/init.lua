@@ -17,7 +17,6 @@ local plugins = {
 if not vim.g.opts.minimal then
   local nonMinimalPlugins = {
     require 'tobin.plugins.misc.useless',
-    require 'tobin.plugins.misc.carbon',
   }
 
   table.insert(plugins, nonMinimalPlugins)
