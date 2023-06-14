@@ -46,6 +46,8 @@ eval "$(tmuxifier init -)"
 eval "$(opam env --switch=default)"
 eval "$(flutter bash-completion)"
 
+export CHROME_EXECUTABLE=/Applications/Chromium.app/Contents/MacOS/Chromium
+
 export GPGc_TTY=$(tty)
 export NVM_DIR="$HOME/.nvm"
 
