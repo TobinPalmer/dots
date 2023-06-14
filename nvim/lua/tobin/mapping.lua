@@ -14,7 +14,7 @@ vim.keymap.set('v', '<A-j>', ':m >+1<CR>gv=gv')
 
 vim.keymap.set('n', '<leader>mh', '<CMD>noh<CR>', { desc = 'Clears Highlighting' })
 vim.keymap.set('n', '<leader>mc', '<CMD>e ~/.config/nvim/init.lua<CR><CMD>cd %:p:h<CR>', { desc = 'Edits init.lua' })
-vim.keymap.set('n', '<leader>gr', '<CMD>lua vim.lsp.buf.rename()<CR>', { desc = 'Renames variable' })
+vim.keymap.set('n', '<leader>gr', '<CMD>Lspsaga rename<CR>', { desc = 'Renames variable' })
 vim.keymap.set(
   'n',
   '<leader>ml',
@@ -56,6 +56,7 @@ vim.keymap.set('n', 'c0', 'c^', { desc = 'Cut Until First Character' })
 
 vim.keymap.set('n', '<leader>mp', '<CMD>TogglePreview<CR>', { desc = 'Starts a live preview of markdown or tex' })
 vim.keymap.set('n', '<leader>lr', '<CMD>LspRestart<CR>', { desc = 'Restart Lsp Server' })
+vim.keymap.set('i', '<C-.>', vim.lsp.buf.completion)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', 'd]', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<Leader>bc', '<CMD>bd<CR>', { desc = 'Close Current Buffer' })
