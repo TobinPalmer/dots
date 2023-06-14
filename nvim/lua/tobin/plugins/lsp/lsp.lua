@@ -9,15 +9,19 @@ return {
     'akinsho/flutter-tools.nvim',
     ft = 'dart',
     event = 'BufReadPost',
+    keys = {
+      { '<leader>fr', '<CMD>FlutterRestart<CR>', desc = 'Restart Flutter' },
+      { '<leader>fs', '<CMD>FlutterRun -d MacOS<CR>', desc = 'Run Flutter' },
+    },
     config = function()
       require('flutter-tools').setup {
         widget_guides = {
           enabled = true,
         },
         dev_log = {
-          enabled = false,
+          enabled = true,
           notify_errors = false, -- if there is an error whilst running then notify the user
-          open_cmd = 'tabedit', -- command to use to open the log buffer
+          open_cmd = 'edit', -- command to use to open the log buffer
         },
       }
     end,
