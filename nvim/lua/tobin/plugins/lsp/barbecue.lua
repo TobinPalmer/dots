@@ -11,6 +11,7 @@ end
 return {
   'utilyre/barbecue.nvim',
   name = 'barbecue',
+  event = 'BufReadPost',
   dependencies = dependencies,
   opts = {
     -- configurations go here
