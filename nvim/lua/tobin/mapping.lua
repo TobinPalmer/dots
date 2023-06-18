@@ -70,3 +70,4 @@ vim.keymap.set('n', 'da$', 'F$vf$d', { desc = 'Delete Around $' })
 -- vim.keymap.set('n', 'o', 'o<esc>cc', { desc = 'Fix Lines' })
 
 vim.cmd [[cabbrev w' w]]
+vim.cmd [[cabbrev w] w]]
