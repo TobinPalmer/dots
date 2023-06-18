@@ -12,6 +12,8 @@ local plugins = {
   require 'tobin.plugins.misc.which-key',
   require 'tobin.plugins.misc.bettergx',
   require 'tobin.plugins.misc.persistance',
+  require 'tobin.plugins.misc.bigfile',
+  require 'tobin.plugins.misc.overseer',
 }
 
 if not vim.g.opts.minimal then
