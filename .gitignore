@@ -28,3 +28,4 @@ skhd/~
 
 nvim/.DS_Store
 nvim/lazy-lock.json
+nvim/spell/*
