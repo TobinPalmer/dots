@@ -6,6 +6,7 @@ vim.g.copilot_no_tab_map = true
 ---@field bufferline bufferline
 ---@field lualine lualine
 ---@field use_icons boolean
+---@field noice boolean
 ---@field minimal boolean
 ---@type opts
 
@@ -25,6 +26,7 @@ vim.g.copilot_no_tab_map = true
 vim.g.opts = {
   minimal = false,
   use_icons = true,
+  noice = false,
   bufferline = {
     style = 'slant',
   },

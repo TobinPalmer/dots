@@ -1,6 +1,7 @@
 return {
   'folke/noice.nvim',
   event = 'VeryLazy',
+  enabled = vim.g.opts.noice,
   config = function()
     require('noice').setup {
       lsp = {

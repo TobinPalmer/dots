@@ -18,7 +18,7 @@ return {
     end
 
     local lualine_c = {}
-    if not vim.g.opts.minimal and not vim.g.neovide then
+    if not vim.g.opts.minimal and not vim.g.neovide and vim.g.opts.noice then
       lualine_c = {
         {
           require('noice').api.statusline.mode.get,
