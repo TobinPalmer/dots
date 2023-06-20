@@ -11,7 +11,19 @@ return {
     event = 'BufReadPost',
     keys = {
       { '<leader>fr', '<CMD>FlutterRestart<CR>', desc = 'Restart Flutter' },
+      { '<leader>fo', '<CMD>FlutterOutline<CR>', desc = 'Flutter Outline' },
       { '<leader>fs', '<CMD>FlutterRun -d MacOS<CR>', desc = 'Run Flutter' },
+      {
+        '<leader>fa',
+        function()
+          vim.cmd [[norm! mq]]
+          vim.cmd [[FlutterRestart]]
+          vim.cmd [[wa!]]
+          vim.cmd [[e!]]
+          vim.cmd [[norm! `q]]
+        end,
+        desc = 'Run Flutter',
+      },
     },
     config = function()
       require('flutter-tools').setup {
