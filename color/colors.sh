@@ -18,7 +18,8 @@ export NORMAL_WINDOW_BORDER_COLOR=0xff2a2f38
 export INSERT_FEEDBACK_COLOR=0xff9dd274
 
 # Sketchybar colors
-export BAR_COLOR=0xff282a36
+# export BAR_COLOR=0xff282a36
+export BAR_COLOR=0xFF282933
 # export BAR_BORDER_COLOR=0xffbd93f9
 export ICON_COLOR=$WHITE # Color of all icons
 export LABEL_COLOR=$WHITE # Color of all labels
