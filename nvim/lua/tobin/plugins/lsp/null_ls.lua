@@ -18,6 +18,9 @@ return {
         nls.builtins.code_actions.eslint_d,
         nls.builtins.code_actions.gitsigns,
         nls.builtins.completion.spell,
+        nls.builtins.formatting.black.with {
+          extra_args = { '--line-length=120' },
+        },
       },
       on_attach = function(client, bufnr)
         if client.supports_method 'textDocument/formatting' then
