@@ -1,3 +1,6 @@
--- vim.cmd [[augroup pandoc_syntax
---     au! BufNewFile,BufFilePre,BufRead *.md set filetype=tex
--- augroup END]]
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
+  pattern = { '*.md' },
+  callback = function()
+    vim.cmd [[set spell]]
+  end,
+})
