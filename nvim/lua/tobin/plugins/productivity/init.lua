@@ -1,5 +1,5 @@
 local plugins = {
-  require 'tobin.plugins.productivity.hop',
+  require 'tobin.plugins.productivity.flash',
   require 'tobin.plugins.productivity.fzf',
   require 'tobin.plugins.productivity.sub',
   require 'tobin.plugins.productivity.ufo',
