@@ -7,14 +7,27 @@ local colorsscheme = {
 local object = {}
 
 for _, scheme in pairs(colorsscheme) do
-  table.insert(object, { scheme.name, cond = scheme.enabled })
-  if scheme.enabled then
-    vim.api.nvim_create_autocmd('UIEnter', {
-      callback = function()
+  if scheme.enabled == false then
+    table.insert(object, { scheme.name, cond = scheme.enabled })
+  else
+    table.insert(object, {
+      scheme.name,
+      cond = true,
+      lazy = false,
+      config = function()
         vim.cmd('colorscheme ' .. scheme.theme)
       end,
     })
   end
+  -- if scheme.enabled then
+  --   vim.cmd.colorscheme(scheme.theme)
+  --   -- vim.api.nvim_create_autocmd('VimEnter', {
+  --   --   callback = function()
+  --   --     vim.notify 'CALLING'
+  --   --     vim.cmd('colorscheme ' .. scheme.theme)
+  --   --   end,
+  --   -- })
+  -- end
 end
 
 return object
