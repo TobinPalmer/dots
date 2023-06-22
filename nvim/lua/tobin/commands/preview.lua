@@ -1,14 +1,9 @@
 local function toggle_preview()
   local ft = vim.bo.filetype
   if ft == 'markdown' then
-    local peek, success = pcall(require, 'markdown-preview.nvim')
-    if not success then
-      print 'preview not loaded'
-      vim.cmd [[ Lazy load markdown-preview.nvim ]]
-      require('peek').open()
-      return
-    end
-    require('peek').open()
+    vim.cmd [[ MarkdownPreview ]]
+  elseif ft == 'html' then
+    vim.cmd [[ BrowserOpen ]]
   elseif ft == 'tex' then
     local _, success = pcall(require, 'vimtex')
     if not success then
