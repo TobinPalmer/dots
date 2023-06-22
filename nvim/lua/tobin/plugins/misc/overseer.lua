@@ -19,11 +19,10 @@ return {
           {
             'on_output_quickfix',
             errorformat = vim.o.grepformat,
-            open = not params.bang,
+            -- open = not params.bang,
             open_height = 8,
             items_only = true,
           },
-          -- We don't care to keep this around as long as most tasks
           { 'on_complete_dispose', timeout = 30 },
           'default',
         },
