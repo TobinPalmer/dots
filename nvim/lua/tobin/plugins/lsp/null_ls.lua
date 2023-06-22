@@ -4,21 +4,31 @@ return {
   'jose-elias-alvarez/null-ls.nvim',
   event = 'LspAttach',
   config = function()
-    local nls = require 'null-ls'
+    local null_ls = require 'null-ls'
 
-    nls.setup {
+    null_ls.setup {
       sources = {
-        nls.builtins.formatting.stylua,
-        nls.builtins.formatting.prettier,
-        nls.builtins.formatting.beautysh,
-        nls.builtins.formatting.bibclean,
-        nls.builtins.diagnostics.eslint,
-        nls.builtins.diagnostics.vint,
-        nls.builtins.diagnostics.gitlint,
-        nls.builtins.code_actions.eslint_d,
-        nls.builtins.code_actions.gitsigns,
-        nls.builtins.completion.spell,
-        nls.builtins.formatting.black.with {
+        null_ls.builtins.completion.spell,
+        null_ls.builtins.diagnostics.vint,
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.diagnostics.gitlint,
+        null_ls.builtins.formatting.beautysh,
+        null_ls.builtins.formatting.bibclean,
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.code_actions.eslint_d,
+        null_ls.builtins.code_actions.gitsigns,
+        null_ls.builtins.diagnostics.write_good,
+        null_ls.builtins.diagnostics.mdl,
+        null_ls.builtins.formatting.markdownlint,
+        null_ls.builtins.diagnostics.proselint,
+        null_ls.builtins.code_actions.refactoring,
+        null_ls.builtins.diagnostics.codespell,
+        null_ls.builtins.formatting.codespell,
+        null_ls.builtins.code_actions.proselint,
+        -- null_ls.builtins.diagnostics.vale,
+        null_ls.builtins.diagnostics.vale,
+        null_ls.builtins.formatting.black.with {
           extra_args = { '--line-length=120' },
         },
       },
