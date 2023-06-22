@@ -30,6 +30,9 @@ return {
         save = 'local',
         absolute_path = true,
       },
+      ft = {
+        markdown = '<img src="$IMG$" alt="">',
+      },
     }
     vim.keymap.set('n', '<leader>pi', '<CMD>Pastify<CR>')
   end,
