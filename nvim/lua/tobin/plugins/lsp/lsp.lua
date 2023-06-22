@@ -257,9 +257,9 @@ return {
           debug = false,
           sources = {
             nls.builtins.formatting.stylua,
-            nls.builtins.formatting.prettierd.with {
-              disabled_filetypes = { 'markdown', 'yaml' },
-            },
+            -- nls.builtins.formatting.prettierd.with {
+            --   disabled_filetypes = { 'markdown', 'yaml' },
+            -- },
           },
         }
       end,
