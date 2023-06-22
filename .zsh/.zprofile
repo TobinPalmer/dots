@@ -15,6 +15,7 @@ export HOMEBREW_AUTO_UPDATE_SECS="3600"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="/Users/tobin/.opam/default/bin:$PATH"
 export PATH="/Users/tobin/.flutter/bin:$PATH"
+export PATH="/Users/tobin/.cargo/bin:$PATH"
 
 
 # Jetbrains Toolbox
