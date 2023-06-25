@@ -19,15 +19,6 @@ for _, scheme in pairs(colorsscheme) do
       end,
     })
   end
-  -- if scheme.enabled then
-  --   vim.cmd.colorscheme(scheme.theme)
-  --   -- vim.api.nvim_create_autocmd('VimEnter', {
-  --   --   callback = function()
-  --   --     vim.notify 'CALLING'
-  --   --     vim.cmd('colorscheme ' .. scheme.theme)
-  --   --   end,
-  --   -- })
-  -- end
 end
 
 return object
