@@ -11,8 +11,10 @@ vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi')
 vim.keymap.set('v', '<A-j>', ':m >+1<CR>gv=gv')
 vim.keymap.set('v', '<A-k>', ':m <-2<CR>gv=gv')
 vim.keymap.set('v', '<A-j>', ':m >+1<CR>gv=gv')
+vim.keymap.set('n', '<BS>', 'ciw', { desc = 'Change Inner Word' })
 
 vim.keymap.set('n', '<leader>mh', '<CMD>noh<CR>', { desc = 'Clears Highlighting' })
+vim.keymap.set('n', '<Esc>', '<CMD>noh<CR>', { desc = 'Clears Highlighting' })
 vim.keymap.set('n', '<leader>mc', '<CMD>e ~/.config/nvim/init.lua<CR><CMD>cd %:p:h<CR>', { desc = 'Edits init.lua' })
 vim.keymap.set('n', '<leader>gr', '<CMD>Lspsaga rename<CR>', { desc = 'Renames variable' })
 vim.keymap.set(
@@ -53,6 +55,8 @@ vim.keymap.set('n', '˚', '<C-<Up>>', { desc = 'CTRL-Up' })
 vim.keymap.set('n', '¬', '<C-<Right>>', { desc = 'CTRL-Right' })
 vim.keymap.set('n', 'd0', 'd^', { desc = 'Delete Until First Character' })
 vim.keymap.set('n', 'c0', 'c^', { desc = 'Cut Until First Character' })
+
+vim.keymap.set('i', '~~', '<ESC>', { desc = 'Go To Normal Mode' })
 
 vim.keymap.set('n', '<leader>mp', '<CMD>TogglePreview<CR>', { desc = 'Starts a live preview of markdown or tex' })
 vim.keymap.set('n', '<leader>lr', '<CMD>LspRestart<CR>', { desc = 'Restart Lsp Server' })
