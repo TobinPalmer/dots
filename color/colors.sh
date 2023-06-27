@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export FLOATING_BAR=false
+
 # Color Palette (Dracula Theme)
 export BLACK=0xff181926
 export WHITE=0xfff8f8f2
@@ -17,10 +19,11 @@ export ACTIVE_WINDOW_BORDER_COLOR=0xff1e1d2c
 export NORMAL_WINDOW_BORDER_COLOR=0xff2a2f38
 export INSERT_FEEDBACK_COLOR=0xff9dd274
 
-# Sketchybar colors
-# export BAR_COLOR=0xff282a36
-export BAR_COLOR=0xFF282933
+# Sketchybar
 # export BAR_BORDER_COLOR=0xffbd93f9
+export BAR_COLOR
+[[ $FLOATING_BAR = false ]] && BAR_COLOR="0xcc282933" || BAR_COLOR="0xff282a36"
+
 export ICON_COLOR=$WHITE # Color of all icons
 export LABEL_COLOR=$WHITE # Color of all labels
 export BACKGROUND_1=0x603c3e4f

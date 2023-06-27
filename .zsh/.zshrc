@@ -29,7 +29,7 @@ alias syncCode="rsync -av --exclude=node_modules --exclude=target ~/Documents/Co
 alias trim="ex +'bufdo!%s/\s\+$//e' -scxa"
 alias v="pbpaste"
 alias zshrc="nvim ~/.config/.zsh/.zshrc"
-alias restart="skhd --stop-service;skhd --start-service;yabai --stop-service;yabai --start-service"
+alias restart="skhd --stop-service;skhd --start-service;yabai --stop-service;yabai --start-service;brew services restart sketchybar"
 alias vim="vim -u ~/.config/.vim/init.vim"
 alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
 # alias convert="cd ~/Documents/Notes/History/Website/; python3 ~/Documents/Code/Python/createHTML/main.py; cd -"

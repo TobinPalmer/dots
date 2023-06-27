@@ -2,6 +2,8 @@
 
 source "$HOME/.config/color/colors.sh"
 
+[[ $FLOATING_BAR = false ]] && Y_OFFSET="4" || Y_OFFSET="8"
+
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
@@ -43,7 +45,7 @@ yabai -m config external_bar               all:49:0     \
     mouse_action2              resize       \
     mouse_drop_action          swap         \
     \
-    top_padding                8            \
+    top_padding                $Y_OFFSET    \
     bottom_padding             8            \
     left_padding               8            \
     right_padding              8            \

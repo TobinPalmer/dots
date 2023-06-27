@@ -18,20 +18,23 @@ $HOME/.config/sketchybar/helper/helper $HELPER > /dev/null 2>&1 &
 # Unload the macOS on screen indicator overlay for volume change
 launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /dev/null 2>&1 &
 
+[[ $FLOATING_BAR = false ]] && MARGIN="0" || MARGIN="8"
+[[ $FLOATING_BAR = false ]] && RADIUS="0" || RADIUS="15"
+
 # Setting up the general bar appearance of the bar
 bar=(
     height=45
-    color=$BAR_COLOR
-    border_width=2
-    border_color=$BAR_BORDER_COLOR
+    color="$BAR_COLOR"
+    border_width=0
+    border_color="$BAR_BORDER_COLOR"
     shadow=off
     position=top
     sticky=on
     padding_right=10
     padding_left=10
-    y_offset=8
-    margin=8
-    corner_radius=15
+    y_offset="$MARGIN"
+    margin="$MARGIN"
+    corner_radius="$RADIUS"
 )
 
 sketchybar --bar "${bar[@]}"
