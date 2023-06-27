@@ -1,5 +1,10 @@
 return {
   'sindrets/diffview.nvim',
-  event = 'BufReadPre',
+  cmd = {
+    'DiffviewOpen',
+    'DiffviewClose',
+    'DiffviewToggleFiles',
+    'DiffviewFocusFiles',
+  },
   config = function() end,
 }
