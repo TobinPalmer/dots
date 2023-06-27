@@ -1,5 +1,6 @@
 return {
   'stevearc/overseer.nvim',
+  cmd = { 'Overseer', 'OverseerStop', 'OverseerRestart', 'OverseerOpen', 'OverseerClose', 'OverseerToggle' },
   config = function()
     local overseer = require 'overseer'
     overseer.setup {

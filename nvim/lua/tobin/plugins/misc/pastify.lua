@@ -28,7 +28,7 @@ return {
       opts = {
         apikey = api_key,
         save = 'local',
-        absolute_path = true,
+        absolute_path = false,
       },
       ft = {
         markdown = '<img src="$IMG$" alt="">',
