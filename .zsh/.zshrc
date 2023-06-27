@@ -17,7 +17,7 @@ alias exa='exa --icons --all'
 alias fd='cd $(find . -type d -print | fzf)'
 alias monkeytype="python3 /Users/tobin/Documents/Code/Python/monkeytype-playwright/main.py"
 alias neovide='neovide --multigrid --frame=buttonless'
-alias nitrotype="python3 /Users/tobin/Documents/Code/Python/nitrotype-playwright/main.py"
+alias nitrotype="python3 /Users/tobin/Documents/Code/Python/bots/nitrotype-playwright/main.py"
 alias notes="python3 /Users/tobin/Documents/Code/Python/school_notes/main.py"
 alias ofzf="nvim \$(fzf)"
 alias project="node /Users/tobin/Documents/Code/Web/TS/templates/dist/main.js"
@@ -32,7 +32,8 @@ alias zshrc="nvim ~/.config/.zsh/.zshrc"
 alias restart="skhd --stop-service;skhd --start-service;yabai --stop-service;yabai --start-service"
 alias vim="vim -u ~/.config/.vim/init.vim"
 alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
-alias convert="cd ~/Documents/Notes/History/Website/; python3 ~/Documents/Code/Python/createHTML/main.py; cd -"
+# alias convert="cd ~/Documents/Notes/History/Website/; python3 ~/Documents/Code/Python/createHTML/main.py; cd -"
+alias convert="python3 ~/Documents/Code/Python/createHTML/main.py;"
 
 
 # alias flutter="flutter --disable-telemetry"
