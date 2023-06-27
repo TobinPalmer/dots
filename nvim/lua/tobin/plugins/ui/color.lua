@@ -1,5 +1,5 @@
 local colorsscheme = {
-  { name = 'folke/tokyonight.nvim', theme = 'tokyonight', enabled = true },
+  { name = 'folke/tokyonight.nvim', theme = 'tokyonight-night', enabled = true },
   { name = 'ellisonleao/gruvbox.nvim', theme = 'gruvbox', enabled = false },
   { name = 'Mofiqul/dracula.nvim', theme = 'dracula', enabled = false },
 }

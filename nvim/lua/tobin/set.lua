@@ -107,6 +107,6 @@ if vim.g.neovide then
 end
 
 vim.g.markdown_recommended_style = 0
-set.laststatus = 0 -- Diable status on startup
+set.laststatus = 0 -- Disable status on startup
 vim.cmd [[set autoread | au CursorHold * checktime]]
 set.nuw = 2
