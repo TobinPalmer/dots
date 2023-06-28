@@ -32,8 +32,25 @@ alias zshrc="nvim ~/.config/.zsh/.zshrc"
 alias restart="skhd --stop-service;skhd --start-service;yabai --stop-service;yabai --start-service;brew services restart sketchybar"
 alias vim="vim -u ~/.config/.vim/init.vim"
 alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
-# alias convert="cd ~/Documents/Notes/History/Website/; python3 ~/Documents/Code/Python/createHTML/main.py; cd -"
 alias convert="python3 ~/Documents/Code/Python/createHTML/main.py;"
+
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+alias nvim-kick="NVIM_APPNAME=kickstart nvim"
+alias nvim-chad="NVIM_APPNAME=NvChad nvim"
+alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+
+function nvims() {
+  items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config 󰄾" --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
+
 
 
 # alias flutter="flutter --disable-telemetry"
