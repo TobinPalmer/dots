@@ -25,7 +25,6 @@ return {
     local api = vim.api
     local map = api.nvim_buf_set_keymap
     local current_bufnr = api.nvim_get_current_buf()
-    local current_buffer_name = api.nvim_buf_get_name(1)
     if vim.g.opts.minimal then
       map(current_bufnr, 'n', 'q', '<CMD>qa!<CR>', { noremap = true, silent = true })
       map(current_bufnr, 'n', 'e', '<CMD>ene <BAR> startinsert<CR>', { noremap = true, silent = true })
