@@ -1,5 +1,6 @@
 local plugins = {
   require 'tobin.plugins.misc.util',
+  require 'tobin.plugins.misc.ccc',
   require 'tobin.plugins.misc.FTerm',
   require 'tobin.plugins.misc.rayso',
   require 'tobin.plugins.misc.rayso',
