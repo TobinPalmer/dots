@@ -1,6 +1,6 @@
 return {
   'uga-rosa/ccc.nvim',
-  event = 'BufReadPre',
+  event = 'BufReadPost',
   config = function()
     local ccc = require 'ccc'
 
