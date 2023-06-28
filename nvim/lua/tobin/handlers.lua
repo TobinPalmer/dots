@@ -53,8 +53,6 @@ M.setup = function()
     update_in_insert = true,
   })
 
-  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-  vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open diagnostic float' })
   vim.keymap.set('n', 'dn', vim.diagnostic.goto_next)
   vim.keymap.set('n', 'dN', vim.diagnostic.goto_prev)
 
@@ -96,7 +94,6 @@ M.capabilities = require('cmp_nvim_lsp').default_capabilities()
 --- @param client lsp.Client
 --- @param bufnr integer
 M.on_attach = function(client, bufnr)
-  local name = client.name
   if client.name == 'tsserver' or client.name == 'bashls' or client.name == 'lua_ls' then
     client.server_capabilities.documentFormattingProvider = false
   end
