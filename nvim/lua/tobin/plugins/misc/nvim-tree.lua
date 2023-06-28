@@ -210,6 +210,10 @@ return {
     local WIDTH_RATIO = 0.5
     local should_icons_render = vim.g.opts.use_icons
     return {
+      notify = {
+        threshold = vim.log.levels.INFO,
+        absolute_path = false,
+      },
       renderer = {
         icons = {
           show = {
