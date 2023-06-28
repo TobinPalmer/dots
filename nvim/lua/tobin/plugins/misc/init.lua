@@ -14,6 +14,7 @@ local plugins = {
   require 'tobin.plugins.misc.nvim-tree',
   require 'tobin.plugins.misc.which-key',
   require 'tobin.plugins.misc.persistence',
+  require 'tobin.plugins.misc.todo-comments',
   require 'tobin.plugins.misc.live-command',
 }
 
