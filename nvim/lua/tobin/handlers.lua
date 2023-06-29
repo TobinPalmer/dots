@@ -86,7 +86,7 @@ local semantic_token_support = {
   'rust-analyzer',
   'lua_ls',
   'pyright',
-  'tsserver',
+  -- 'tsserver',
 }
 
 M.capabilities = require('cmp_nvim_lsp').default_capabilities()
