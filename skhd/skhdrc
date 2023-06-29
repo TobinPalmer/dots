@@ -64,4 +64,5 @@ kill < z : pkill zsh ; skhd --key "0x35"
 kill < d : pkill dart ; skhd --key "0x35"
 
 restart < a : sh ~/.config/skhd/scripts/restart/all.sh ; skhd --key "0x35"
+restart < r : restart & ; skhd --key "0x35"
 
