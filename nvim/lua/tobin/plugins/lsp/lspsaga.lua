@@ -10,7 +10,7 @@ return {
     { '<leader>go', '<CMD>Lspsaga outline<CR>', desc = 'Document Outline' },
     { '<leader>gf', '<CMD>Lspsaga peek_definition<CR>', desc = 'Lsp Rename' },
     { '<leader>gp', '<CMD>Lspsaga peek_definition<CR>', desc = 'Lsp Rename' },
-    { '<leader>ga', '<CMD>Lspsaga code_action<CR>', desc = 'Lsp Code Action' },
+    { '<leader>ga', '<CMD>Lspsaga code_action<CR>', desc = 'Lsp Code Action', mode = { 'n', 'x' } },
     { '[e', '<CMD>Lspsaga diagnostic_jump_prev<CR>', desc = 'Jump Next Error' },
     { ']e', '<CMD>Lspsaga diagnostic_jump_next<CR>', desc = 'Jump Prev Error' },
     { '<leader>gd', '<CMD>Lspsaga goto_definition<CR>', desc = 'Goto Definition' },
