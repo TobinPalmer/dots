@@ -6,6 +6,12 @@ return {
     event = 'UiEnter',
   },
   {
+    'folke/neoconf.nvim',
+    lazy = false,
+    priority = 1000,
+    event = 'UiEnter',
+  },
+  {
     'akinsho/flutter-tools.nvim',
     ft = 'dart',
     event = 'BufReadPost',
@@ -85,6 +91,7 @@ return {
       event = 'BufReadPre',
       config = function()
         require('neodev').setup {}
+        require('neoconf').setup {}
         local lspconfig = require 'lspconfig'
         local root_pattern = require('lspconfig.util').root_pattern
         local on_attach = require('tobin.handlers').on_attach
@@ -125,6 +132,24 @@ return {
             'dune-project',
             'dune-workspace'
           ),
+        }
+        require('typescript-tools').setup {
+          on_attach = on_attach,
+          settings = {
+            -- spawn additional tsserver instance to calculate diagnostics on it
+            separate_diagnostic_server = true,
+            -- "change"|"insert_leave" determine when the client asks the server about diagnostic
+            publish_diagnostic_on = 'insert_leave',
+            -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
+            -- (see 💅 `styled-components` support section)
+            tsserver_plugins = {},
+            -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
+            -- memory limit in megabytes or "auto"(basically no limit)
+            tsserver_max_memory = 'auto',
+            -- described below
+            tsserver_format_options = {},
+            tsserver_file_preferences = {},
+          },
         }
 
         lspconfig['jsonls'].setup {
