@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local act = wezterm.action
 
 -- Equivalent to POSIX basename(3)
 -- Given "/foo/bar" returns "bar"
@@ -84,10 +85,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	local dim_foreground = "#3A3A3A"
 
 	if tab.is_active then
-		background = "#f9e2af"
+		background = "#eff1f5"
 		foreground = "#1C1B19"
 	elseif hover then
-		background = "#fab387"
+		background = "#bcc0cc"
 		foreground = "#1C1B19"
 	end
 
@@ -167,9 +168,10 @@ return {
 	dpi = 96.0,
 	freetype_load_target = "Normal",
 	font = wezterm.font_with_fallback({
-		"Jetbrains Mono",
+		"Cartograph CF Demi Bold",
 		"Aerial",
 	}),
+
 	tab_max_width = 100,
 	enable_scroll_bar = false,
 	use_fancy_tab_bar = false,
@@ -201,13 +203,14 @@ return {
 			background = "#121212",
 			new_tab = { bg_color = "#121212", fg_color = "#121212", intensity = "Bold" },
 			new_tab_hover = { bg_color = "#121212", fg_color = "#121212", intensity = "Bold" },
-			active_tab = { bg_color = "#121212", fg_color = "#FCE8C3" },
+			active_tab = { bg_color = "#121212", fg_color = "#eff1f5" },
 		},
 	},
 	inactive_pane_hsb = {
 		saturation = 0.9,
 		brightness = 0.8,
 	},
+	line_height = 1.15,
 	visual_bell = {
 		fade_in_duration_ms = 75,
 		fade_out_duration_ms = 75,
@@ -216,35 +219,70 @@ return {
 	-- disable_default_key_bindings = true,
 	leader = { key = "`" },
 	keys = {
-		{ key = "Tab", mods = "CTRL", action = wezterm.action({ ActivateTabRelative = 1 }) },
-		{ key = "Tab", mods = "CTRL|SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
+		{
+			key = "l",
+			mods = "CMD",
+			action = wezterm.action.Multiple({
+				wezterm.action.SendKey({ key = "w", mods = "CTRL" }),
+				wezterm.action.SendKey({ key = "l" }),
+			}),
+		},
+		{
+			key = "h",
+			mods = "CMD",
+			action = wezterm.action.Multiple({
+				wezterm.action.SendKey({ key = "w", mods = "CTRL" }),
+				wezterm.action.SendKey({ key = "h" }),
+			}),
+		},
+		{
+			key = "j",
+			mods = "CMD",
+			action = wezterm.action.Multiple({
+				wezterm.action.SendKey({ key = "w", mods = "CTRL" }),
+				wezterm.action.SendKey({ key = "j" }),
+			}),
+		},
+		{
+			key = "k",
+			mods = "CMD",
+			action = wezterm.action.Multiple({
+				wezterm.action.SendKey({ key = "w", mods = "CTRL" }),
+				wezterm.action.SendKey({ key = "k" }),
+			}),
+		},
+		{ key = "Tab", mods = "CTRL", action = act({ ActivateTabRelative = 1 }) },
+		{ key = "Tab", mods = "CTRL|SHIFT", action = act({ ActivateTabRelative = -1 }) },
 		{ key = "Enter", mods = "ALT", action = "ToggleFullScreen" },
-		{ key = "Insert", mods = "SHIFT", action = wezterm.action({ PasteFrom = "PrimarySelection" }) },
-		{ key = "Insert", mods = "CTRL", action = wezterm.action({ CopyTo = "PrimarySelection" }) },
-		{ key = "v", mods = "LEADER", action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
-		{ key = "s", mods = "LEADER", action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
-		{ key = "h", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
-		{ key = "l", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
-		{ key = "j", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
-		{ key = "k", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
+		{ key = "Insert", mods = "SHIFT", action = act({ PasteFrom = "PrimarySelection" }) },
+		{ key = "Insert", mods = "CTRL", action = act({ CopyTo = "PrimarySelection" }) },
+		{ key = "l", mods = "OPT", action = act.SendKey({ key = "l", mods = "CMD" }) },
+		{ key = "v", mods = "LEADER", action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
+		{ key = "s", mods = "LEADER", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+		{ key = "|", mods = "LEADER", action = act({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
+		{ key = "-", mods = "LEADER", action = act({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+		{ key = "h", mods = "LEADER", action = act({ ActivatePaneDirection = "Left" }) },
+		{ key = "l", mods = "LEADER", action = act({ ActivatePaneDirection = "Right" }) },
+		{ key = "j", mods = "LEADER", action = act({ ActivatePaneDirection = "Down" }) },
+		{ key = "k", mods = "LEADER", action = act({ ActivatePaneDirection = "Up" }) },
 		{ key = "z", mods = "LEADER", action = "TogglePaneZoomState" },
-		{ key = "/", mods = "LEADER", action = wezterm.action({ Search = { CaseInSensitiveString = "" } }) },
 		{ key = "q", mods = "LEADER", action = "QuickSelect" },
-		{ key = "1", mods = "LEADER", action = wezterm.action({ ActivateTab = 0 }) },
-		{ key = "2", mods = "LEADER", action = wezterm.action({ ActivateTab = 1 }) },
-		{ key = "3", mods = "LEADER", action = wezterm.action({ ActivateTab = 2 }) },
-		{ key = "4", mods = "LEADER", action = wezterm.action({ ActivateTab = 3 }) },
-		{ key = "5", mods = "LEADER", action = wezterm.action({ ActivateTab = 4 }) },
-		{ key = "6", mods = "LEADER", action = wezterm.action({ ActivateTab = 5 }) },
-		{ key = "7", mods = "LEADER", action = wezterm.action({ ActivateTab = 6 }) },
-		{ key = "8", mods = "LEADER", action = wezterm.action({ ActivateTab = 7 }) },
-		{ key = "9", mods = "LEADER", action = wezterm.action({ ActivateTab = 8 }) },
+		{ key = "/", mods = "LEADER", action = act({ Search = { CaseInSensitiveString = "" } }) },
+		{ key = "1", mods = "LEADER", action = act({ ActivateTab = 0 }) },
+		{ key = "2", mods = "LEADER", action = act({ ActivateTab = 1 }) },
+		{ key = "3", mods = "LEADER", action = act({ ActivateTab = 2 }) },
+		{ key = "4", mods = "LEADER", action = act({ ActivateTab = 3 }) },
+		{ key = "5", mods = "LEADER", action = act({ ActivateTab = 4 }) },
+		{ key = "6", mods = "LEADER", action = act({ ActivateTab = 5 }) },
+		{ key = "7", mods = "LEADER", action = act({ ActivateTab = 6 }) },
+		{ key = "8", mods = "LEADER", action = act({ ActivateTab = 7 }) },
+		{ key = "9", mods = "LEADER", action = act({ ActivateTab = 8 }) },
 		{ key = "o", mods = "LEADER", action = "ActivateLastTab" },
 		{ key = "g", mods = "LEADER", action = "ShowTabNavigator" },
 		{ key = "c", mods = "LEADER", action = "ShowLauncher" },
 		{ key = "r", mods = "LEADER", action = "ReloadConfiguration" },
-		{ key = "x", mods = "LEADER", action = wezterm.action({ CloseCurrentPane = { confirm = true } }) },
-		{ key = "x", mods = "LEADER|SHIFT", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
-		{ key = "`", mods = "LEADER", action = wezterm.action({ SendString = "`" }) },
+		{ key = "x", mods = "LEADER", action = act({ CloseCurrentPane = { confirm = true } }) },
+		{ key = "x", mods = "LEADER|SHIFT", action = act({ CloseCurrentTab = { confirm = true } }) },
+		{ key = "`", mods = "LEADER", action = act({ SendString = "`" }) },
 	},
 }
