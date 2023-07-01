@@ -26,7 +26,7 @@ vim.g.copilot_no_tab_map = true
 vim.g.opts = {
   minimal = false,
   use_icons = true,
-  noice = false,
+  noice = true,
   bufferline = {
     style = 'slant',
   },
@@ -50,13 +50,13 @@ set.relativenumber = true
 set.autochdir = false
 set.tm = 500
 
+set.scrolloff = 10
 set.tabstop = 2
 set.softtabstop = 2
 set.shiftwidth = 2
 set.expandtab = true
 set.hlsearch = false
 set.incsearch = true
-set.scrolloff = 10
 
 set.splitbelow = true
 set.splitright = true
@@ -77,7 +77,8 @@ set.undodir = os.getenv 'HOME' .. '/.vim/undodir'
 set.undofile = true
 set.undolevels = 10000
 set.mousemoveevent = true
-
+set.splitbelow = true
+set.splitright = true
 -- UFO folding
 -- set.foldcolumn = '1' -- '0' is not bad
 set.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
