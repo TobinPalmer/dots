@@ -5,6 +5,7 @@ end
 
 vim.keymap.set('n', '<A-j>', ':m .+1<CR>==')
 vim.keymap.set('n', '<A-k>', ':m .-2<CR>==')
+vim.keymap.set('v', 'y', 'ygv<esc>')
 
 vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi')
 vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi')
