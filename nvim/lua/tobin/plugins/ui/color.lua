@@ -18,6 +18,7 @@ for _, scheme in pairs(colorsscheme) do
       lazy = false,
       config = function()
         vim.cmd('colorscheme ' .. scheme.theme)
+        require 'tobin.highlights'
       end,
     })
   end
