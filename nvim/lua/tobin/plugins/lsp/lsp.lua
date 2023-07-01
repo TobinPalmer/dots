@@ -6,6 +6,18 @@ return {
     event = 'UiEnter',
   },
   {
+    'folke/neoconf.nvim',
+    lazy = false,
+    priority = 1000,
+    event = 'UiEnter',
+  },
+  {
+    'pmizio/typescript-tools.nvim',
+    event = 'BufReadPost',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
+  },
+  {
     'akinsho/flutter-tools.nvim',
     ft = 'dart',
     event = 'BufReadPost',
@@ -85,6 +97,7 @@ return {
       event = 'BufReadPre',
       config = function()
         require('neodev').setup {}
+        require('neoconf').setup {}
         local lspconfig = require 'lspconfig'
         local root_pattern = require('lspconfig.util').root_pattern
         local on_attach = require('tobin.handlers').on_attach
