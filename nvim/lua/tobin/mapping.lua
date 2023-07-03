@@ -15,7 +15,7 @@ vim.keymap.set('v', '<A-j>', ':m >+1<CR>gv=gv')
 vim.keymap.set('n', '<BS>', 'ciw', { desc = 'Change Inner Word' })
 
 vim.keymap.set('n', '<leader>mh', '<CMD>noh<CR>', { desc = 'Clears Highlighting' })
-vim.keymap.set('n', '<Esc>', '<CMD>noh<CR>', { desc = 'Clears Highlighting' })
+vim.keymap.set('n', '<Esc>', '<CMD>noh<CR><CMD>w<CR>', { desc = 'Clears Highlighting' })
 vim.keymap.set('n', '<leader>mc', '<CMD>e ~/.config/nvim/init.lua<CR><CMD>cd %:p:h<CR>', { desc = 'Edits init.lua' })
 vim.keymap.set('n', '<leader>gr', '<CMD>Lspsaga rename<CR>', { desc = 'Renames variable' })
 vim.keymap.set(
