@@ -164,7 +164,7 @@ end)
 
 return {
 	font_dirs = { "fonts" },
-	-- font_size = 14.0,
+	font_size = 23.0,
 	dpi = 96.0,
 	freetype_load_target = "Normal",
 	font = wezterm.font_with_fallback({
