@@ -12,7 +12,6 @@ alias :wq="cowsay You\'re not using vim!"
 alias bg='batgrep -A=0 -B=0'
 alias c="pbcopy"
 alias clear='clear && printf "\e[3J"'
-alias nvim='clear && nvim'
 alias code="code"
 alias exa='exa --icons --all'
 alias fd='cd $(find . -type d -print | fzf)'
