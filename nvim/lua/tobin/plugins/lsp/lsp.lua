@@ -151,6 +151,12 @@ return {
           },
         }
 
+        -- lspconfig['sourcekit'].setup {
+        --   on_attach = on_attach,
+        --   capabilities = capabilities,
+        --   cmd = { 'xcrun', 'sourcekit-lsp' },
+        -- }
+
         lspconfig['lua_ls'].setup {
           on_attach = on_attach,
           capabilities = capabilities,

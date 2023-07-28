@@ -14,8 +14,8 @@ alias c="pbcopy"
 alias clear='clear && printf "\e[3J"'
 alias code="code"
 alias exa='exa --icons --all'
-alias fd='cd $(find . -type d -print | fzf)'
-alias monkeytype="python3 /Users/tobin/Documents/Code/Python/monkeytype-playwright/main.py"
+# alias fd='cd $(find . -type d -print | fzf)'
+alias monkeytype="python3 /Users/tobin/Documents/Code/Python/bots/monkeytype-playwright/main.py"
 alias neovide='neovide --multigrid --frame=buttonless'
 alias nitrotype="python3 /Users/tobin/Documents/Code/Python/bots/nitrotype-playwright/main.py"
 alias notes="python3 /Users/tobin/Documents/Code/Python/school_notes/main.py"
@@ -75,7 +75,7 @@ export NVM_DIR="$HOME/.nvm"
 # Oh-My-Zsh configuration
 ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(git)
+plugins=(git zsh-wakatime)
 # source "$ZSH/oh-my-zsh.sh"
 
 # Plugins

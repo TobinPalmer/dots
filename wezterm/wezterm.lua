@@ -1,8 +1,7 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
--- Equivalent to POSIX basename(3)
--- Given "/foo/bar" returns "bar"
+-- Equivalent to POSIX basename(3) Given "/foo/bar" returns "bar"
 -- Given "c:\\foo\\bar" returns "bar"
 local function basename(s)
 	return string.gsub(s, "(.*[/\\])(.*)", "%2")
@@ -162,9 +161,38 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	}
 end)
 
+function get_font_size()
+	function os.capture(cmd, raw)
+		local f = assert(io.popen(cmd, "r"))
+		local s = assert(f:read("*a"))
+		f:close()
+		if raw then
+			return s
+		end
+		s = string.gsub(s, "^%s+", "")
+		s = string.gsub(s, "%s+$", "")
+		s = string.gsub(s, "[\n\r]+", " ")
+		return s
+	end
+
+	local display_type =
+		os.capture("system_profiler SPDisplaysDataType | grep -B 3 'Main Display:' | awk '/Display Type/ {print $3}'")
+
+	local font_size = 11
+
+	if display_type == "Built-in" then
+		print("Changing font be bigger", display_type)
+		font_size = 22
+	else
+		print("Changing font be smaller", display_type)
+		font_size = 11
+	end
+	return font_size
+end
+
 return {
 	font_dirs = { "fonts" },
-	font_size = 23.0,
+	font_size = get_font_size(),
 	dpi = 96.0,
 	freetype_load_target = "Normal",
 	font = wezterm.font_with_fallback({
@@ -183,7 +211,7 @@ return {
 		bottom = 0,
 	},
 	window_frame = {
-		-- font_size = 12.0,
+		font_size = 12.0,
 		border_left_width = 0,
 		border_right_width = 0,
 		border_bottom_height = 0,

@@ -2,20 +2,21 @@ return {
   'hrsh7th/nvim-cmp',
   event = 'InsertEnter',
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-cmdline',
     'FelipeLema/cmp-async-path',
-    'L3MON4D3/LuaSnip',
     {
-      'sirver/ultisnips',
-      config = function()
-        vim.g.UltiSnipsExpandTrigger = '<TAB>'
-        vim.g.UltiSnipsJumpForwardTrigger = '<C-J>'
-        vim.g.UltiSnipsJumpBackwardTrigger = '<C-K>'
-        require('cmp_nvim_ultisnips').setup {}
-      end,
+      'L3MON4D3/LuaSnip',
+      dependencies = {
+        {
+          'molleweide/LuaSnip-snippets.nvim',
+          config = function()
+            local luasnip = require 'luasnip'
+            luasnip.snippets = require('luasnip_snippets').load_snippets()
+          end,
+        },
+      },
     },
-    'quangnguyen30192/cmp-nvim-ultisnips',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/cmp-nvim-lsp',
     'saadparwaiz1/cmp_luasnip',
     'js-everts/cmp-tailwind-colors',
   },
@@ -84,15 +85,14 @@ return {
       snippet = {
         --- @param args cmp.SnippetExpansionParams
         expand = function(args)
-          -- luasnip.lsp_expand(args.body)
-          vim.fn['UltiSnips#Anon'](args.body)
+          require('luasnip').lsp_expand(args.body)
         end,
       },
       mapping = cmp.mapping.preset.insert {
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<TAB>'] = cmp.mapping.confirm { select = true },
-        ['<ENTER>'] = cmp.mapping.confirm { select = true },
+        ['<TAB>'] = cmp.mapping.confirm { select = true, behavior = cmp.ConfirmBehavior.Insert },
+        ['<ENTER>'] = cmp.mapping.confirm { select = true, behavior = cmp.ConfirmBehavior.Insert },
         ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select }, { 'i' }),
         ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select }, { 'i' }),
         ['<CR>'] = cmp.mapping {
@@ -130,7 +130,7 @@ return {
           end,
         },
         {
-          name = 'ultisnips',
+          name = 'luasnip',
           priority = 600,
           -- entry_filter = function(entry)
           --   return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
