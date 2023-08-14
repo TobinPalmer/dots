@@ -1,8 +1,6 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export ZSHPATH=$HOME/.config/.zsh
-
-export BAT_THEME="Dracula"
 export CODE=~/Documents/Code/$1
 export EDITOR="nvim"
 export PATH="$HOME/.tmuxifier/bin:$PATH"
@@ -12,6 +10,8 @@ export PATH=/usr/local/bin:$PATH
 export VISUAL="$EDITOR"
 export ZSHRC_PATH="~/.config/.zsh/.zshrc"
 export HOMEBREW_AUTO_UPDATE_SECS="3600"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export BAT_THEME="Dracula"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="/Users/tobin/.opam/default/bin:$PATH"
 export PATH="/Users/tobin/.flutter/bin:$PATH"

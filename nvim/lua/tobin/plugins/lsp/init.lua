@@ -5,7 +5,6 @@ local plugins = {
   require 'tobin.plugins.lsp.lspsaga',
   require 'tobin.plugins.lsp.null_ls',
   require 'tobin.plugins.lsp.barbecue',
-  require 'tobin.plugins.lsp.xbase',
   require 'tobin.plugins.lsp.lsp-config',
   require 'tobin.plugins.lsp.treesitter',
   require 'tobin.plugins.lsp.typescript',

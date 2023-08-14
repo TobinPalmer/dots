@@ -32,8 +32,9 @@ alias zshrc="nvim ~/.config/.zsh/.zshrc"
 alias restart="skhd --stop-service;skhd --start-service;yabai --stop-service;yabai --start-service;brew services restart sketchybar"
 alias vim="vim -u ~/.config/.vim/init.vim"
 alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
+alias transferPhotos="rsync -av /Volumes/Untitled/DCIM/100OLYMP /Volumes/Other/Trip"
+alias transferGoPro="rsync -av /Volumes/GoPro/DCIM/100GOPRO /Volumes/Other/Trip"
 alias convert="python3 ~/Documents/Code/Python/createHTML/main.py;"
-
 alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 alias nvim-kick="NVIM_APPNAME=kickstart nvim"
 alias nvim-chad="NVIM_APPNAME=NvChad nvim"
@@ -111,3 +112,6 @@ for file in "$ZSHPATH"/configs/*; do
 done
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
