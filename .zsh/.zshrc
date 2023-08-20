@@ -16,7 +16,7 @@ if [[ machine == "Mac" ]]; then
 	source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 fi
 
-alias nvim="$HOME/bin/nvim.sh"
+alias nvim="$HOME/bin/nvim.appimage"
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
