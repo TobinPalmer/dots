@@ -1,12 +1,8 @@
-## Powerline10k configuration
+# Powerline10k configuration
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 fi
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
-# source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-export ZSHPATH=$HOME/.config/.zsh
-export PUPPETEER_PRODUCT=firefox npm i puppeteer
 
-unameOut="$(uname -s)"
+nameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)     machine=Linux;;
     Darwin*)    machine=Mac;;
@@ -15,6 +11,19 @@ case "${unameOut}" in
     MSYS_NT*)   machine=Git;;
     *)          machine="UNKNOWN:${unameOut}"
 esac
+
+if [[ machine == "Mac" ]]; then
+	source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+fi
+
+alias nvim="$HOME/bin/nvim.sh"
+
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+export ZSHPATH=$HOME/.config/.zsh
+export PUPPETEER_PRODUCT=firefox npm i puppeteer
+
 
 # Aliases
 alias :q="cowsay You\'re not using vim!"
@@ -62,10 +71,6 @@ function nvims() {
   NVIM_APPNAME=$config nvim $@
 }
 
-
-
-# alias flutter="flutter --disable-telemetry"
-
 unset TMUX
 
 # Environment variables
@@ -74,9 +79,11 @@ export GPG_TTY=$(tty)
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-eval "$(tmuxifier init -)"
-eval "$(opam env --switch=default)"
-eval "$(flutter bash-completion)"
+if [[ machine == "Mac" ]]; then
+	eval "$(tmuxifier init -)"
+	eval "$(opam env --switch=default)"
+	eval "$(flutter bash-completion)"
+fi
 
 export CHROME_EXECUTABLE=/Applications/Chromium.app/Contents/MacOS/Chromium
 
@@ -87,11 +94,13 @@ export NVM_DIR="$HOME/.nvm"
 ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git zsh-wakatime)
-# source "$ZSH/oh-my-zsh.sh"
+source "$ZSH/oh-my-zsh.sh"
 
 # Plugins
-source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-source $(brew --prefix)/opt/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+if [[ machine == "Mac" ]]; then
+	source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+	source $(brew --prefix)/opt/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+fi
 
 # Powerline10k prompt configuration
 [[ ! -f ~/.zsh/.p10k.zsh ]] || source ~/.zsh/.p10k.zsh
