@@ -7,7 +7,7 @@ local function toggle_preview()
   elseif ft == 'tex' then
     local _, success = pcall(require, 'vimtex')
     if not success then
-      print 'vimtex not loaded'
+      vim.notify('vimtex not loaded', vim.log.levels.WARN)
       return
     end
     vim.cmd [[ VimtexCompile ]]
