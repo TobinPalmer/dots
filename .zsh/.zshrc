@@ -6,6 +6,16 @@ source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 export ZSHPATH=$HOME/.config/.zsh
 export PUPPETEER_PRODUCT=firefox npm i puppeteer
 
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    MSYS_NT*)   machine=Git;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
 # Aliases
 alias :q="cowsay You\'re not using vim!"
 alias :wq="cowsay You\'re not using vim!"
