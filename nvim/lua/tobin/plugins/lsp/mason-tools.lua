@@ -35,7 +35,7 @@ return {
         'ocaml-lsp',
         'write-good',
         'texlab',
-        'pyright',
+        'pyrite',
       },
       auto_update = false,
       run_on_start = true,

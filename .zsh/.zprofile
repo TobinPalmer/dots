@@ -1,4 +1,4 @@
-nameOut="$(uname -s)"
+unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)     machine=Linux;;
     Darwin*)    machine=Mac;;
@@ -8,7 +8,9 @@ case "${unameOut}" in
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
-if [[ machine == "Mac" ]]; then
+echo "$machine"
+
+if [[ "$machine" == "Mac" ]]; then
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
@@ -16,7 +18,7 @@ export ZSHPATH=$HOME/.config/.zsh
 export CODE=~/Documents/Code/$1
 export EDITOR="nvim"
 
-if [[ machine == "Mac" ]]; then
+if [[ "$machine" == "Mac" ]]; then
 	export PATH="$HOME/.tmuxifier/bin:$PATH"
 	export PATH=$PATH:/Users/tobin/Library/Python/3.9/lib/python/site-packages
 	export PATH=$PATH:/Users/tobin/Library/Python/3.9/bin
@@ -31,10 +33,15 @@ if [[ machine == "Mac" ]]; then
 fi
 
 	export VISUAL="$EDITOR"
-	echo "Hello, world"
 	export ZSHRC_PATH="$HOME/.config/.zsh/.zshrc"
 	export PATH="$HOME/.cargo/bin:$PATH"
 	export PATH="$HOME/bin:$PATH"
+
+if [[ "$machine" == "Mac" ]]; then
+	echo "Hello, world"
+else
+	echo "Bye world"
+fi
 
 ## Jetbrains Toolbox
 #export PATH="$PATH:/Users/tobin/Library/Application Support/JetBrains/Toolbox/scripts"

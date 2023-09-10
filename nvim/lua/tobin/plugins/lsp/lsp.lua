@@ -211,15 +211,24 @@ return {
           },
         }
 
-        lspconfig['eslint'].setup {
-          --- @param bufnr number
-          on_attach = function(_, bufnr)
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              buffer = bufnr,
-              command = 'EslintFixAll',
-            })
-          end,
-        }
+        if
+          vim.fn.filereadable '.eslintrc' == 1
+          or vim.fn.filereadable '.eslintrc.json' == 1
+          or vim.fn.filereadable '.eslintrc.js' == 1
+        then
+          vim.notify 'ESLINT INIT'
+          lspconfig['eslint'].setup {
+            --- @param bufnr number
+            on_attach = function(_, bufnr)
+              vim.api.nvim_create_autocmd('BufWritePre', {
+                buffer = bufnr,
+                command = 'EslintFixAll',
+              })
+            end,
+          }
+        else
+          vim.notify 'NO ESLINT'
+        end
 
         lspconfig['gopls'].setup {
           on_attach = on_attach,

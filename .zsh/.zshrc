@@ -1,6 +1,7 @@
 # Powerline10k configuration
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 fi
+
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 # source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 export ZSHPATH=$HOME/.config/.zsh
@@ -16,18 +17,19 @@ case "${unameOut}" in
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
-if [[ machine == "Mac" ]]; then
+if [[ "$machine" == "Mac" ]]; then
 	source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 fi
 
-alias nvim="$HOME/bin/nvim.appimage"
+if [[ "$machine" == "Linux" ]]; then
+  alias nvim="$HOME/bin/nvim.appimage"
+fi
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+if [[ "$machine" == "Linux" ]]; then
+  source ~/powerlevel10k/powerlevel10k.zsh-theme
+fi
 
 # source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-export ZSHPATH=$HOME/.config/.zsh
-export PUPPETEER_PRODUCT=firefox npm i puppeteer
-
 
 # Aliases
 alias :q="cowsay You\'re not using vim!"
@@ -99,7 +101,7 @@ export GPG_TTY=$(tty)
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-if [[ machine == "Mac" ]]; then
+if [[ "$machine" == "Mac" ]]; then
 	eval "$(tmuxifier init -)"
 	eval "$(opam env --switch=default)"
 	eval "$(flutter bash-completion)"
@@ -117,7 +119,7 @@ plugins=(git zsh-wakatime)
 source "$ZSH/oh-my-zsh.sh"
 
 # Plugins
-if [[ machine == "Mac" ]]; then
+if [[ "$machine" == "Mac" ]]; then
 	source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 	source $(brew --prefix)/opt/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 fi
