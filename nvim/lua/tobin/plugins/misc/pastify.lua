@@ -19,10 +19,10 @@ return {
       return variables
     end
     local envPath
-    if vim.fn.has('maxunix') == 0 then
+    if vim.fn.has 'macunix' == 0 then
       envPath = '/home/tobin/.config/.env'
     else
-      evPath = '/Users/tobin/.config/.env'
+      envPath = '/Users/tobin/.config/.env'
     end
     local envVariables = loadEnvFile(envPath)
 

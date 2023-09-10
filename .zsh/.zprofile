@@ -8,8 +8,6 @@ case "${unameOut}" in
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
-echo "$machine"
-
 if [[ "$machine" == "Mac" ]]; then
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
@@ -36,12 +34,6 @@ fi
 	export ZSHRC_PATH="$HOME/.config/.zsh/.zshrc"
 	export PATH="$HOME/.cargo/bin:$PATH"
 	export PATH="$HOME/bin:$PATH"
-
-if [[ "$machine" == "Mac" ]]; then
-	echo "Hello, world"
-else
-	echo "Bye world"
-fi
 
 ## Jetbrains Toolbox
 #export PATH="$PATH:/Users/tobin/Library/Application Support/JetBrains/Toolbox/scripts"

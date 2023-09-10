@@ -33,8 +33,8 @@ return {
     }
 
     local eslintSources = {
-      null_ls.builtins.diagnostics.eslint,
-      null_ls.builtins.code_actions.eslint_d,
+      -- null_ls.builtins.diagnostics.eslint,
+      -- null_ls.builtins.code_actions.eslint_d,
     }
 
     if
@@ -42,7 +42,6 @@ return {
       or vim.fn.filereadable '.eslintrc.json' == 1
       or vim.fn.filereadable '.eslintrc.js' == 1
     then
-      vim.notify 'Added eslint'
       table.insert(sources, eslintSources)
     end
 
