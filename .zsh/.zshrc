@@ -1,14 +1,18 @@
 # Powerline10k configuration
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 fi
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+# source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+export ZSHPATH=$HOME/.config/.zsh
+export PUPPETEER_PRODUCT=firefox npm i puppeteer
 
-nameOut="$(uname -s)"
+unameOut="$(uname -s)"
 case "${unameOut}" in
-    Linux*)     machine=Linux;;
-    Darwin*)    machine=Mac;;
-    CYGWIN*)    machine=Cygwin;;
-    MINGW*)     machine=MinGw;;
-    MSYS_NT*)   machine=Git;;
+    Linux*)     machine=Linux ;;
+    Darwin*)    machine=Mac ;;
+    CYGWIN*)    machine=Cygwin ;;
+    MINGW*)     machine=MinGw ;;
+    MSYS_NT*)   machine=Git ;;
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
@@ -33,11 +37,14 @@ alias c="pbcopy"
 alias clear='clear && printf "\e[3J"'
 alias code="code"
 alias exa='exa --icons --all'
+alias ls='exa'
+alias inject="open -a /Applications/InjectionIII.app/Contents/MacOS/InjectionIII"
 # alias fd='cd $(find . -type d -print | fzf)'
 alias monkeytype="python3 /Users/tobin/Documents/Code/Python/bots/monkeytype-playwright/main.py"
 alias neovide='neovide --multigrid --frame=buttonless'
 alias nitrotype="python3 /Users/tobin/Documents/Code/Python/bots/nitrotype-playwright/main.py"
 alias notes="python3 /Users/tobin/Documents/Code/Python/school_notes/main.py"
+alias emu="/Users/tobin/Library/Android/sdk/emulator/emulator -avd Main_Phone_API_34 -netdelay none -netspeed full"
 alias ofzf="nvim \$(fzf)"
 alias project="node /Users/tobin/Documents/Code/Web/TS/templates/dist/main.js"
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
@@ -58,18 +65,31 @@ alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 alias nvim-kick="NVIM_APPNAME=kickstart nvim"
 alias nvim-chad="NVIM_APPNAME=NvChad nvim"
 alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+alias qemu="qemu-system-x86_64"
+alias emulator="/Users/tobin/Library/Android/sdk/emulator/emulator"
+alias adb="/Users/tobin/Library/Android/sdk/platform-tools/adb"
 
 function nvims() {
-  items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
-  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config 󰄾" --height=~50% --layout=reverse --border --exit-0)
-  if [[ -z $config ]]; then
-    echo "Nothing selected"
-    return 0
-  elif [[ $config == "default" ]]; then
-    config=""
-  fi
-  NVIM_APPNAME=$config nvim $@
+    items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
+    config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config 󰄾" --height=~50% --layout=reverse --border --exit-0)
+    if [[ -z $config ]]; then
+        echo "Nothing selected"
+        return 0
+    elif [[ $config == "default" ]]; then
+        config=""
+    fi
+    NVIM_APPNAME=$config nvim $@
 }
+
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# alias flutter="flutter --disable-telemetry"
 
 unset TMUX
 
@@ -110,7 +130,7 @@ fi
 
 # Powerline10k configuration
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 export ZSHPATH=$HOME/.config/.zsh
@@ -119,15 +139,15 @@ export ZSHPATH=$HOME/.config/.zsh
 [[ ! -f ~/.config/.zsh/.p10k.zsh ]] || source ~/.config/.zsh/.p10k.zsh
 
 for file in "$ZSHPATH"/functions/*; do
-  if [[ -f "$file" ]]; then
-    source "$file"
-  fi
+    if [[ -f "$file" ]]; then
+        source "$file"
+    fi
 done
 
 for file in "$ZSHPATH"/configs/*; do
-  if [[ -f "$file" ]]; then
-    source "$file"
-  fi
+    if [[ -f "$file" ]]; then
+        source "$file"
+    fi
 done
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
