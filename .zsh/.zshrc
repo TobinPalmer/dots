@@ -49,6 +49,7 @@ alias notes="python3 /Users/tobin/Documents/Code/Python/school_notes/main.py"
 alias emu="/Users/tobin/Library/Android/sdk/emulator/emulator -avd Main_Phone_API_34 -netdelay none -netspeed full"
 alias ofzf="nvim \$(fzf)"
 alias project="node /Users/tobin/Documents/Code/Web/TS/templates/dist/main.js"
+alias brewChromium="brew reinstall --no-quarantine --cask eloston-chromium"
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias reload="source ~/.config/.zsh/.zshrc"
 alias resetNPM="rm -rf node_modules package-lock.json && npm i"

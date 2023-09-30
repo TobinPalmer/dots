@@ -28,6 +28,9 @@ if [[ "$machine" == "Mac" ]]; then
 	export PATH="/Users/tobin/.opam/default/bin:$PATH"
 	export PATH="/Users/tobin/.flutter/bin:$PATH"
 	export PATH="/Users/tobin/.cargo/bin:$PATH"
+
+  # Jetbrains Toolbox
+  export PATH="$PATH:/Users/tobin/Library/Application Support/JetBrains/Toolbox/scripts"
 fi
 
 	export VISUAL="$EDITOR"
@@ -35,7 +38,4 @@ fi
 	export PATH="$HOME/.cargo/bin:$PATH"
 	export PATH="$HOME/bin:$PATH"
 
-## Jetbrains Toolbox
-#export PATH="$PATH:/Users/tobin/Library/Application Support/JetBrains/Toolbox/scripts"
-#
 #source "$ZSHPATH/configs/nnn.sh"
