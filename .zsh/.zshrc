@@ -1,5 +1,5 @@
-# Powerline10k configuration
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  # Powerline10k configuration
 fi
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
@@ -38,6 +38,7 @@ alias bg='batgrep -A=0 -B=0'
 alias c="pbcopy"
 alias clear='clear && printf "\e[3J"'
 alias code="code"
+alias yr="yabai --restart-service"
 alias exa='exa --icons --all'
 alias ls='exa'
 alias inject="open -a /Applications/InjectionIII.app/Contents/MacOS/InjectionIII"
@@ -53,6 +54,7 @@ alias brewChromium="brew reinstall --no-quarantine --cask eloston-chromium"
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias reload="source ~/.config/.zsh/.zshrc"
 alias resetNPM="rm -rf node_modules package-lock.json && npm i"
+alias spoof="cd /Users/tobin/Documents/Code/Clones/kinesis && sudo python3.11 main.py"
 alias spacer="defaults write com.apple.dock persistent-apps -array-add '{\"tile-type\"=\"small-spacer-tile\";}'; killall Dock"
 alias syncCode="rsync -av --exclude=node_modules --exclude=target ~/Documents/Code/ /Volumes/Code/"
 alias trim="ex +'bufdo!%s/\s\+$//e' -scxa"

@@ -196,8 +196,9 @@ return {
 	dpi = 96.0,
 	freetype_load_target = "Normal",
 	font = wezterm.font_with_fallback({
-		"Cartograph CF Demi Bold",
-		"Aerial",
+		-- "Cartograph CF Demi Bold",
+		"Jetbrains Mono NL",
+		"Fira Code Nerd Font Mono",
 	}),
 
 	tab_max_width = 100,
