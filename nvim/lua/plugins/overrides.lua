@@ -1,6 +1,14 @@
 local Util = require("lazyvim.util")
 return {
   {
+    "echasnovski/mini.comment",
+    opts = {
+      options = {
+        ignore_blank_line = true,
+      },
+    },
+  },
+  {
     "echasnovski/mini.bufremove",
     keys = {
       {
