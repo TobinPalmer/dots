@@ -59,6 +59,7 @@ alias spacer="defaults write com.apple.dock persistent-apps -array-add '{\"tile-
 alias syncCode="rsync -av --exclude=node_modules --exclude=target ~/Documents/Code/ /Volumes/Code/"
 alias trim="ex +'bufdo!%s/\s\+$//e' -scxa"
 alias v="pbpaste"
+alias brewSize="brew list --formula | xargs -n1 -P8 -I {} sh -c \"brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'\" | sort -h -r -k2 - | column -t "
 alias zshrc="nvim ~/.config/.zsh/.zshrc"
 alias restart="skhd --stop-service;skhd --start-service;yabai --stop-service;yabai --start-service;brew services restart sketchybar"
 alias vim="vim -u ~/.config/.vim/init.vim"
