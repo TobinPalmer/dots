@@ -280,7 +280,7 @@ return {
 				wezterm.action.SendKey({ key = "k" }),
 			}),
 		},
-		{ key = "raw:36", mods = "SHIFT", action = wezterm.action({ SendString = "\033[\015;2u" }) },
+		-- { key = "raw:36", mods = "SHIFT", action = wezterm.action({ SendString = "\033[\015;2u" }) },
 		{ key = "Tab", mods = "CTRL", action = act({ ActivateTabRelative = 1 }) },
 		{ key = "Tab", mods = "CTRL|SHIFT", action = act({ ActivateTabRelative = -1 }) },
 		{ key = "Enter", mods = "ALT", action = "ToggleFullScreen" },
