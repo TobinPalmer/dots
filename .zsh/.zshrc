@@ -2,7 +2,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   # Powerline10k configuration
 fi
 
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 # source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 export ZSHPATH=$HOME/.config/.zsh
 export PUPPETEER_PRODUCT=firefox npm i puppeteer
@@ -87,15 +86,15 @@ function nvims() {
     NVIM_APPNAME=$config nvim $@
 }
 
-if type brew &>/dev/null
-then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+if [[ "$machine" == "Mac" ]]; then
+  if type brew &>/dev/null
+  then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
-  autoload -Uz compinit
-  compinit
+    autoload -Uz compinit
+    compinit
+  fi
 fi
-
-# alias flutter="flutter --disable-telemetry"
 
 unset TMUX
 

@@ -1,10 +1,10 @@
 unameOut="$(uname -s)"
 case "${unameOut}" in
-    Linux*)     machine=Linux;;
-    Darwin*)    machine=Mac;;
-    CYGWIN*)    machine=Cygwin;;
-    MINGW*)     machine=MinGw;;
-    MSYS_NT*)   machine=Git;;
+    Linux*)     machine=Linux ;;
+    Darwin*)    machine=Mac ;;
+    CYGWIN*)    machine=Cygwin ;;
+    MINGW*)     machine=MinGw ;;
+    MSYS_NT*)   machine=Git ;;
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
@@ -31,6 +31,10 @@ if [[ "$machine" == "Mac" ]]; then
 
   # Jetbrains Toolbox
   export PATH="$PATH:/Users/tobin/Library/Application Support/JetBrains/Toolbox/scripts"
+fi
+
+if [[ "$machine" == "Linux" ]]; then
+  export PATH=$PATH:/usr/local/go/bin
 fi
 
 	export VISUAL="$EDITOR"
