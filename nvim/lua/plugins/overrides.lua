@@ -1,29 +1,6 @@
 local Util = require("lazyvim.util")
 return {
   {
-    "echasnovski/mini.pairs",
-    opts = {
-      modes = { insert = true, command = false, terminal = false },
-
-      mappings = {
-        ["("] = { action = "open", pair = "()", neigh_pattern = "[^\\]." },
-        ["["] = { action = "open", pair = "[]", neigh_pattern = "[^\\]." },
-        ["{"] = { action = "open", pair = "{}", neigh_pattern = "[^\\]." },
-
-        [")"] = { action = "close", pair = "()", neigh_pattern = "[^\\]." },
-        ["]"] = { action = "close", pair = "[]", neigh_pattern = "[^\\]." },
-        ["}"] = { action = "close", pair = "{}", neigh_pattern = "[^\\]." },
-
-        ['"'] = { action = "closeopen", pair = '""', neigh_pattern = "[^\\].", register = { cr = true } },
-        ["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^%a\\].", register = { cr = true } },
-        ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^\\].", register = { cr = false } },
-
-        ["<"] = { action = "open", pair = "<>", neigh_pattern = "x", register = { cr = false } },
-        [">"] = { action = "close", pair = "<>", neigh_pattern = "x", register = { cr = false } },
-      },
-    },
-  },
-  {
     "echasnovski/mini.comment",
     opts = {
       options = {
