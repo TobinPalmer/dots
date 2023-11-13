@@ -1,10 +1,14 @@
 local leet_arg = "leetcode.nvim"
 
 return {
+  { "wakatime/vim-wakatime", lazy = false },
   {
     "kawre/leetcode.nvim",
     lazy = leet_arg ~= vim.fn.argv()[1],
     build = ":TSUpdate html",
+    keys = {
+      { "<leader>lr", "<CMD>Leet run<CR>", desc = "Run LeetCode" },
+    },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-telescope/telescope.nvim",
@@ -16,6 +20,18 @@ return {
 
       ---@type lc.lang
       lang = "typescript",
+
+      hooks = {
+        ---@type fun()[]
+        LeetEnter = {
+          function()
+            vim.cmd("Copilot disable")
+          end,
+        },
+
+        ---@type fun(question: { lang: string })[]
+        LeetQuestionNew = {},
+      },
     },
   },
   {
