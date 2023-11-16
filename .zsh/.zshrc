@@ -31,6 +31,7 @@ fi
 # source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # Aliases
+alias lc="nvim leetcode.nvim"
 alias :q="cowsay You\'re not using vim!"
 alias :wq="cowsay You\'re not using vim!"
 alias bg='batgrep -A=0 -B=0'
