@@ -13,6 +13,4 @@ map("n", "<leader>mT", function()
   Util.terminal()
 end, { desc = "Terminal (cwd)" })
 
-map("n", "<leader>nd", function()
-  require("notify").dismiss({ pending = true, silent = true })
-end, { desc = "Dismiss all messages" })
+map("n", "|", "<CMD>vsplit<CR>", { desc = "New vertical split" })
