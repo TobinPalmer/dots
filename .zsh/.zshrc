@@ -18,13 +18,13 @@ esac
 
 if [[ "$machine" == "Mac" ]]; then
 	source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+  # Source gorem
+  ~/go/bin/gorem
 fi
 
 if [[ "$machine" == "Linux" ]]; then
   alias nvim="$HOME/bin/nvim.appimage"
-fi
-
-if [[ "$machine" == "Linux" ]]; then
   source ~/powerlevel10k/powerlevel10k.zsh-theme
 fi
 
@@ -44,6 +44,7 @@ alias ls='exa'
 alias inject="open -a /Applications/InjectionIII.app/Contents/MacOS/InjectionIII"
 # alias fd='cd $(find . -type d -print | fzf)'
 alias monkeytype="python3 /Users/tobin/Documents/Code/Python/bots/monkeytype-playwright/main.py"
+alias gorem="~/go/bin/gorem"
 alias neovide='neovide --multigrid --frame=buttonless'
 alias nitrotype="python3 /Users/tobin/Documents/Code/Python/bots/nitrotype-playwright/main.py"
 alias notes="python3 /Users/tobin/Documents/Code/Python/school_notes/main.py"
