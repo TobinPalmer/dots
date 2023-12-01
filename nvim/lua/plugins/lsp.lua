@@ -1,7 +1,18 @@
 return {
   {
+    "neovim/nvim-lspconfig",
+    lazy = false,
+    ---@class PluginLspOpts
+    opts = {
+      ---@type lspconfig.options
+      servers = {
+        kotlin_language_server = {},
+      },
+    },
+  },
+  {
     "zeioth/garbage-day.nvim",
-    enabled = false,
+    enabled = true,
     event = "BufEnter",
     opts = {
       grace_period = 60 * 15,
