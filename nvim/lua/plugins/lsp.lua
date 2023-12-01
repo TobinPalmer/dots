@@ -4,6 +4,12 @@ return {
     lazy = false,
     ---@class PluginLspOpts
     opts = {
+      inlay_hints = { enabled = true },
+
+      diagnostics = {
+        update_in_insert = true,
+      },
+
       ---@type lspconfig.options
       servers = {
         kotlin_language_server = {},
