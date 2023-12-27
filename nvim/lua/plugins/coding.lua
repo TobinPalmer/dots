@@ -42,4 +42,10 @@ return {
     end,
     opts = {},
   },
+  {
+    "folke/trouble.nvim",
+    opts = {
+      auto_close = true,
+    },
+  },
 }

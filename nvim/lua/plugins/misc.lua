@@ -2,6 +2,15 @@ local leet_arg = "leetcode.nvim"
 
 return {
   {
+    "Fildo7525/pretty_hover",
+    event = "LspAttach",
+    opts = {},
+    keys = {
+      { "K", "<CMD>lua require('pretty_hover').hover()<CR>", desc = "Hover (pretty)" },
+      { "<leader>pk", "<CMD>lua require('pretty_hover').hover()<CR>", desc = "Hover (pretty)" },
+    },
+  },
+  {
     "monaqa/dial.nvim",
     keys = {
       { "<C-a>", "<Plug>(dial-increment)", mode = { "n", "v" } },
