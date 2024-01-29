@@ -17,7 +17,7 @@ case "${unameOut}" in
 esac
 
 if [[ "$machine" == "Mac" ]]; then
-	source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+	# source /opt/homebrew/powerlevel10k/powerlevel10k.zsh-theme
 
   # Source gorem
   ~/go/bin/gorem
@@ -161,3 +161,12 @@ done
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/tobin/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
