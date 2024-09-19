@@ -11,6 +11,13 @@ return {
     },
   },
   {
+    "folke/persistence.nvim",
+    event = "BufReadPre", -- this will only start session saving when an actual file was opened
+    opts = {
+      -- add any custom options here
+    },
+  },
+  {
     "monaqa/dial.nvim",
     keys = {
       { "<C-a>", "<Plug>(dial-increment)", mode = { "n", "v" } },
@@ -96,12 +103,50 @@ return {
   },
   {
     "TobinPalmer/Tip.nvim",
+    enabled = false,
     event = "VimEnter",
     init = function()
       --- @type Tip.config
       require("tip").setup({
         title = "Tip!",
-        url = "https://vtip.43z.one",
+        -- url = "https://vtip.43z.one",
+        url = "https://vimiscool.tech/neotip",
+      })
+    end,
+  },
+  {
+    "TobinPalmer/rayso.nvim",
+    cmd = { "Rayso" },
+    enabled = false,
+    config = function()
+      require("rayso").setup({
+        base_url = "https://ray.so/",
+        options = {
+          padding = 0,
+          background = false,
+          theme = "candy",
+        },
+        -- options = {
+        --   background = true,
+        --   dark_mode = true,
+        --   theme = "breeze",
+        --   logging_enabled = true,
+        --   logging_path = "/Users/tobin/Documents/Rayso/"
+        --   logging_file = "rayso",
+        --   title = "nexxai",
+        --   padding = 32,
+        -- },
+      })
+    end,
+  },
+  {
+    "TobinPalmer/pastify.nvim",
+    cmd = { "Pastify" },
+    config = function()
+      require("pastify").setup({
+        opts = {
+          apikey = "YOUR API KEY (https://api.imgbb.com/)", -- Needed if you want to save online.
+        },
       })
     end,
   },

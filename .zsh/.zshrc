@@ -20,7 +20,7 @@ if [[ "$machine" == "Mac" ]]; then
 	# source /opt/homebrew/powerlevel10k/powerlevel10k.zsh-theme
 
   # Source gorem
-  ~/go/bin/gorem
+#   ~/go/bin/gorem
 fi
 
 if [[ "$machine" == "Linux" ]]; then
@@ -75,6 +75,8 @@ alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
 alias qemu="qemu-system-x86_64"
 alias emulator="/Users/tobin/Library/Android/sdk/emulator/emulator"
 alias adb="/Users/tobin/Library/Android/sdk/platform-tools/adb"
+alias tryp="open /Users/tobin/Library/Application\ Support/Steam/steamapps/common/TRYP\ FPV/TrypFPV.app/"
+
 
 function nvims() {
     items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
