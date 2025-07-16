@@ -23,6 +23,21 @@ if [[ "$machine" == "Mac" ]]; then
 #   ~/go/bin/gorem
 fi
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 if [[ "$machine" == "Linux" ]]; then
   alias nvim="$HOME/bin/nvim.appimage"
   source ~/powerlevel10k/powerlevel10k.zsh-theme
@@ -40,7 +55,7 @@ alias clear='clear && printf "\e[3J"'
 alias code="code"
 alias yr="yabai --restart-service"
 alias exa='exa --icons --all'
-alias ls='exa'
+alias ls='exa --icons --all'
 alias inject="open -a /Applications/InjectionIII.app/Contents/MacOS/InjectionIII"
 # alias fd='cd $(find . -type d -print | fzf)'
 alias monkeytype="python3 /Users/tobin/Documents/Code/Python/bots/monkeytype-playwright/main.py"
@@ -76,7 +91,42 @@ alias qemu="qemu-system-x86_64"
 alias emulator="/Users/tobin/Library/Android/sdk/emulator/emulator"
 alias adb="/Users/tobin/Library/Android/sdk/platform-tools/adb"
 alias tryp="open /Users/tobin/Library/Application\ Support/Steam/steamapps/common/TRYP\ FPV/TrypFPV.app/"
+alias skydive="open /Users/tobin/Library/Application\ Support/Steam/steamapps/common/FPV.SkyDive/FPV.SkyDive.app/"
+alias ch="open /Users/tobin/Library/Application\ Support/Steam/steamapps/common/Clicker\ Heroes/ClickerHeroes.app/"
+alias deepseek="ollama run huihui_ai/deepseek-r1-abliterated"
+alias bombparty="/Applications/Chromium.app/Contents/MacOS/Chromium --disable-web-security --user-data-dir=\"/Users/tobin/Documents/Misc/bombparty-hacks-save\""
+alias jetson_wired="sshpass -p jetsonucsd ssh jetson@192.168.55.1"
+alias jetson_wireless="sshpass -p jetsonucsd ssh jetson@192.168.222.167"
 
+donkey() {
+  open /Users/tobin/Downloads/donkey_sim_m1.app/ && cd /Users/tobin/Documents/Code/c11/d4_sim/
+  python3 manage.py drive
+}
+
+safe_delete() {
+    local dir="$1"
+    
+    if [ -d "$dir" ]; then
+        echo "Deleting directory: $dir"
+        find "$dir" -type d -exec rm -rf {} + || echo "Failed to delete $dir"
+    else
+        echo "Directory does not exist: $dir"
+    fi
+}
+
+function storage() {
+
+directories=(
+    "/Users/tobin/Library/Application Support/Epic/UnrealEngine/5.2/Saved/Crashes"
+    "/Users/tobin/Library/Messages/Attachments"
+    "/Users/tobin/Library/Logs/JetBrains"
+    "/Users/tobin/Library/Logs/TrypFPV"
+    "/Users/tobin/Library/Logs/Google"
+)
+  for dir in "${directories[@]}"; do
+      safe_delete "$dir"
+  done
+}
 
 function nvims() {
     items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
@@ -172,3 +222,4 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

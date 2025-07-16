@@ -6,9 +6,8 @@ fn - 6 : yabai -m space --focus 6
 fn - 7 : yabai -m space --focus 7
 fn - 8 : yabai -m space --focus 8
 fn - 9 : yabai -m space --focus 9
-fn - d : yabai -m space --destroy
 fn - 0x18 : yabai -m space --balance 
-fn - s : sh ~/.config/skhd/scripts/yabai/swap_clockwise.sh
+fn - d : sh ~/.config/skhd/scripts/yabai/swap_clockwise.sh
 fn - n : yabai -m space --create && yabai -m space --focus last
 fn - q : sh ~/.config/skhd/scripts/yabai/move_window_new_space.sh
 fn - l : sh ~/.config/skhd/scripts/yabai/move_space_right.sh
