@@ -16,9 +16,12 @@ export ZSHPATH=$HOME/.config/.zsh
 export CODE=~/Documents/Code/$1
 export EDITOR="nvim"
 
+# if [ -f "$ZSH" ]; then
+#   source "$HOME/.env"
+# fi
+
 if [[ "$machine" == "Mac" ]]; then
 	export PATH="$HOME/.tmuxifier/bin:$PATH"
-  export HOMEBREW_GITHUB_API_TOKEN=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
 	export PATH=$PATH:/Users/tobin/Library/Python/3.9/lib/python/site-packages
 	export PATH=$PATH:/Users/tobin/Library/Python/3.9/bin
 	export PATH=/usr/local/bin:$PATH

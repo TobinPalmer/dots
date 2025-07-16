@@ -17,6 +17,9 @@ case "${unameOut}" in
 esac
 
 if [[ "$machine" == "Mac" ]]; then
+  if [ -f "$HOME/.config/.zsh/.env" ]; then
+    source "$HOME/.config/.zsh/.env"
+  fi
 	# source /opt/homebrew/powerlevel10k/powerlevel10k.zsh-theme
 
   # Source gorem
@@ -96,7 +99,7 @@ alias ch="open /Users/tobin/Library/Application\ Support/Steam/steamapps/common/
 alias deepseek="ollama run huihui_ai/deepseek-r1-abliterated"
 alias bombparty="/Applications/Chromium.app/Contents/MacOS/Chromium --disable-web-security --user-data-dir=\"/Users/tobin/Documents/Misc/bombparty-hacks-save\""
 alias jetson_wired="sshpass -p jetsonucsd ssh jetson@192.168.55.1"
-alias jetson_wireless="sshpass -p jetsonucsd ssh jetson@192.168.222.167"
+alias jetson_wireless="sshpass -p jetsonucsd ssh jetson@192.168.113.248"
 
 donkey() {
   open /Users/tobin/Downloads/donkey_sim_m1.app/ && cd /Users/tobin/Documents/Code/c11/d4_sim/
