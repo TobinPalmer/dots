@@ -30,13 +30,13 @@ fi
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/miniconda3/bin:$PATH"
-    fi
+  if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+    . "/opt/miniconda3/etc/profile.d/conda.sh"
+  else
+    export PATH="/opt/miniconda3/bin:$PATH"
+  fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
@@ -75,7 +75,7 @@ alias reload="source ~/.config/.zsh/.zshrc"
 alias resetNPM="rm -rf node_modules package-lock.json && npm i"
 alias spoof="cd /Users/tobin/Documents/Code/Clones/kinesis && sudo python3.11 main.py"
 alias spacer="defaults write com.apple.dock persistent-apps -array-add '{\"tile-type\"=\"small-spacer-tile\";}'; killall Dock"
-alias syncCode="rsync -av --exclude=node_modules --exclude=target ~/Documents/Code/ /Volumes/Code/"
+alias syncCode="rsync -av --progress --exclude=node_modules --exclude=target ~/Documents/Code/ /Volumes/Code/"
 alias trim="ex +'bufdo!%s/\s\+$//e' -scxa"
 alias v="pbpaste"
 alias brewSize="brew list --formula | xargs -n1 -P8 -I {} sh -c \"brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'\" | sort -h -r -k2 - | column -t "
@@ -98,8 +98,9 @@ alias skydive="open /Users/tobin/Library/Application\ Support/Steam/steamapps/co
 alias ch="open /Users/tobin/Library/Application\ Support/Steam/steamapps/common/Clicker\ Heroes/ClickerHeroes.app/"
 alias deepseek="ollama run huihui_ai/deepseek-r1-abliterated"
 alias bombparty="/Applications/Chromium.app/Contents/MacOS/Chromium --disable-web-security --user-data-dir=\"/Users/tobin/Documents/Misc/bombparty-hacks-save\""
-alias jetson_wired="sshpass -p jetsonucsd ssh jetson@192.168.55.1"
-alias jetson_wireless="sshpass -p jetsonucsd ssh jetson@192.168.113.248"
+alias jetson_wired="sshpass -p jetsonucsd! ssh jetson@192.168.55.1"
+alias jetson_wireless="sshpass -p jetsonucsd! ssh jetson@ucsdrobocar-cosmos-t4.local"
+alias vert="cd /Users/tobin/Documents/Code/Clones/VERT && bun dev"
 
 donkey() {
   open /Users/tobin/Downloads/donkey_sim_m1.app/ && cd /Users/tobin/Documents/Code/c11/d4_sim/
@@ -107,40 +108,39 @@ donkey() {
 }
 
 safe_delete() {
-    local dir="$1"
-    
-    if [ -d "$dir" ]; then
-        echo "Deleting directory: $dir"
-        find "$dir" -type d -exec rm -rf {} + || echo "Failed to delete $dir"
-    else
-        echo "Directory does not exist: $dir"
-    fi
+  local dir="$1"
+
+  if [ -d "$dir" ]; then
+    echo "Deleting directory: $dir"
+    find "$dir" -type d -exec rm -rf {} + || echo "Failed to delete $dir"
+  else
+    echo "Directory does not exist: $dir"
+  fi
 }
 
 function storage() {
-
-directories=(
+  directories=(
     "/Users/tobin/Library/Application Support/Epic/UnrealEngine/5.2/Saved/Crashes"
     "/Users/tobin/Library/Messages/Attachments"
     "/Users/tobin/Library/Logs/JetBrains"
     "/Users/tobin/Library/Logs/TrypFPV"
     "/Users/tobin/Library/Logs/Google"
-)
+  )
   for dir in "${directories[@]}"; do
-      safe_delete "$dir"
+    safe_delete "$dir"
   done
 }
 
 function nvims() {
-    items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
-    config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config 󰄾" --height=~50% --layout=reverse --border --exit-0)
-    if [[ -z $config ]]; then
-        echo "Nothing selected"
-        return 0
-    elif [[ $config == "default" ]]; then
-        config=""
-    fi
-    NVIM_APPNAME=$config nvim $@
+  items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config 󰄾" --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
 }
 
 if [[ "$machine" == "Mac" ]]; then
@@ -162,9 +162,9 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 if [[ "$machine" == "Mac" ]]; then
-	eval "$(tmuxifier init -)"
-	eval "$(opam env --switch=default)"
-	eval "$(flutter bash-completion)"
+  eval "$(tmuxifier init -)"
+  eval "$(opam env --switch=default)"
+  eval "$(flutter bash-completion)"
 fi
 
 export CHROME_EXECUTABLE=/Applications/Chromium.app/Contents/MacOS/Chromium
@@ -180,8 +180,10 @@ source "$ZSH/oh-my-zsh.sh"
 
 # Plugins
 if [[ "$machine" == "Mac" ]]; then
-	source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-	source $(brew --prefix)/opt/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+  source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+  source $(brew --prefix)/opt/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+  source /Users/tobin/.config/.zsh/homebrew.sh
 fi
 
 # Powerline10k prompt configuration
@@ -192,7 +194,7 @@ fi
 
 # Powerline10k configuration
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 export ZSHPATH=$HOME/.config/.zsh
@@ -201,15 +203,15 @@ export ZSHPATH=$HOME/.config/.zsh
 [[ ! -f ~/.config/.zsh/.p10k.zsh ]] || source ~/.config/.zsh/.p10k.zsh
 
 for file in "$ZSHPATH"/functions/*; do
-    if [[ -f "$file" ]]; then
-        source "$file"
-    fi
+  if [[ -f "$file" ]]; then
+    source "$file"
+  fi
 done
 
 for file in "$ZSHPATH"/configs/*; do
-    if [[ -f "$file" ]]; then
-        source "$file"
-    fi
+  if [[ -f "$file" ]]; then
+    source "$file"
+  fi
 done
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -226,3 +228,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export HF_HOME=/Volumes/Other/hf-cache
+export HF_HUB_CACHE=/Volumes/Other/hf-cache/hub
+export TRANSFORMERS_CACHE=/Volumes/Other/hf-cache/transformers
