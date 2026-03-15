@@ -5,7 +5,7 @@ sketchybar --add alias  "Control Center,WiFi" right                      \
     --set        wifi.alias    icon.drawing=on                    \
     label.drawing=off                   \
     alias.color="$BLUE"                \
-    background.padding_right=-3        \
+    background.padding_right=-8       \
     background.padding_left=-20        \
     script="$PLUGIN_DIR/wifi.sh"       \
     align=right                        \
