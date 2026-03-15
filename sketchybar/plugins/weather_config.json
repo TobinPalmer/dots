@@ -1,12 +1,7 @@
 {
   "weathergov": {
-    "location": "LOX/146,45",
-    "url": "https://api.weather.gov/gridpoints/",
-    "format": "forecast"
-  },
-  "wttr": {
-    "url": "https://wttr.in/",
-    "location": "Santa%Monica+California",
-    "format": "format=2"
+    "latitude": "34.01025",
+    "longitude": "-118.47765",
+    "points_url": "https://api.weather.gov/points"
   }
 }

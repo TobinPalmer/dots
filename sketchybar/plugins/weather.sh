@@ -2,6 +2,27 @@
 
 source "$HOME/.config/color/colors.sh"
 
+WEATHER_CONFIG="$HOME/.config/sketchybar/plugins/weather_config.json"
+WEATHER_USER_AGENT="SketchyBar Weather (tobin@localhost)"
+
+weather_request() {
+    curl -fsSL \
+        -H "Accept: application/geo+json" \
+        -H "User-Agent: $WEATHER_USER_AGENT" \
+        "$1"
+}
+
+forecast_url() {
+    local latitude longitude points_url points_response
+
+    latitude=$(jq -r '.weathergov.latitude' "$WEATHER_CONFIG")
+    longitude=$(jq -r '.weathergov.longitude' "$WEATHER_CONFIG")
+    points_url=$(jq -r '.weathergov.points_url' "$WEATHER_CONFIG")
+    points_response=$(weather_request "$points_url/$latitude,$longitude") || return 1
+
+    echo "$points_response" | jq -r '.properties.forecast'
+}
+
 function get_temp_color() {
     if [[ $1 =~ ^[0-9]$ ]]; then
         echo "$VERY_COLD"
@@ -98,7 +119,7 @@ render_popup() {
     sketchybar --remove '/weather.details.\.*/'
 
     weather_details=(
-        label="$forecast $popup_weather"
+        label="$forecast"
         label.padding_left=80
         click_script="sketchybar --set $NAME popup.drawing=off"
         position=popup.weather.temp
@@ -155,17 +176,12 @@ render_popup() {
 }
 
 update() {
-    # Bar
-    url=$(jq -r '.weathergov | "\(.url)\(.location)/\(.format)"' ~/.config/sketchybar/plugins/weather_config.json)
-    weather=$(curl -s "$url")
+    url=$(forecast_url) || exit 0
+    weather=$(weather_request "$url") || exit 0
     temp=$(echo "$weather" | jq -r '.properties.periods[0].temperature')
     forecast=$(echo "$weather" | jq -r '.properties.periods[0].shortForecast')
     time=$(echo "$weather" | jq -r '.properties.periods[0].isDaytime')
     icon=$(weather_icon_map "$time" "$forecast")
-
-    # popup
-    url=$(jq -r '.wttr | "\(.url)\(.location)?\(.format)"' ~/.config/sketchybar/plugins/weather_config.json)
-    popup_weather=$(curl -s "$url" | sed 's/  */ /g')
 
     render_bar
     render_popup

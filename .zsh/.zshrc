@@ -101,6 +101,9 @@ alias bombparty="/Applications/Chromium.app/Contents/MacOS/Chromium --disable-we
 alias jetson_wired="sshpass -p jetsonucsd! ssh jetson@192.168.55.1"
 alias jetson_wireless="sshpass -p jetsonucsd! ssh jetson@ucsdrobocar-cosmos-t4.local"
 alias vert="cd /Users/tobin/Documents/Code/Clones/VERT && bun dev"
+alias location="python /Users/tobin/Documents/Code/Python/location/main.py"
+alias aeries="/Users/tobin/Documents/Code/Python/aeries/.venv/bin/python /Users/tobin/Documents/Code/Python/aeries/main.py"
+
 
 donkey() {
   open /Users/tobin/Downloads/donkey_sim_m1.app/ && cd /Users/tobin/Documents/Code/c11/d4_sim/
