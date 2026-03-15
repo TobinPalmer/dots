@@ -29,3 +29,4 @@ skhd/~
 nvim/.DS_Store
 nvim/lazy-lock.json
 nvim/spell/*
+/sketchybar/items/~/.cache/zsh/compcache
