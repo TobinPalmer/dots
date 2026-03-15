@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ipvanish_item=(
+  updates=on
   drawing=off
   icon.drawing=off
   label=""
