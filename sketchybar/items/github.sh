@@ -1,6 +1,7 @@
 #!/bin/bash
 
-POPUP_CLICK_SCRIPT="sketchybar --set \$NAME popup.drawing=toggle"
+POPUP_HELPER="$HOME/.config/sketchybar/plugins/popup.sh"
+POPUP_CLICK_SCRIPT=". \"$POPUP_HELPER\"; toggle_popup_exclusive \"\$NAME\""
 
 github_bell=(
     update_freq=180

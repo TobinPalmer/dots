@@ -1,7 +1,8 @@
 #!/bin/bash
 
 SPOTIFY_EVENT="com.spotify.client.PlaybackStateChanged"
-POPUP_SCRIPT="sketchybar -m --set spotify.anchor popup.drawing=toggle"
+POPUP_HELPER="$HOME/.config/sketchybar/plugins/popup.sh"
+POPUP_SCRIPT=". \"$POPUP_HELPER\"; toggle_popup_exclusive \"spotify.anchor\""
 
 spotify_anchor=(
     script="$PLUGIN_DIR/spotify.sh"

@@ -2,6 +2,7 @@
 
 source "$HOME/.config/color/colors.sh"
 source "$HOME/.config/sketchybar/icons.sh"
+source "$HOME/.config/sketchybar/plugins/popup.sh"
 
 SPEEDTEST_BIN="${SPEEDTEST_BIN:-$(command -v speedtest-cli || echo /opt/homebrew/bin/speedtest-cli)}"
 JQ_BIN="${JQ_BIN:-$(command -v jq || echo /opt/homebrew/bin/jq)}"
@@ -139,7 +140,11 @@ update() {
 }
 
 popup() {
-    sketchybar --set $NAME popup.drawing="$1"
+    case "$1" in
+        on) open_popup_exclusive "$NAME" ;;
+        toggle) toggle_popup_exclusive "$NAME" ;;
+        *) sketchybar --set "$NAME" popup.drawing="$1" ;;
+    esac
 }
 
 case "$SENDER" in

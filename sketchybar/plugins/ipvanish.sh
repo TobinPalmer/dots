@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source "$HOME/.config/sketchybar/plugins/popup.sh"
+
 PREFS_FILE="$HOME/Library/Preferences/com.ipvanish.IPVanish.plist"
 BUNDLE_ID="com.ipvanish.IPVanish"
 OPENVPN_PID_FILE="/tmp/ipvanish3-openvpn.pid"
@@ -178,7 +180,11 @@ popup() {
     }
   fi
 
-  sketchybar --set "$NAME" popup.drawing="$1"
+  case "$1" in
+    on) open_popup_exclusive "$NAME" ;;
+    toggle) toggle_popup_exclusive "$NAME" ;;
+    *) sketchybar --set "$NAME" popup.drawing="$1" ;;
+  esac
 }
 
 set_update_freq() {

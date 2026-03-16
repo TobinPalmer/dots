@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "$HOME/.config/sketchybar/plugins/popup.sh"
+
 update() {
     source "$HOME/.config/color/colors.sh"
     source "$HOME/.config/sketchybar/icons.sh"
@@ -76,7 +78,11 @@ update() {
 }
 
 popup() {
-    sketchybar --set $NAME popup.drawing=$1
+    case "$1" in
+        on) open_popup_exclusive "$NAME" ;;
+        toggle) toggle_popup_exclusive "$NAME" ;;
+        *) sketchybar --set "$NAME" popup.drawing="$1" ;;
+    esac
 }
 
 case "$SENDER" in

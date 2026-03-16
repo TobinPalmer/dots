@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "$HOME/.config/sketchybar/plugins/popup.sh"
+
 next () {
     osascript -e 'tell application "Spotify" to play next track'
 }
@@ -113,7 +115,11 @@ mouse_clicked () {
 }
 
 popup () {
-    sketchybar --set spotify.anchor popup.drawing=$1
+    case "$1" in
+        on) open_popup_exclusive "spotify.anchor" ;;
+        toggle) toggle_popup_exclusive "spotify.anchor" ;;
+        *) sketchybar --set spotify.anchor popup.drawing="$1" ;;
+    esac
 }
 
 routine() {

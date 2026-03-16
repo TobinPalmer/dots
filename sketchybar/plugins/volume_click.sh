@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "$HOME/.config/sketchybar/plugins/popup.sh"
+
 WIDTH=100
 
 detail_on() {
@@ -23,7 +25,14 @@ toggle_devices() {
     which SwitchAudioSource >/dev/null || exit 0
     source "$HOME/.config/colors/colors.sh"
 
-    args=(--remove '/volume.device\.*/' --set "$NAME" popup.drawing=toggle)
+    if popup_is_open "$NAME"; then
+        sketchybar --remove '/volume.device\.*/' --set "$NAME" popup.drawing=off > /dev/null
+        return 0
+    fi
+
+    close_all_popups
+
+    args=(--remove '/volume.device\.*/' --set "$NAME" popup.drawing=on)
     COUNTER=0
     CURRENT="$(SwitchAudioSource -t output -c)"
     while IFS= read -r device; do
