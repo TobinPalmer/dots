@@ -103,6 +103,7 @@ alias jetson_wireless="sshpass -p jetsonucsd! ssh jetson@ucsdrobocar-cosmos-t4.l
 alias vert="cd /Users/tobin/Documents/Code/Clones/VERT && bun dev"
 alias location="python /Users/tobin/Documents/Code/Python/location/main.py"
 alias aeries="/Users/tobin/Documents/Code/Python/aeries/.venv/bin/python /Users/tobin/Documents/Code/Python/aeries/main.py"
+alias ipv="python3 /Users/tobin/Documents/Code/Python/IPVanishTUI/main.py"
 
 
 donkey() {
