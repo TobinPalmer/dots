@@ -14,14 +14,15 @@ weather_icon=(
 
 weather_temp=(
     label="temp"
+    updates=on
     update_freq=60
     popup.align=right
     popup.height=20
     y_offset=-10
     script="$PLUGIN_DIR/weather.sh"
     click_script="$POPUP_CLICK_SCRIPT"
-    label.padding_left==0
-    label.padding_right==0
+    label.padding_left=0
+    label.padding_right=0
     background.padding_right=-30
     background.padding_left=10
 )

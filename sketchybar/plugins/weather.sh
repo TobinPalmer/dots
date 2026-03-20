@@ -4,7 +4,18 @@ source "$HOME/.config/color/colors.sh"
 source "$HOME/.config/sketchybar/plugins/popup.sh"
 
 WEATHER_CONFIG="$HOME/.config/sketchybar/plugins/weather_config.json"
+APPLE_WEATHER_HELPER="$HOME/.config/sketchybar/plugins/apple_weather.sh"
 WEATHER_USER_AGENT="SketchyBar Weather (tobin@localhost)"
+WEATHER_CACHE="$HOME/Library/Caches/sketchybar/weather.json"
+
+apple_weather() {
+    local latitude longitude
+
+    latitude=$(jq -r '.weathergov.latitude' "$WEATHER_CONFIG")
+    longitude=$(jq -r '.weathergov.longitude' "$WEATHER_CONFIG")
+
+    "$APPLE_WEATHER_HELPER" "$latitude" "$longitude"
+}
 
 weather_request() {
     curl -fsSL \
@@ -22,6 +33,105 @@ forecast_url() {
     points_response=$(weather_request "$points_url/$latitude,$longitude") || return 1
 
     echo "$points_response" | jq -r '.properties.forecast'
+}
+
+weathergov_weather() {
+    local latitude longitude url raw_weather
+
+    latitude=$(jq -r '.weathergov.latitude' "$WEATHER_CONFIG")
+    longitude=$(jq -r '.weathergov.longitude' "$WEATHER_CONFIG")
+    url=$(forecast_url) || return 1
+    raw_weather=$(weather_request "$url") || return 1
+
+    jq -cn \
+        --argjson latitude "$latitude" \
+        --argjson longitude "$longitude" \
+        --argjson raw "$raw_weather" '
+        def precip($period):
+            ($period.probabilityOfPrecipitation.value // 0);
+
+        def pair_periods:
+            reduce .[] as $period (
+                [];
+                if $period.isDaytime then
+                    if length > 0 and .[-1].high == null and .[-1].low != null then
+                        .[-1] |= (
+                            .name = $period.name
+                            | .condition = $period.shortForecast
+                            | .high = $period.temperature
+                            | .precipitationChance = ([.precipitationChance, precip($period)] | max)
+                        )
+                    else
+                        . + [{
+                            name: $period.name,
+                            condition: $period.shortForecast,
+                            high: $period.temperature,
+                            low: null,
+                            precipitationChance: precip($period)
+                        }]
+                    end
+                else
+                    if length > 0 and .[-1].high != null and .[-1].low == null then
+                        .[-1] |= (
+                            .low = $period.temperature
+                            | .precipitationChance = ([.precipitationChance, precip($period)] | max)
+                        )
+                    else
+                        . + [{
+                            name: $period.name,
+                            condition: $period.shortForecast,
+                            high: null,
+                            low: $period.temperature,
+                            precipitationChance: precip($period)
+                        }]
+                    end
+                end
+            );
+
+        {
+            temperature: ($raw.properties.periods[0].temperature),
+            condition: ($raw.properties.periods[0].shortForecast),
+            isDaylight: ($raw.properties.periods[0].isDaytime),
+            locationSource: "weathergov",
+            coordinates: {
+                latitude: $latitude,
+                longitude: $longitude
+            },
+            forecast: (
+                ($raw.properties.periods | .[0:8] | pair_periods)
+                | map(select(.high != null and .low != null))
+                | .[0:3]
+            )
+        }'
+}
+
+load_weather() {
+    local weather_payload
+
+    mkdir -p "$(dirname "$WEATHER_CACHE")"
+
+    if weather_payload=$(apple_weather 2>/dev/null); then
+        printf '%s\n' "$weather_payload" >"$WEATHER_CACHE"
+        printf '%s\n' "$weather_payload"
+        return 0
+    fi
+
+    if weather_payload=$(weathergov_weather 2>/dev/null); then
+        printf '%s\n' "$weather_payload" >"$WEATHER_CACHE"
+        printf '%s\n' "$weather_payload"
+        return 0
+    fi
+
+    if [[ -s "$WEATHER_CACHE" ]]; then
+        cat "$WEATHER_CACHE"
+        return 0
+    fi
+
+    return 1
+}
+
+ascii_text() {
+    LC_ALL=C printf '%s' "$1" | tr -cd '[:print:]\n'
 }
 
 function get_temp_color() {
@@ -61,23 +171,29 @@ weather_icon_map() {
         *"Clear"* | *"Mostly Clear"*)
             icon_result="􀆺"
             ;;
-        *"Mostly Cloudy"* | *"Cloudy"* | *"Partly Cloudy"*)
+        *"Mostly Cloudy"* | *"Cloudy"* | *"Partly Cloudy"* | *"Haze"* | *"Smoky"*)
             icon_result="􀇃"
             ;;
-        *"Rain"*)
+        *"Rain"* | *"Drizzle"* | *"Sun Showers"*)
             icon_result="􀇆"
             ;;
         *"Slight Chance Rain Showers"* | *"Chance Rain Showers"*)
             icon_result="􀇄"
             ;;
-        *"Slight Chance Light Snow"* | *"Chance Light Snow"* | *"Snow Likely"*)
+        *"Slight Chance Light Snow"* | *"Chance Light Snow"* | *"Snow Likely"* | *"Flurries"* | *"Wintry Mix"* | *"Sleet"* | *"Freezing Rain"* | *"Freezing Drizzle"*)
             icon_result="􀇌"
             ;;
-        *"Snow Showers"* | *"Snow Showers Likely"* | *"Chance Snow Showers"* | *"Heavy Snow"* | *"Snow and Patchy Blowing Snow"*)
+        *"Snow Showers"* | *"Snow Showers Likely"* | *"Chance Snow Showers"* | *"Heavy Snow"* | *"Snow and Patchy Blowing Snow"* | *"Blowing Snow"* | *"Blizzard"*)
             icon_result="􀇄"
             ;;
-        *"Patchy Fog"* | *"Areas Of Fog"* | *"Widespread Fog"*)
+        *"Patchy Fog"* | *"Areas Of Fog"* | *"Widespread Fog"* | *"Foggy"*)
             icon_result="􀇊"
+            ;;
+        *"Thunderstorms"* | *"Scattered Thunderstorms"* | *"Strong Storms"* | *"Tropical Storm"* | *"Hurricane"*)
+            icon_result="􀇟"
+            ;;
+        *"Breezy"* | *"Windy"*)
+            icon_result="􀇞"
             ;;
             # Daytime
         *"Snow"* | *"Snow Showers"*)
@@ -117,10 +233,14 @@ render_bar() {
 
 
 render_popup() {
-    sketchybar --remove '/weather.details.\.*/'
+    sketchybar --remove '/weather\.details\..*/' >/dev/null 2>&1
+
+    today_high=$(echo "$weather" | jq -r '.forecast[0].high')
+    today_low=$(echo "$weather" | jq -r '.forecast[0].low')
+    popup_summary=$(ascii_text "$forecast")
 
     weather_details=(
-        label="$forecast"
+        label="$popup_summary | H $today_high | L $today_low"
         label.padding_left=80
         click_script="sketchybar --set $NAME popup.drawing=off"
         position=popup.weather.temp
@@ -132,20 +252,29 @@ render_popup() {
     sketchybar --clone weather.details."$COUNTER" weather.details
     sketchybar --set weather.details."$COUNTER" "${weather_details[@]}"
 
-    echo "$weather" | jq -r '.properties.periods[] | @base64' | while read -r period; do
+    echo "$weather" | jq -cr '.forecast[]' | while read -r period; do
         COUNTER=$((COUNTER + 1))
 
         if [ "$COUNTER" -lt 4 ]; then
-            decoded_period=$(echo "$period" | base64 --decode)
-            period_name=$(echo "$period" | base64 --decode | jq -r '.name')
-            detailed_forecast=$(echo "$decoded_period" | jq -r '.detailedForecast')
-            temperature=$(echo "$decoded_period" | jq -r '.temperature')
-            temperature_unit=$(echo "$decoded_period" | jq -r '.temperatureUnit')
+            period_name=$(jq -r '.name' <<<"$period")
+            condition=$(jq -r '.condition' <<<"$period")
+            high=$(jq -r '.high' <<<"$period")
+            low=$(jq -r '.low' <<<"$period")
+            precipitation_chance=$(jq -r '.precipitationChance' <<<"$period")
+
+            period_name=$(ascii_text "$period_name")
+            condition=$(ascii_text "$condition")
+
+            line="$condition"
+
+            if [ "$precipitation_chance" -gt 0 ] 2>/dev/null; then
+                line="$line | Rain $precipitation_chance%"
+            fi
 
             weather_period=(
-                icon="$period_name - $temperature $temperature_unit"
+                icon="$period_name"
                 icon.color="$BLUE"
-                label="$sentence"
+                label="$line"
                 label.drawing=on
                 click_script="sketchybar --set $NAME popup.drawing=off"
                 drawing=on
@@ -155,21 +284,31 @@ render_popup() {
             sketchybar --add item "$item" popup.weather.temp
             sketchybar --set "$item" "${weather_period[@]}"
 
-            SUBCOUNTER=0
-            echo "$detailed_forecast" | grep -o -E '\b[^.!?]*[.!?]' | while read -r sentence; do
+            high_period=(
+                icon="H"
+                icon.color="$RED"
+                label="$high"
+                label.drawing=on
+                click_script="sketchybar --set $NAME popup.drawing=off"
+                drawing=on
+            )
 
-                SUBCOUNTER=$((SUBCOUNTER + 1))
-                weather_period=(
-                    label="$sentence"
-                    label.drawing=on
-                    click_script="sketchybar --set $NAME popup.drawing=off"
-                    drawing=on
-                )
+            item=weather.details."$COUNTER".high
+            sketchybar --add item "$item" popup.weather.temp
+            sketchybar --set "$item" "${high_period[@]}"
 
-                item=weather.details."$COUNTER"."$SUBCOUNTER"
-                sketchybar --add item "$item" popup.weather.temp
-                sketchybar --set "$item" "${weather_period[@]}"
-            done
+            low_period=(
+                icon="L"
+                icon.color="$BLUE"
+                label="$low"
+                label.drawing=on
+                click_script="sketchybar --set $NAME popup.drawing=off"
+                drawing=on
+            )
+
+            item=weather.details."$COUNTER".low
+            sketchybar --add item "$item" popup.weather.temp
+            sketchybar --set "$item" "${low_period[@]}"
 
             sketchybar --add item weather.details.newline."$COUNTER" popup.weather.temp
         fi
@@ -177,11 +316,10 @@ render_popup() {
 }
 
 update() {
-    url=$(forecast_url) || exit 0
-    weather=$(weather_request "$url") || exit 0
-    temp=$(echo "$weather" | jq -r '.properties.periods[0].temperature')
-    forecast=$(echo "$weather" | jq -r '.properties.periods[0].shortForecast')
-    time=$(echo "$weather" | jq -r '.properties.periods[0].isDaytime')
+    weather=$(load_weather) || exit 0
+    temp=$(echo "$weather" | jq -r '.temperature')
+    forecast=$(echo "$weather" | jq -r '.condition')
+    time=$(echo "$weather" | jq -r '.isDaylight')
     icon=$(weather_icon_map "$time" "$forecast")
 
     render_bar

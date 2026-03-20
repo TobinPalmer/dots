@@ -20,7 +20,7 @@ sketchybar --add item time right                       \
     icon.padding_left=0                                \
     \
     --add item weather right                           \
-    --set weather update_freq=1800                     \
+    --set weather update_freq=60                       \
     background.padding_left=10                         \
     background.padding_right=0                         \
     icon.padding_left=0                                \
