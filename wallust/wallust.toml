@@ -1,0 +1,21 @@
+# https://codeberg.org/explosion-mental/wallust
+
+backend = "fastresize"
+palette = "kmeans"
+style = "dark"
+use16cols = true
+check_contrast = true
+alpha = 94
+
+[templates]
+shell = { template = "colors.sh", target = "~/.config/color/colors.sh" }
+kitty = { template = "kitty.conf", target = "~/.config/kitty/wallust.conf" }
+wezterm = { template = "wezterm.lua", target = "~/.config/wezterm/wallust.lua" }
+btop = { template = "btop.theme", target = "~/.config/btop/themes/wallust.theme" }
+cava = { template = "cava", target = "~/.config/cava/config" }
+
+[hooks]
+reload_kitty = "/opt/homebrew/bin/kitty @ --to unix:/tmp/kitty set-colors --all --configured ~/.config/kitty/wallust.conf >/dev/null 2>&1 || true"
+reload_wezterm = "touch ~/.config/wezterm/wezterm.lua"
+reload_sketchybar = "/opt/homebrew/bin/sketchybar --reload >/dev/null 2>&1 || true"
+reload_yabai = "command -v yabai >/dev/null && yabai --restart-service >/dev/null 2>&1 || true"

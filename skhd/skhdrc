@@ -16,15 +16,15 @@ fn - h : sh ~/.config/skhd/scripts/yabai/move_space_left.sh
 fn + shift - q : sh ~/.config/skhd/scripts/yabai/move_window_new_space_no_switch.sh
 
 # Modes
-:: default : yabai -m config active_window_border_color 0xff1e1d2c
-:: command @ : yabai -m config active_window_border_color 0xff8be9fd
-:: spotify @ : yabai -m config active_window_border_color 0xff1ed761
-:: move @ : yabai -m config active_window_border_color 0xff06447d
-:: app @ : yabai -m config active_window_border_color 0xff830709
-:: firefox @ : yabai -m config active_window_border_color 0xffFFA500
-:: drive @ : yabai -m config active_window_border_color 0xff2596be
-:: restart @ : yabai -m config active_window_border_color 0xff00B612
-:: kill @ : yabai -m config active_window_border_color 0xffff0000
+:: default : sh ~/.config/skhd/scripts/set_mode_border.sh default
+:: command @ : sh ~/.config/skhd/scripts/set_mode_border.sh command
+:: spotify @ : sh ~/.config/skhd/scripts/set_mode_border.sh spotify
+:: move @ : sh ~/.config/skhd/scripts/set_mode_border.sh move
+:: app @ : sh ~/.config/skhd/scripts/set_mode_border.sh app
+:: firefox @ : sh ~/.config/skhd/scripts/set_mode_border.sh firefox
+:: drive @ : sh ~/.config/skhd/scripts/set_mode_border.sh drive
+:: restart @ : sh ~/.config/skhd/scripts/set_mode_border.sh restart
+:: kill @ : sh ~/.config/skhd/scripts/set_mode_border.sh kill
 
 fn - 0x31 ; command
 command, spotify, move, app, firefox, drive, kill < 0x35 ; default
@@ -65,4 +65,3 @@ kill < d : pkill dart ; skhd --key "0x35"
 restart < a : sh ~/.config/skhd/scripts/restart/all.sh ; skhd --key "0x35"
 restart < r : restart & ; skhd --key "0x35"
 restart < y : yabai --restart-service ; skhd --key "0x35"
-

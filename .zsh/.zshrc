@@ -106,6 +106,51 @@ alias aeries="/Users/tobin/Documents/Code/Python/aeries/.venv/bin/python /Users/
 alias ipv="python3 /Users/tobin/Documents/Code/Python/IPVanishTUI/main.py"
 alias weather="/Users/tobin/Documents/Code/python/weatherTUI/venv/bin/python /Users/tobin/Documents/Code/python/weatherTUI/main.py"
 
+reloadcolors() {
+  local wallpaper index_plist wallpaper_ext converted_wallpaper
+
+  wallpaper="$(osascript -e 'tell application "System Events" to get picture of every desktop' 2>/dev/null \
+    | tr ',' '\n' \
+    | sed -e 's/^ *//' -e 's/ *$//' \
+    | awk 'NF && $0 != "missing value" { print; exit }')"
+
+  if [[ -z "$wallpaper" || ! -f "$wallpaper" ]]; then
+    wallpaper="$(osascript -e 'tell application "System Events" to get properties of current desktop' 2>/dev/null \
+      | sed -n 's/.*picture:\([^,]*\).*/\1/p')"
+  fi
+
+  if [[ -z "$wallpaper" || ! -f "$wallpaper" ]]; then
+    index_plist="$HOME/Library/Application Support/com.apple.wallpaper/Store/Index.plist"
+    wallpaper="$(plutil -p "$index_plist" 2>/dev/null \
+      | sed -n 's/.*"relative" => "file:\/\/\(.*\)"/\1/p' \
+      | head -1)"
+    wallpaper="${wallpaper//%20/ }"
+  fi
+
+  if [[ -z "$wallpaper" || ! -f "$wallpaper" ]]; then
+    source "$HOME/.config/color/colors.sh"
+    wallpaper="$WALLUST_WALLPAPER"
+  fi
+
+  if [[ -z "$wallpaper" || ! -f "$wallpaper" ]]; then
+    echo "reloadcolors: could not find a usable wallpaper image"
+    return 1
+  fi
+
+  wallpaper_ext="${wallpaper:e:l}"
+  if [[ "$wallpaper_ext" == "heic" || "$wallpaper_ext" == "heif" ]]; then
+    converted_wallpaper="${TMPDIR:-/tmp}/wallust-current-wallpaper.png"
+    sips -s format png "$wallpaper" --out "$converted_wallpaper" >/dev/null || return
+    wallpaper="$converted_wallpaper"
+  fi
+
+  "$HOME/.cargo/bin/wallust" -d "$HOME/.config/wallust" run "$wallpaper" || return
+
+  /opt/homebrew/bin/kitty @ --to unix:/tmp/kitty set-colors --all --configured "$HOME/.config/kitty/wallust.conf" >/dev/null 2>&1 || true
+  touch "$HOME/.config/wezterm/wezterm.lua"
+  /opt/homebrew/bin/sketchybar --reload >/dev/null 2>&1 || true
+}
+
 
 donkey() {
   open /Users/tobin/Downloads/donkey_sim_m1.app/ && cd /Users/tobin/Documents/Code/c11/d4_sim/

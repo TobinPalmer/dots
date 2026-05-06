@@ -23,7 +23,7 @@ toggle_detail() {
 
 toggle_devices() {
     which SwitchAudioSource >/dev/null || exit 0
-    source "$HOME/.config/colors/colors.sh"
+    source "$HOME/.config/color/colors.sh"
 
     if popup_is_open "$NAME"; then
         sketchybar --remove '/volume.device\.*/' --set "$NAME" popup.drawing=off > /dev/null

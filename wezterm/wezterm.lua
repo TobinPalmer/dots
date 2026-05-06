@@ -1,6 +1,8 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+local palette = dofile(wezterm.home_dir .. "/.config/wezterm/wallust.lua")
+
 -- Equivalent to POSIX basename(3) Given "/foo/bar" returns "bar"
 -- Given "c:\\foo\\bar" returns "bar"
 local function basename(s)
@@ -78,17 +80,17 @@ local SUB_IDX = {
 }
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local edge_background = "#121212"
-	local background = "#4E4E4E"
-	local foreground = "#1C1B19"
-	local dim_foreground = "#3A3A3A"
+	local edge_background = palette.background
+	local background = palette.color8
+	local foreground = palette.foreground
+	local dim_foreground = palette.color7
 
 	if tab.is_active then
-		background = "#eff1f5"
-		foreground = "#1C1B19"
+		background = palette.color4
+		foreground = palette.background
 	elseif hover then
-		background = "#bcc0cc"
-		foreground = "#1C1B19"
+		background = palette.color6
+		foreground = palette.background
 	end
 
 	local edge_foreground = background
@@ -223,16 +225,47 @@ return {
 		LANG = "en_US.UTF-8",
 		PATH = wezterm.executable_dir .. ";" .. os.getenv("PATH"),
 	},
-	color_scheme = "Catppuccin Mocha",
+	color_schemes = {
+		Wallust = {
+			foreground = palette.foreground,
+			background = palette.background,
+			cursor_bg = palette.cursor,
+			cursor_border = palette.cursor,
+			cursor_fg = palette.background,
+			selection_bg = palette.color8,
+			selection_fg = palette.foreground,
+			ansi = {
+				palette.color0,
+				palette.color1,
+				palette.color2,
+				palette.color3,
+				palette.color4,
+				palette.color5,
+				palette.color6,
+				palette.color7,
+			},
+			brights = {
+				palette.color8,
+				palette.color9,
+				palette.color10,
+				palette.color11,
+				palette.color12,
+				palette.color13,
+				palette.color14,
+				palette.color15,
+			},
+		},
+	},
+	color_scheme = "Wallust",
 	max_fps = 144,
 	window_decorations = "RESIZE",
 	tab_bar_at_bottom = true,
 	colors = {
 		tab_bar = {
-			background = "#121212",
-			new_tab = { bg_color = "#121212", fg_color = "#121212", intensity = "Bold" },
-			new_tab_hover = { bg_color = "#121212", fg_color = "#121212", intensity = "Bold" },
-			active_tab = { bg_color = "#121212", fg_color = "#eff1f5" },
+			background = palette.background,
+			new_tab = { bg_color = palette.background, fg_color = palette.background, intensity = "Bold" },
+			new_tab_hover = { bg_color = palette.background, fg_color = palette.foreground, intensity = "Bold" },
+			active_tab = { bg_color = palette.background, fg_color = palette.foreground },
 		},
 	},
 	inactive_pane_hsb = {

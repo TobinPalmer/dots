@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "$HOME/.config/color/colors.sh"
+
 STATE_FILE="/tmp/sketchybar_codex_state.env"
 
 load_state() {
@@ -82,21 +84,21 @@ update_item() {
   local label_color percent_value
 
   if [[ "$status" == "error" ]]; then
-    sketchybar --set "$NAME" label="$label" label.color=0xffff6b6b
+    sketchybar --set "$NAME" label="$label" label.color="$RED"
   else
     percent_value="${label%\%}"
     if [[ "$percent_value" =~ ^[0-9]+$ ]]; then
       if (( percent_value < 50 )); then
-        label_color=0xffa6da95
+        label_color="$GREEN"
       elif (( percent_value < 75 )); then
-        label_color=0xffeed49f
+        label_color="$YELLOW"
       elif (( percent_value < 90 )); then
-        label_color=0xfff5a97f
+        label_color="$ORANGE"
       else
-        label_color=0xffed8796
+        label_color="$RED"
       fi
     else
-      label_color=0xffcad3f5
+      label_color="$WHITE"
     fi
     sketchybar --set "$NAME" label="$label" label.color="$label_color"
   fi
