@@ -33,4 +33,10 @@ sketchybar --add item ipvanish right                     \
   --add item ipvanish.location popup.ipvanish           \
   --set ipvanish.location "${ipvanish_popup_item[@]}"   \
   --add item ipvanish.duration popup.ipvanish           \
-  --set ipvanish.duration "${ipvanish_popup_item[@]}"
+  --set ipvanish.duration "${ipvanish_popup_item[@]}"   \
+                         icon.drawing=on                \
+                         icon="Connected for"           \
+                         icon.color=$WHITE              \
+                         icon.font="$FONT:Regular:13.0" \
+                         label.color=$GREEN             \
+                         label.font="$FONT:Bold:13.0"

@@ -136,7 +136,7 @@ render_popup() {
   connected_for="$(format_duration "$1")"
 
   sketchybar --set ipvanish.location drawing=on label="Connected to $location"
-  sketchybar --set ipvanish.duration drawing=on label="Connected for $connected_for"
+  sketchybar --set ipvanish.duration drawing=on label="$connected_for"
 }
 
 update() {
