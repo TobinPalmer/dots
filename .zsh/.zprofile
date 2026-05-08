@@ -30,6 +30,7 @@ if [[ "$machine" == "Mac" ]]; then
 	export PATH="/Users/tobin/.cargo/bin:$PATH"
 	export PATH="/Users/tobin/go/bin/:$PATH"
 	export PATH="/Users/tobin/CEdev/bin/:$PATH"
+	export PATH="/Users/tobin/Documents/Code/Clones/vesc_tool/build/macos/bin:$PATH"
 
   # Jetbrains Toolbox
   export PATH="$PATH:/Users/tobin/Library/Application Support/JetBrains/Toolbox/scripts"

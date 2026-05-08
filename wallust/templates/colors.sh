@@ -14,44 +14,44 @@ hex_to_aarrggbb() {
 }
 
 export WALLUST_WALLPAPER="{{wallpaper}}"
-export WALLUST_BACKGROUND="{{background}}"
+export WALLUST_BACKGROUND="#1E1E2D"
 export WALLUST_FOREGROUND="{{foreground}}"
 export WALLUST_CURSOR="{{cursor}}"
 
-export BLACK="$(hex_to_argb '{{background}}')"
+export BLACK="$(hex_to_argb '#1E1E2D')"
 export WHITE="$(hex_to_argb '{{foreground}}')"
-export RED="$(hex_to_argb '{{color1}}')"
+export RED="$(hex_to_argb '{{color9}}')"
 export GREEN="$(hex_to_argb '{{color2}}')"
-export YELLOW="$(hex_to_argb '{{color3}}')"
-export BLUE="$(hex_to_argb '{{color4}}')"
+export YELLOW="$(hex_to_argb '{{color7}}')"
+export BLUE="$(hex_to_argb '{{color10}}')"
 export MAGENTA="$(hex_to_argb '{{color5}}')"
-export TEAL="$(hex_to_argb '{{color6}}')"
-export ORANGE="$(hex_to_argb '{{color11}}')"
+export TEAL="$(hex_to_argb '{{color14}}')"
+export ORANGE="$(hex_to_argb '{{color13}}')"
 export GREY="$(hex_to_argb '{{color8}}')"
 export TRANSPARENT=0x00000000
 
 # Yabai colors
-export ACTIVE_WINDOW_BORDER_COLOR="$(hex_to_argb '{{color4}}')"
+export ACTIVE_WINDOW_BORDER_COLOR="$(hex_to_argb '{{color10}}')"
 export NORMAL_WINDOW_BORDER_COLOR="$(hex_to_argb '{{color8}}')"
 export INSERT_FEEDBACK_COLOR="$(hex_to_argb '{{color2}}')"
 
 # Sketchybar colors
 export BAR_COLOR
-[[ $FLOATING_BAR = false ]] && BAR_COLOR="$(hex_to_aarrggbb f5 '{{background}}')" || BAR_COLOR="$(hex_to_argb '{{background}}')"
-export BAR_BORDER_COLOR="$(hex_to_argb '{{color5}}')"
+[[ $FLOATING_BAR = false ]] && BAR_COLOR="$(hex_to_aarrggbb f5 '#1E1E2D')" || BAR_COLOR="$(hex_to_argb '#1E1E2D')"
+export BAR_BORDER_COLOR="$(hex_to_argb '{{color7}}')"
 export ICON_COLOR="$WHITE"
 export LABEL_COLOR="$WHITE"
-export BACKGROUND_1="$(hex_to_aarrggbb 60 '{{color0}}')"
-export BACKGROUND_2="$(hex_to_aarrggbb 60 '{{color8}}')"
-export POPUP_BACKGROUND_COLOR="$(hex_to_argb '{{background}}')"
+export BACKGROUND_1="$(hex_to_aarrggbb 60 '#1E1E2D')"
+export BACKGROUND_2="$(hex_to_aarrggbb 60 '#1E1E2D')"
+export POPUP_BACKGROUND_COLOR="$(hex_to_argb '#1E1E2D')"
 export POPUP_BORDER_COLOR="$WHITE"
 export SHADOW_COLOR="$BLACK"
 
 # Status colors
-export VERY_COLD="$(hex_to_argb '{{color4}}')"
-export COLD="$(hex_to_argb '{{color12}}')"
-export COOL="$(hex_to_argb '{{color6}}')"
+export VERY_COLD="$(hex_to_argb '{{color10}}')"
+export COLD="$(hex_to_argb '{{color10}}')"
+export COOL="$(hex_to_argb '{{color14}}')"
 export NICE="$(hex_to_argb '{{color2}}')"
-export WARM="$(hex_to_argb '{{color3}}')"
-export HOT="$(hex_to_argb '{{color11}}')"
-export VERY_HOT="$(hex_to_argb '{{color1}}')"
+export WARM="$(hex_to_argb '{{color7}}')"
+export HOT="$(hex_to_argb '{{color13}}')"
+export VERY_HOT="$(hex_to_argb '{{color9}}')"

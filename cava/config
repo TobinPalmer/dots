@@ -148,14 +148,14 @@ source = "Background Music"
 
 gradient = 1
 
-gradient_color_1 = '#696998'
-gradient_color_2 = '#8E8FE2'
-gradient_color_3 = '#908AA3'
-gradient_color_4 = '#8678A1'
-gradient_color_5 = '#887FA0'
-gradient_color_6 = '#B4A0EB'
-gradient_color_7 = '#8BA4DF'
-gradient_color_8 = '#595B98'
+gradient_color_1 = '#711DE2'
+gradient_color_2 = '#711DE2'
+gradient_color_3 = '#CC3A9C'
+gradient_color_4 = '#C829AD'
+gradient_color_5 = '#C72C83'
+gradient_color_6 = '#C72C83'
+gradient_color_7 = '#A125CB'
+gradient_color_8 = '#531EBA'
 
 [smoothing]
 

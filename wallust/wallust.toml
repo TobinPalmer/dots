@@ -3,8 +3,9 @@
 backend = "fastresize"
 palette = "kmeans"
 style = "dark"
-use16cols = true
+use16cols = false
 check_contrast = true
+saturation = 60
 alpha = 94
 
 [templates]

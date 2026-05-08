@@ -109,31 +109,31 @@ alias weather="/Users/tobin/Documents/Code/python/weatherTUI/venv/bin/python /Us
 reloadcolors() {
   local wallpaper index_plist wallpaper_ext converted_wallpaper
 
-  wallpaper="$(osascript -e 'tell application "System Events" to get picture of every desktop' 2>/dev/null \
-    | tr ',' '\n' \
-    | sed -e 's/^ *//' -e 's/ *$//' \
-    | awk 'NF && $0 != "missing value" { print; exit }')"
+  wallpaper="$(osascript -e 'tell application "System Events" to get properties of current desktop' 2>/dev/null \
+    | sed -n 's/.*picture:\([^,]*\).*/\1/p')"
 
   if [[ -z "$wallpaper" || ! -f "$wallpaper" ]]; then
-    wallpaper="$(osascript -e 'tell application "System Events" to get properties of current desktop' 2>/dev/null \
-      | sed -n 's/.*picture:\([^,]*\).*/\1/p')"
+    wallpaper="$(osascript -e 'tell application "System Events" to get picture of every desktop' 2>/dev/null \
+      | tr ',' '\n' \
+      | sed -e 's/^ *//' -e 's/ *$//' \
+      | awk 'NF && $0 != "missing value" { print; exit }')"
   fi
 
   if [[ -z "$wallpaper" || ! -f "$wallpaper" ]]; then
     index_plist="$HOME/Library/Application Support/com.apple.wallpaper/Store/Index.plist"
-    wallpaper="$(plutil -p "$index_plist" 2>/dev/null \
-      | sed -n 's/.*"relative" => "file:\/\/\(.*\)"/\1/p' \
+    wallpaper="$(plutil -extract AllSpacesAndDisplays.Desktop.Content.Choices.0.Configuration xml1 -o - "$index_plist" 2>/dev/null \
+      | sed -n '/<data>/,/<\/data>/p' \
+      | sed -e 's/<[^>]*>//g' -e 's/^[[:space:]]*//' \
+      | base64 --decode 2>/dev/null \
+      | strings \
+      | sed -n 's#^file://##p' \
       | head -1)"
     wallpaper="${wallpaper//%20/ }"
   fi
 
   if [[ -z "$wallpaper" || ! -f "$wallpaper" ]]; then
-    source "$HOME/.config/color/colors.sh"
-    wallpaper="$WALLUST_WALLPAPER"
-  fi
-
-  if [[ -z "$wallpaper" || ! -f "$wallpaper" ]]; then
-    echo "reloadcolors: could not find a usable wallpaper image"
+    echo "reloadcolors: macOS did not expose the current wallpaper as an image file"
+    echo "reloadcolors: choose a file-backed wallpaper, or run: wallust -s -d ~/.config/wallust run /path/to/image"
     return 1
   fi
 
@@ -141,10 +141,24 @@ reloadcolors() {
   if [[ "$wallpaper_ext" == "heic" || "$wallpaper_ext" == "heif" ]]; then
     converted_wallpaper="${TMPDIR:-/tmp}/wallust-current-wallpaper.png"
     sips -s format png "$wallpaper" --out "$converted_wallpaper" >/dev/null || return
+    echo "reloadcolors: converted current wallpaper $wallpaper -> $converted_wallpaper"
     wallpaper="$converted_wallpaper"
+  else
+    echo "reloadcolors: using current wallpaper $wallpaper"
   fi
 
-  "$HOME/.cargo/bin/wallust" -d "$HOME/.config/wallust" run "$wallpaper" || return
+  "$HOME/.cargo/bin/wallust" -s -d "$HOME/.config/wallust" run "$wallpaper" || return
+
+  /opt/homebrew/bin/kitty @ --to unix:/tmp/kitty set-colors --all --configured "$HOME/.config/kitty/wallust.conf" >/dev/null 2>&1 || true
+  touch "$HOME/.config/wezterm/wezterm.lua"
+  /opt/homebrew/bin/sketchybar --reload >/dev/null 2>&1 || true
+}
+
+resetcolors() {
+  cp "$HOME/.config/wallust/reset/colors.sh" "$HOME/.config/color/colors.sh"
+  cp "$HOME/.config/kitty/catppuccin-mocha.conf" "$HOME/.config/kitty/wallust.conf"
+  cp "$HOME/.config/wallust/reset/wezterm.lua" "$HOME/.config/wezterm/wallust.lua"
+  cp "$HOME/.config/wallust/reset/btop.theme" "$HOME/.config/btop/themes/wallust.theme"
 
   /opt/homebrew/bin/kitty @ --to unix:/tmp/kitty set-colors --all --configured "$HOME/.config/kitty/wallust.conf" >/dev/null 2>&1 || true
   touch "$HOME/.config/wezterm/wezterm.lua"
